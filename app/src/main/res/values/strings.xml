@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">dreams</string>
+    <string name="app_name">dreaMS</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="welcome_app_title">dreaMS</string>
+    <string name="welcome_message">Hi there,\n Welcome to dreaMS</string>
+    <string name="welcome_login">Log in</string>
+
 </resources>
