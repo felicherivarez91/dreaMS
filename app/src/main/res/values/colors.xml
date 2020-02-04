@@ -4,4 +4,26 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#4DC185</color>
     <color name="white">#FFFFFF</color>
+
+
+    <!-- Main Colors -->
+    <color name="mainBlackColor">#2D3344</color>
+    <color name="mainRedColor">#D15259</color>
+    <color name="mainBlueColor">#007AFF</color>
+    <!-- ./ Main Colors -->
+
+    <color name="mainErrorColor">@color/mainRedColor</color>
+
+    <!-- Button Colors -->
+    <color name="disabledButtonBackgroundColor">#ADB2BA</color>
+    <!-- ./ Button Colors -->
+
+    <!-- Bottom Picker -->
+    <color name="dropdownHeaderBackgroundColor">#E1E0E0</color>
+    <color name="dropdownHeaderDoneButtonColor">@color/mainBlueColor</color>
+    <!-- ./ Bottom Picker -->
+
+    <color name="colorEditTextUnderlineBar">#C6CEDD</color>
+    <color name="colorLoginPhoneNumberMessage">#818596</color>
+
 </resources>

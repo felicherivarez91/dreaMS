@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:minHeight="195dp">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_bottomPicker_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dropdownHeaderBackgroundColor"
+        android:minHeight="44dp">
+
+        <ImageButton
+            android:id="@+id/imageButton_bottomPicker_headerNavigationLeftArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_left_arrow"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"/>
+
+
+        <ImageButton
+            android:id="@+id/imageButton_bottomPicker_headerNavigationRightArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imageButton_bottomPicker_headerNavigationLeftArrow"
+            android:background="@drawable/ic_right_arrow"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="32.5dp"/>
+
+
+        <Button
+            android:id="@+id/button_bottomPicker_headerNavigationDoneButton"
+            style="@style/AppTheme.Dropdown.Button.Done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Done"
+            />
+
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_bottomPicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayout_bottomPicker_header"/>
+
+
+
+</RelativeLayout>

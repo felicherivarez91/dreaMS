@@ -5,4 +5,27 @@
         <item name="android:letterSpacing">0.01</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
+
+    <style name="AppTheme.LoginTitleText">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
+
+    <style name="AppTheme.LoginPhoneNumberLabel">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
+
+    <style name="AppTheme.LoginPhoneNumberMessageText">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorLoginPhoneNumberMessage</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+    </style>
+
+
+
 </resources>
