@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Alpha colors
+
+    100% — FF
+    95% — F2
+    90% — E6
+    85% — D9
+    80% — CC
+    75% — BF
+    70% — B3
+    65% — A6
+    60% — 99
+    55% — 8C
+    50% — 80
+    45% — 73
+    40% — 66
+    35% — 59
+    30% — 4D
+    25% — 40
+    20% — 33
+    15% — 26
+    10% — 1A
+    5% — 0D
+    0% — 00
+
+    -->
+
     <color name="colorPrimary">#4DC185</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#4DC185</color>
@@ -19,11 +46,18 @@
     <!-- ./ Button Colors -->
 
     <!-- Bottom Picker -->
-    <color name="dropdownHeaderBackgroundColor">#E1E0E0</color>
-    <color name="dropdownHeaderDoneButtonColor">@color/mainBlueColor</color>
+    <color name="bottomPickerHeaderBackgroundColor">#E1E0E0</color>
+    <color name="bottomPickerHeaderDoneButtonColor">@color/mainBlueColor</color>
     <!-- ./ Bottom Picker -->
 
-    <color name="colorEditTextUnderlineBar">#C6CEDD</color>
-    <color name="colorLoginPhoneNumberMessage">#818596</color>
+    <color name="editTextUnderlineColor">#C6CEDD</color>
+    <color name="loginPhoneNumberMessageTextColor">#818596</color>
+
+    <!-- SMS Input Code View -->
+    <color name="digitCodeItemStrokeColor">#E7E8F2</color>
+    <color name="digitErrorCodeItemStrokeColor">#26D15259</color>
+    <color name="digitErrorCodeItemBackgroundColor">#0DD15259</color>
+    <!-- ./ SMS Input Code View -->
+
 
 </resources>

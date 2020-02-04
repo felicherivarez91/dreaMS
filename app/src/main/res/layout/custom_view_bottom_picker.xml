@@ -9,7 +9,7 @@
         android:id="@+id/relativeLayout_bottomPicker_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/dropdownHeaderBackgroundColor"
+        android:background="@color/bottomPickerHeaderBackgroundColor"
         android:minHeight="44dp">
 
         <ImageButton

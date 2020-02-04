@@ -12,11 +12,25 @@
     <string name="all_switzerland">Switzerland</string>
 
     <!-- ./ All -->
+
     <!-- Login -->
     <string name="login_login_title">Log in</string>
     <string name="login_phoneNumber_label">Phone Number</string>
     <string name="login_telephoneMessagePlaceholder">We will send a code to verify your phone number</string>
     <string name="login_sendButtonText">Send</string>
     <string name="login_telephone_placeholder">(+34) 111 111 111</string>
+    <string name="login_country_flag_image_content_description">Country flag</string>
+    <string name="login_dropdown_image_content_description">Dropdown</string>
+
+    <!-- ./ Login -->
+
+    <!-- Verify Phone -->
+    <string name="verifyPhone_title">Verify Phone</string>
+    <string name="verifyPhone_info_message">We\'ve sent a code to verify your phone number</string>
+    <string name="verifyPhone_sent_to"><![CDATA[Sent to <b>%s</b>]]></string>
+    <string name="verifyPhone_invalid_code">The code is invalid. Please try again</string>
+    <string name="verifyPhone_didnt_receive_a_code">I didn\'t receive a code!</string>
+    <string name="verifyPhone_resend_code_button_text">Resend code</string>
+
 
 </resources>
