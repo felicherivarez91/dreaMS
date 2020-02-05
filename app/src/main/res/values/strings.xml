@@ -10,6 +10,7 @@
     <string name="all_country_flag_content_description">Country flag</string>
     <string name="all_spain">Spain</string>
     <string name="all_switzerland">Switzerland</string>
+    <string name="all_continue">Continue</string>
 
     <!-- ./ All -->
 
@@ -31,6 +32,18 @@
     <string name="verifyPhone_invalid_code">The code is invalid. Please try again</string>
     <string name="verifyPhone_didnt_receive_a_code">I didn\'t receive a code!</string>
     <string name="verifyPhone_resend_code_button_text">Resend code</string>
+    <!-- ./ Verify Phone -->
+
+    <!-- Personal Information -->
+    <string name="personalInformation_accountDetails">Account details</string>
+    <string name="personalInformation_nickname">Nickname</string>
+    <string name="personalInformation_selectAvatar">Select avatar</string>
+    <string name="personalInformation_changeAvatar">Change avatar</string>
+    <string name="personalInformation_nicknameError">Please use alphabetic characters only</string>
+    <string name="personalInformation_termsAndConditionsText">I agree to dreaMS Terms and Conditions, Privacy Policy</string>
+    <string name="personalInformation_termsAndConditionsCheckboxContentDescription">Terms and conditions checkbox</string>
+
+    <!-- ./Personal Information -->
 
 
 </resources>

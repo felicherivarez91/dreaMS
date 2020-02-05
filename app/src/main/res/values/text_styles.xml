@@ -6,14 +6,14 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
-    <style name="AppTheme.LoginTitleText">
+    <style name="AppTheme.AllScreenTitleText">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_bold</item>
     </style>
 
 
-    <style name="AppTheme.LoginPhoneNumberLabel">
+    <style name="AppTheme.AllEditTextLabel">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_bold</item>
@@ -34,11 +34,33 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="AppTheme.VerifyPhoneSmsCodeErrorText">
+    <style name="AppTheme.AllErrorText">
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/mainErrorColor</item>
         <item name="android:fontFamily">@font/circularstd_book</item>
     </style>
+
+
+    <style name="AppTheme.PersonalInformationNicknameEditText">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+        <item name="android:backgroundTint">@color/editTextUnderlineColor</item>
+    </style>
+
+    <style name="AppTheme.PersonalInformationSelectAvatarLabel">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
+    <style name="AppTheme.PersonalInformationTermsAndConditionsText">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+    </style>
+
+
 
 
 </resources>

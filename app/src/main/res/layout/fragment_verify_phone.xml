@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/textView_verifyPhone_title"
-        style="@style/AppTheme.LoginTitleText"
+        style="@style/AppTheme.AllScreenTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/textView_verifyPhone_errorMessage"
-        style="@style/AppTheme.VerifyPhoneSmsCodeErrorText"
+        style="@style/AppTheme.AllErrorText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

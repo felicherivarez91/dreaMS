@@ -1,4 +1,11 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="height_all_button">56dp</dimen>
+
+    <dimen name="height_personalInformation_avatar">120dp</dimen>
+    <dimen name="width_personalInformation_avatar">@dimen/height_personalInformation_avatar</dimen>
+
+
+
+
 </resources>

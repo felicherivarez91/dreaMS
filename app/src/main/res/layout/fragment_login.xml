@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/textView_login_title"
-        style="@style/AppTheme.LoginTitleText"
+        style="@style/AppTheme.AllScreenTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -29,7 +29,7 @@
 
             <TextView
                 android:id="@+id/textView_login_phoneNumber"
-                style="@style/AppTheme.LoginPhoneNumberLabel"
+                style="@style/AppTheme.AllEditTextLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_phoneNumber_label" />
