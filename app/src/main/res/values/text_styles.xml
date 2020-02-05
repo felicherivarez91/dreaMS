@@ -67,9 +67,16 @@
     </style>
 
     <style name="AppTheme.ItemScheduleDayText">
-        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/itemScheduleDayNameTextColor</item>
         <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
+    <style name="AppTheme.ItemScheduleDaySelectedText" parent="AppTheme.ItemScheduleDayText">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.ItemScheduleDayUnselectedText" parent="AppTheme.ItemScheduleDayText">
+        <item name="android:textColor">@color/itemScheduleDayNameTextColor</item>
     </style>
 
 

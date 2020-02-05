@@ -9,11 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:minHeight="82dp"
-        android:background="@drawable/schedule_day_background_shape">
+        android:background="@drawable/schedule_unselected_item_background_shape">
 
         <TextView
             android:id="@+id/textView_itemScheduleDay_dayName"
-            style="@style/AppTheme.ItemScheduleDayText"
+            style="@style/AppTheme.ItemScheduleDayUnselectedText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
