@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView_termsAndConditions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_termsAndConditions_title"
+                style="@style/AppTheme.AllScreenTitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/termsAndConditions_titleText" />
+
+            <TextView
+                android:id="@+id/textView_termsAndConditions_contentText"
+                style="@style/AppTheme.TermsAndConditionsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/termsAndConditions_termsContentText" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_termsAndConditions_agreeButtonWrapperLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/button_termsAndConditions_AgreeButton"
+            style="@style/AppTheme.Button.Main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_all_button"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="34dp"
+            android:enabled="true"
+            android:text="@string/termsAndConditions_agreeButtonText" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -60,6 +60,12 @@
         <item name="android:fontFamily">@font/circularstd_book</item>
     </style>
 
+    <style name="AppTheme.TermsAndConditionsText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+    </style>
+
 
 
 
