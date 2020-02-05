@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <include
+        android:id="@+id/toolbar_termsAndConditions"
+        layout="@layout/toolbar_white"
+        />
 
     <FrameLayout
         android:id="@+id/frameLayout_termsAndConditions"
