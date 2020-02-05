@@ -38,6 +38,7 @@
     <color name="mainRedColor">#D15259</color>
     <color name="mainBlueColor">#007AFF</color>
     <color name="mainStrokeColor">#E7E8F2</color>
+    <color name="mainExplanationTextColor">#818596</color>
     <!-- ./ Main Colors -->
 
     <color name="mainErrorColor">@color/mainRedColor</color>
@@ -52,7 +53,6 @@
     <!-- ./ Bottom Picker -->
 
     <color name="editTextUnderlineColor">#C6CEDD</color>
-    <color name="loginPhoneNumberMessageTextColor">#818596</color>
 
     <!-- SMS Input Code View -->
     <color name="digitCodeItemStrokeColor">@color/mainStrokeColor</color>
@@ -62,6 +62,9 @@
 
     <!--  -->
     <color name="personalInformationAvatarStrokeColor">@color/mainStrokeColor</color>
+
+    <color name="itemScheduleDayNameTextColor">#818596</color>
+    <color name="itemScheduleDayBackgroundColor">#E7E8F2</color>
 
 
 </resources>

@@ -20,9 +20,9 @@
     </style>
 
 
-    <style name="AppTheme.LoginPhoneNumberMessageText">
+    <style name="AppTheme.AllExplanationText">
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/loginPhoneNumberMessageTextColor</item>
+        <item name="android:textColor">@color/mainExplanationTextColor</item>
         <item name="android:fontFamily">@font/circularstd_book</item>
     </style>
 
@@ -65,6 +65,13 @@
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_book</item>
     </style>
+
+    <style name="AppTheme.ItemScheduleDayText">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/itemScheduleDayNameTextColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
 
 
 

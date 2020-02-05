@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout_itemScheduleWeek_wrapperLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_itemScheduleWeek_firstRow"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:weightSum="4">
+
+            <include
+                android:id="@+id/itemScheduleDay_itemScheduleWeek_monday"
+                layout="@layout/item_schedule_day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/itemScheduleDay_itemScheduleWeek_tuesday"
+                layout="@layout/item_schedule_day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/itemScheduleDay_itemScheduleWeek_wednesday"
+                layout="@layout/item_schedule_day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/itemScheduleDay_itemScheduleWeek_thursday"
+                layout="@layout/item_schedule_day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_itemScheduleWeek_secondRow"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="43dp"
+            android:weightSum="3">
+
+            <include
+                android:id="@+id/itemScheduleDay_itemScheduleWeek_monday"
+                layout="@layout/item_schedule_day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/itemScheduleDay_itemScheduleWeek_tuesday"
+                layout="@layout/item_schedule_day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/itemScheduleDay_itemScheduleWeek_thursday"
+                layout="@layout/item_schedule_day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

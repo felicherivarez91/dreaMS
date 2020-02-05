@@ -11,7 +11,8 @@
     <string name="all_spain">Spain</string>
     <string name="all_switzerland">Switzerland</string>
     <string name="all_continue">Continue</string>
-
+    <string name="all_save">Save</string>
+    <string name="all_done">Done</string>
     <!-- ./ All -->
 
     <!-- Login -->
@@ -46,13 +47,15 @@
     <!-- ./Personal Information -->
 
     <!-- Terms And Conditions -->
-    <string name="termsAndConditions_titleText">Terms and Conditions, Privacy Policy</string>
-    <string name="termsAndConditions_termsContentText">This privacy notice discloses the privacy practices for (website address). This privacy notice applies solely to information collected by this website. It will notify you of the following: \n\nWhat personally identifiable information is collected from you through the website, how it is used and with whom it may be shared. What choices are available to you regarding the use of your data. The security procedures in place to protect the misuse of your information. \n\nHow you can correct any inaccuracies in the information. Information Collection, Use, and Sharing \n\nWe are the sole owners of the information collected on this site. We only have access to/collect </string>
-    <string name="termsAndConditions_agreeButtonText">Agree and Accept</string>
-    <string name="all_save">Save</string>
-
+    <string name="fragment_termsandconditions_title_text">Terms and Conditions, Privacy Policy</string>
+    <string name="fragment_termsandconditions_terms_content_text">This privacy notice discloses the privacy practices for (website address). This privacy notice applies solely to information collected by this website. It will notify you of the following: \n\nWhat personally identifiable information is collected from you through the website, how it is used and with whom it may be shared. What choices are available to you regarding the use of your data. The security procedures in place to protect the misuse of your information. \n\nHow you can correct any inaccuracies in the information. Information Collection, Use, and Sharing \n\nWe are the sole owners of the information collected on this site. We only have access to/collect </string>
+    <string name="fragment_termsandconditions_agree_button_text">Agree and Accept</string>
 
     <!-- ./ Terms And Conditions -->
+
+    <!-- Schedule -->
+    <string name="fragment_schedule_explain_text">Simply select 5 days of the week you want to perform you challenges on. You can set up your schedule every Monday.</string>
+    <string name="fragment_schedule_title_text">Please set up your schedule</string>
 
 
 </resources>

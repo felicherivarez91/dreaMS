@@ -15,7 +15,7 @@
 
     <TextView
         android:id="@+id/textView_verifyPhone_infoMessage"
-        style="@style/AppTheme.LoginPhoneNumberMessageText"
+        style="@style/AppTheme.AllExplanationText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -25,7 +25,7 @@
 
     <TextView
         android:id="@+id/textView_verifyPhone_infoMessageSentTo"
-        style="@style/AppTheme.LoginPhoneNumberMessageText"
+        style="@style/AppTheme.AllExplanationText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
