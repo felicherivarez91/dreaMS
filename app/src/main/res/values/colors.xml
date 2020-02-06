@@ -66,5 +66,9 @@
     <color name="itemScheduleDayNameTextColor">#818596</color>
     <color name="itemScheduleDayBackgroundColor">#E7E8F2</color>
 
+    <!-- Quick Tour -->
+    <color name="quickTourStepImageBackgroundColor">#FAFAFE</color>
+
+    <!-- ./ Quick Tour -->
 
 </resources>

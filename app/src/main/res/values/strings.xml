@@ -56,6 +56,17 @@
     <!-- Schedule -->
     <string name="fragment_schedule_explain_text">Simply select 5 days of the week you want to perform you challenges on. You can set up your schedule every Monday.</string>
     <string name="fragment_schedule_title_text">Please set up your schedule</string>
+    <!-- ./ Schedule -->
 
+    <!-- Quick Tour -->
+    <string name="fragment_quicktour_step_daily_challenges_title_text">Daily Challenges</string>
+    <string name="fragment_quicktour_step_daily_challenges_explanation_text">dreaMS will help you complete different types of challenges every day. Movement, Fine motor skills, Cognition, Vision and more.</string>
+    <string name="fragment_quicktour_step_record_a_relapse_title_text">Record a relapse</string>
+    <string name="fragment_quicktour_step_record_a_relapse_explanation_text">If you feel like you are experiencing a relapse, dreaMS will provide you a simple and intuitive protocol which will allow you to record the information as it happens.</string>
+    <string name="fragment_quicktour_step_connect_dreams_title_text">Connect dreaMS with PEAK and FITBIT for the purpose of the study</string>
+    <string name="fragment_quicktour_step_connect_dreams_explanation_text">To collect additional information about your physical activity and sleep, synchronize dreaMS with Apple Healtj, Google Fit and Fitbit.</string>
+    <string name="activity_quicktour_next_text">Next</string>
+
+    <!-- ./ Quick Tour -->
 
 </resources>
