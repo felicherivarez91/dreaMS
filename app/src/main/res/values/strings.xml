@@ -69,4 +69,24 @@
 
     <!-- ./ Quick Tour -->
 
+    <!-- Permissions -->
+    <string name="fragment_permissions_title_text">... and one more step before we continue.</string>
+    <string name="fragment_permissions_explanation_text">dreaMS needs your permission for</string>
+    <string name="fragment_permissions_get_started_button_text">Get started</string>
+    <string name="permissions_google_fit">GoogleFit</string>
+    <string name="permissions_peak">PEAK</string>
+    <string name="permissions_location">Location</string>
+    <string name="permissions_activity_recognition">Activity</string>
+    <string name="permissions_external_sensors">External Sensors</string>
+
+
+    <!-- ./ Permissions -->
+
+    <!-- Dialog Third Party Apps -->
+    <string name="dialog_open_third_party_app_peak_connection">Open PEAK app to set up a connection.</string>
+    <string name="dialog_open_third_party_app_continue_to_peak_button_text">Continue to peak</string>
+
+    <!-- ./ Dialog Third Party Apps -->
+
+
 </resources>

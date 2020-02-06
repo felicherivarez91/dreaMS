@@ -15,6 +15,7 @@
     <dimen name="marginEnd_all_mainButton">@dimen/marginStart_all_mainButton</dimen>
     <dimen name="marginTop_all_mainButton">30dp</dimen>
     <dimen name="marginBottom_all_mainButton">34dp</dimen>
+    <dimen name="height_dialog_open_third_party_app_default">280dp</dimen>
     <!-- ./ Main Button Dimens -->
 
 

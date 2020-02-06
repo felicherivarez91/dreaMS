@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBlackColor_50">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_dialog_open_third_party_app_dialog_view"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_dialog_open_third_party_app_default"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginEnd="47dp"
+        android:background="@drawable/dialog_open_third_part_app_dialog_shape"
+        android:elevation="1"
+        android:minWidth="280dp">
+
+
+        <ImageView
+            android:id="@+id/imageView_dialog_open_third_party_app_icon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="42dp"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/third_party_app_peak" />
+
+
+        <TextView
+            android:id="@+id/textView_dialog_open_third_party_app_explanation_text"
+            style="@style/AppTheme.Dialogs.ExplanationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView_dialog_open_third_party_app_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/dialog_open_third_party_app_peak_connection" />
+
+
+        <Button
+            android:id="@+id/button_dialog_open_third_party_app_continue_button"
+            style="@style/AppTheme.Dialog.ThirdPartyApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/dialog_open_third_party_app_continue_to_peak_button_text"
+            android:textAllCaps="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

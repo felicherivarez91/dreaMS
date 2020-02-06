@@ -79,7 +79,24 @@
         <item name="android:textColor">@color/itemScheduleDayNameTextColor</item>
     </style>
 
+    <style name="AppTheme.PermissionText">
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
 
+    <style name="AppTheme.PermissionText.Granted" parent="AppTheme.PermissionText">
+        <item name="android:textColor">@color/itemPermissionGrantedTextColor</item>
+    </style>
+
+    <style name="AppTheme.PermissionText.NotGranted" parent="AppTheme.PermissionText">
+        <item name="android:textColor">@color/itemPermissionNoGrantedTextColor</item>
+    </style>
+
+    <style name="AppTheme.Dialogs.ExplanationText">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+    </style>
 
 
 
