@@ -14,7 +14,7 @@
         android:layout_marginStart="47dp"
         android:layout_marginEnd="47dp"
         android:background="@drawable/dialog_open_third_part_app_dialog_shape"
-        android:elevation="1"
+        android:elevation="1dp"
         android:minWidth="280dp">
 
 
