@@ -1,31 +1,31 @@
 package com.healios.dreams.ui.permissions;
 
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
-import android.widget.TextView;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.healios.dreams.R;
 import com.healios.dreams.model.PermissionModel;
 
 import java.util.List;
 
 public class PermissionRecyclerViewAdapter extends RecyclerView.Adapter {
 
-
     private List<PermissionModel> permissionList;
     private PermissionViewHolder permissionViewHolder;
+
+    private PermissionRecyclerViewListener listener;
+
+    public PermissionRecyclerViewAdapter(PermissionRecyclerViewListener listener) {
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        permissionViewHolder = new PermissionViewHolder(new PermissionItemView(parent.getContext()));
+        permissionViewHolder = new PermissionViewHolder(new PermissionItemView(parent.getContext()), listener);
         return permissionViewHolder;
     }
 
@@ -46,24 +46,34 @@ public class PermissionRecyclerViewAdapter extends RecyclerView.Adapter {
     //region: Setters
     public void setPermissions(List<PermissionModel> permissionModelList) {
         this.permissionList = permissionModelList;
-        //this.notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     //endregion
 
 
     //region: ViewHolder
-    class PermissionViewHolder extends RecyclerView.ViewHolder {
+    class PermissionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private final String TAG = PermissionViewHolder.class.getSimpleName();
+        private final PermissionRecyclerViewListener recyclerViewListener;
 
         private PermissionItemView permissionItemView;
 
-        public PermissionViewHolder(@NonNull View itemView) {
+        public PermissionViewHolder(@NonNull View itemView, PermissionRecyclerViewListener recyclerViewListener) {
             super(itemView);
+            this.recyclerViewListener = recyclerViewListener;
             this.permissionItemView = (PermissionItemView) itemView;
+            this.permissionItemView.setOnClickListener(this);
         }
 
         public void bindModel(PermissionModel permissionModel) {
             this.permissionItemView.setModel(permissionModel);
+        }
+
+        @Override
+        public void onClick(View view) {
+            this.recyclerViewListener.onSwitchStatusChanged(permissionItemView, getLayoutPosition());
         }
     }
     //endregion

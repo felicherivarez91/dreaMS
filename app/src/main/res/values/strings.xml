@@ -76,7 +76,7 @@
     <string name="permissions_google_fit">GoogleFit</string>
     <string name="permissions_peak">PEAK</string>
     <string name="permissions_location">Location</string>
-    <string name="permissions_activity_recognition">Activity</string>
+    <string name="permissions_activity_recognition">Activity Recognition</string>
     <string name="permissions_external_sensors">External Sensors</string>
 
 

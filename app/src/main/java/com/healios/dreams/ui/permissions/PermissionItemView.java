@@ -11,12 +11,12 @@ import android.widget.TextView;
 import com.healios.dreams.R;
 import com.healios.dreams.model.PermissionModel;
 
+
 public class PermissionItemView extends RelativeLayout implements CompoundButton.OnCheckedChangeListener {
 
     private TextView permissionName;
     private Switch permissionStateSwitch;
     private Context context;
-
 
     public PermissionItemView(Context context) {
         super(context);
@@ -35,10 +35,11 @@ public class PermissionItemView extends RelativeLayout implements CompoundButton
 
     private void init(Context context, AttributeSet attrs) {
         this.context = context;
-        if (attrs!=null) { }
-        View root= inflate(getContext(), R.layout.item_permission, this);
+        if (attrs != null) {
+        }
+        View root = inflate(getContext(), R.layout.item_permission, this);
         attachView(root);
-        setListeners();
+        //setListeners();
     }
 
     private void attachView(View itemView) {
@@ -46,28 +47,28 @@ public class PermissionItemView extends RelativeLayout implements CompoundButton
         this.permissionStateSwitch = itemView.findViewById(R.id.switch_item_permission);
     }
 
-    private void setListeners() {
+    private void setListeners(){
         this.permissionStateSwitch.setOnCheckedChangeListener(this);
     }
-
 
     public void setModel(PermissionModel permissionModel) {
         this.permissionName.setText(permissionModel.getName());
         this.permissionStateSwitch.setChecked(permissionModel.getEnabled());
+        manageStatus(permissionModel.getEnabled());
     }
 
     //region: <OnCheckedChangeListener>
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        this.manageStatus(b);
+    private void manageStatus(boolean permissionGranted) {
+        if (permissionGranted) {
+            this.permissionName.setTextAppearance(context, R.style.AppTheme_PermissionText_Granted);
+        } else {
+            this.permissionName.setTextAppearance(context, R.style.AppTheme_PermissionText_NotGranted);
+        }
     }
 
-    private void manageStatus(boolean permissionGranted) {
-        if (permissionGranted){
-            this.permissionName.setTextAppearance(context,R.style.AppTheme_PermissionText_Granted);
-        }else{
-            this.permissionName.setTextAppearance(context,R.style.AppTheme_PermissionText_NotGranted);
-        }
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        manageStatus(b);
     }
     //endregion
 }

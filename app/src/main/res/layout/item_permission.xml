@@ -2,18 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    >
+    android:background="@android:color/transparent">
 
     <RelativeLayout
         android:id="@+id/relativeLayout_item_permission_wrapper_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="56dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/item_permission_background_shape">
+        android:background="@drawable/item_permission_background_shape"
+        android:minHeight="56dp">
 
         <TextView
             android:id="@+id/textView_item_permission_permission_name_text"
@@ -21,8 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="30dp"
-            android:text="@string/permissions_google_fit"/>
+            android:layout_marginStart="30dp" />
 
 
         <Switch
@@ -32,12 +30,11 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:checked="true"
+            android:clickable="false"
+            android:focusable="false"
             android:thumb="@drawable/item_permission_switch_thumb_selector"
             android:track="@drawable/item_permission_switch_track_background_custom" />
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>

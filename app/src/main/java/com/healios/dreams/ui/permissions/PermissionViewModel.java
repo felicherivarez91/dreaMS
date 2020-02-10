@@ -2,12 +2,13 @@ package com.healios.dreams.ui.permissions;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ReportFragment;
 import androidx.lifecycle.ViewModel;
 
 import com.healios.dreams.data.PermissionRepository;
 import com.healios.dreams.model.PermissionModel;
 
+import java.security.Permission;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PermissionViewModel extends ViewModel {
@@ -28,5 +29,8 @@ public class PermissionViewModel extends ViewModel {
         return mPermissions;
     }
 
+    public void updatePermissionStatus(int position, boolean isEnabled){
+       //TODO:
+    }
 
 }
