@@ -20,7 +20,6 @@
         <activity android:name=".ui.permissions.PermissionActivity"/>
         <activity
             android:name=".ui.welcome.WelcomeActivity"
-            android:label="@string/title_activity_welcome"
             android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
