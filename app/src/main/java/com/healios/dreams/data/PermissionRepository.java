@@ -25,17 +25,17 @@ public class PermissionRepository {
     }
 
     public MutableLiveData<List<PermissionModel>> getPermissions() {
-        //TODO: retrieve list of permissions
-        setFakeData();
+        setRequiredPermissionsToCompleteLogin();
 
         MutableLiveData<List<PermissionModel>> data = new MutableLiveData<>();
         data.setValue(dataSet);
         return data;
     }
 
-    private void setFakeData() {
+    private void setRequiredPermissionsToCompleteLogin() {
         dataSet = new ArrayList<>();
-        dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_google_fit),false));
+        //FIXME: Change Google Fit enabled to a non hardcoded value
+        dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_google_fit),true));
         dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_peak), PermissionsManager.isPeakAppInstalled()));
         dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_location),PermissionsManager.isAccesFineLocationPermissionGranted()));
         dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_external_sensors),PermissionsManager.isBodySensorPermissionGranted()));

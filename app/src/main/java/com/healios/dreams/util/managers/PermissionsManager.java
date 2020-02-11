@@ -25,7 +25,7 @@ public class PermissionsManager {
 
     // Third Party App List
     private static final String THIRD_PARTY_APP_PEAK = "com.brainbow.peak.app";
-
+    private static final String THIRD_PARTY_APP_GOOGLE_FIT = "com.google.android.apps.fitness";
 
     //region: Permission checker
     public static boolean isActivityRecognitionPermissionGranted() {
@@ -102,11 +102,15 @@ public class PermissionsManager {
     }
     //endregion
 
-
+    //region: Third party Apps installed
     public static boolean isPeakAppInstalled() {
         return isThirdPartyAppInstalled(THIRD_PARTY_APP_PEAK);
     }
 
+    public static boolean isGoogleFitAppInstalled() {
+        return isThirdPartyAppInstalled(THIRD_PARTY_APP_GOOGLE_FIT);
+    }
+    //endregion
 
     //region: General utils
     private static Boolean isPermissionGranted(String permission) {
@@ -134,8 +138,8 @@ public class PermissionsManager {
                 activity.requestPermissions(new String[]{permission}, requestCode);
             }
         }
-        /*
 
+        /*
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
             // Show an explanation to the user *asynchronously* -- don't block
             // this thread waiting for the user's response! After the user
