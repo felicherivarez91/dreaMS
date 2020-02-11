@@ -11,10 +11,9 @@ import com.healios.dreams.model.PermissionModel;
 
 import java.util.List;
 
-public class PermissionRecyclerViewAdapter extends RecyclerView.Adapter {
+public class PermissionRecyclerViewAdapter extends RecyclerView.Adapter<PermissionRecyclerViewAdapter.PermissionViewHolder> {
 
     private List<PermissionModel> permissionList;
-    private PermissionViewHolder permissionViewHolder;
 
     private PermissionRecyclerViewListener listener;
 
@@ -24,15 +23,14 @@ public class PermissionRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        permissionViewHolder = new PermissionViewHolder(new PermissionItemView(parent.getContext()), listener);
-        return permissionViewHolder;
+    public PermissionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new PermissionViewHolder(new PermissionItemView(parent.getContext()), listener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PermissionViewHolder holder, int position) {
         PermissionModel permissionModel = permissionList.get(position);
-        permissionViewHolder.bindModel(permissionModel);
+        holder.bindModel(permissionModel);
     }
 
     @Override
@@ -46,9 +44,8 @@ public class PermissionRecyclerViewAdapter extends RecyclerView.Adapter {
     //region: Setters
     public void setPermissions(List<PermissionModel> permissionModelList) {
         this.permissionList = permissionModelList;
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
     }
-
     //endregion
 
 

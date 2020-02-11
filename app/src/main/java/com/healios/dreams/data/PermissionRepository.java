@@ -6,6 +6,7 @@ import com.healios.dreams.R;
 import com.healios.dreams.model.PermissionModel;
 import com.healios.dreams.util.application.DreaMSApplication;
 import com.healios.dreams.util.managers.PermissionsManager;
+import com.healios.dreams.util.managers.VersionCompatibilityManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +38,9 @@ public class PermissionRepository {
         dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_google_fit),false));
         dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_peak), PermissionsManager.isPeakAppInstalled()));
         dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_location),PermissionsManager.isAccesFineLocationPermissionGranted()));
-        dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_activity_recognition),PermissionsManager.isActivityRecognitionPermissionGranted()));
         dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_external_sensors),PermissionsManager.isBodySensorPermissionGranted()));
-
+        if (VersionCompatibilityManager.appIsCompatibleWithActivityRecognition())
+            dataSet.add(new PermissionModel(DreaMSApplication.appContext().getString(R.string.permissions_activity_recognition),PermissionsManager.isActivityRecognitionPermissionGranted()));
     }
 
 }

@@ -31,6 +31,16 @@ public class PermissionViewModel extends ViewModel {
 
     public void updatePermissionStatus(int position, boolean isEnabled){
        //TODO:
+        List<PermissionModel> permissionModelList = mPermissions.getValue();
+        permissionModelList.get(position).setEnabled(isEnabled);
+        mPermissions.postValue(permissionModelList);
+
+        /*
+        ArrayList<PermissionModel> modelArrayList = new ArrayList<>();
+        modelArrayList.add(new PermissionModel("DEMo",true));
+        mPermissions.postValue(modelArrayList);
+        */
+
     }
 
 }

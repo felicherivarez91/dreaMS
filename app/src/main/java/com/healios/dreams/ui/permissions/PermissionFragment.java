@@ -3,6 +3,7 @@ package com.healios.dreams.ui.permissions;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -46,6 +47,7 @@ public class PermissionFragment extends Fragment implements PermissionRecyclerVi
 
     private PermissionRecyclerViewAdapter mAdapter;
     private PermissionViewModel mViewModel;
+    private int currentPermissionPosition;
 
     public static PermissionFragment newInstance() {
         return new PermissionFragment();
@@ -127,8 +129,8 @@ public class PermissionFragment extends Fragment implements PermissionRecyclerVi
 
     @Override
     public void onSwitchStatusChanged(PermissionItemView permissionItemView, int position) {
-        PermissionModel permissionModel = mViewModel.getPermissions().getValue().get(position);
-        //permissionItemView.setSwitchEnabled(true);
+        String permissionName = mViewModel.getPermissions().getValue().get(position).getName();
+        this.currentPermissionPosition = position;
         switch (position) {
             case 0:
                 manageGoogleFitPermission();
@@ -140,21 +142,19 @@ public class PermissionFragment extends Fragment implements PermissionRecyclerVi
                 manageLocationPermission();
                 break;
             case 3:
-                manageActivityRecognitionPermission();
+                manageExternalSensorsPermission();
                 break;
             case 4:
-                manageExternalSensorsPermission();
+                manageActivityRecognitionPermission();
                 break;
             default:
                 break;
         }
-
     }
 
     private void manageExternalSensorsPermission() {
         if (!PermissionsManager.isBodySensorPermissionGranted()) {
             PermissionsManager.askForBodySensorPermission(this);
-
         } else {
             Log.d(TAG, String.format("%s permission already granted", "Body sensors"));
         }
@@ -191,10 +191,7 @@ public class PermissionFragment extends Fragment implements PermissionRecyclerVi
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        mViewModel.updatePermissionStatus(2,true);
 
-        //FIXME:
-        /*
         switch (requestCode) {
             case PERMISSION_ACTIVITY_RECOGNITION_REQUEST_CODE: {
                 // If request is cancelled, the result arrays are empty.
@@ -212,6 +209,7 @@ public class PermissionFragment extends Fragment implements PermissionRecyclerVi
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.d(TAG, "Location permission granted");
+                    mViewModel.updatePermissionStatus(2, true);
                 } else {
                     Log.d(TAG, "Location permission denied");
                     mViewModel.updatePermissionStatus(2, false);
@@ -223,23 +221,38 @@ public class PermissionFragment extends Fragment implements PermissionRecyclerVi
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.d(TAG, "Body sensor permission granted");
-                    mViewModel.updatePermissionStatus(4, true);
+                    mViewModel.updatePermissionStatus(3, true);
 
                 } else {
                     Log.d(TAG, "Body sensors permission denied");
-                    mViewModel.updatePermissionStatus(4, false);
+                    mViewModel.updatePermissionStatus(3, false);
                 }
                 return;
             }
-            case PERMISSION_CAMERA_REQUEST_CODE:
-                break;
-            case PERMISSION_RECORD_AUDIO_REQUEST_CODE:
-                break;
+            case PERMISSION_CAMERA_REQUEST_CODE:{
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "Camera permission granted");
+
+                } else {
+                    Log.d(TAG, "Camera permission denied");
+                }
+                return;
+            }
+            case PERMISSION_RECORD_AUDIO_REQUEST_CODE:{
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(TAG, "Audio record permission granted");
+                } else {
+                    Log.d(TAG, "Audio record permission denied");
+                }
+                return;
+            }
             default:
                 break;
         }
-         */
-
     }
 
     @Override
