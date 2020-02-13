@@ -38,8 +38,7 @@ public class PermissionItemView extends RelativeLayout implements CompoundButton
     }
 
     private void init(Context context, AttributeSet attrs) {
-        String infService = Context.LAYOUT_INFLATER_SERVICE;
-        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(infService);
+        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mBinding = ItemPermissionBinding.inflate(layoutInflater, this, true);
     }
 

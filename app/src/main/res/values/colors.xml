@@ -78,5 +78,12 @@
     <color name="itemPermissionGrantedTextColor">@color/mainBlackColor</color>
     <color name="itemPermissionNoGrantedTextColor">#818596</color>
     <!-- ./ Permissions -->
+    
+    <!-- Category Icon Status -->
+    <color name="categoryIconCompletedStatusColor">@color/colorPrimary</color>
+    <color name="categoryIconUnCompletedStatusColor">#FF822C</color>
+    <color name="categoryIconUnavailableStatusColor">#C5C8CC</color>
+
+
 
 </resources>
