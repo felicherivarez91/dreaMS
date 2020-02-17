@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.login.LoginViewModel" />
+    </data>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -75,6 +84,8 @@
                     android:background="@android:color/transparent"
                     android:hint="@string/login_telephone_placeholder"
                     android:inputType="phone"
+                    android:enabled="@{!viewmodel.communicationInProgress}"
+                    android:text="@={viewmodel.phoneNumber}"
                     android:minWidth="100dp" />
 
             </LinearLayout>
@@ -99,6 +110,7 @@
 
     </RelativeLayout>
 
+
     <Button
         android:id="@+id/button_login_sendMessage"
         style="@style/AppTheme.Button.Main"
@@ -108,9 +120,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="20dp"
-        android:enabled="false"
+        android:enabled="@{viewmodel.canContinue}"
+        android:onClick="@{() -> viewmodel.login()}"
         android:text="@string/login_sendButtonText" />
-
     <include
         android:id="@+id/relativeLayout_login_countrySelector"
         layout="@layout/custom_view_bottom_picker"
@@ -118,7 +130,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:visibility="gone"
-
         />
 
+    <androidx.core.widget.ContentLoadingProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="@{viewmodel.communicationInProgress ? View.VISIBLE : View.GONE}" />
+
+
 </RelativeLayout>
+</layout>

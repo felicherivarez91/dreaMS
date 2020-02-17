@@ -19,12 +19,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.permissions.PermissionActivity"/>
         <activity
-            android:name=".ui.welcome.WelcomeActivity"
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_welcome"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
