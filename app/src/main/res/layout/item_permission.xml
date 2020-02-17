@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.healios.dreams.R"/>
+        <variable
+            name="permission"
+            type="com.healios.dreams.model.PermissionModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_item_permission_wrapper_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/item_permission_background_shape"
+            android:minHeight="56dp">
+
+            <TextView
+                android:id="@+id/textView_item_permission_permission_name_text"
+                style="@style/AppTheme.PermissionText.NotGranted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="30dp"
+                android:text="@{permission.name}"
+                android:textAppearance="@{permission.enabled == true ? R.style.AppTheme_PermissionText_Granted : R.style.AppTheme_PermissionText_NotGranted}"
+                />
+
+
+            <Switch
+                android:id="@+id/switch_item_permission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:thumb="@drawable/item_permission_switch_thumb_selector"
+                android:track="@drawable/item_permission_switch_track_background_custom"
+                android:checked="@{permission.enabled, default=false}"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/textView_login_title"
-        style="@style/AppTheme.LoginTitleText"
+        style="@style/AppTheme.AllScreenTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -29,7 +29,7 @@
 
             <TextView
                 android:id="@+id/textView_login_phoneNumber"
-                style="@style/AppTheme.LoginPhoneNumberLabel"
+                style="@style/AppTheme.AllEditTextLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_phoneNumber_label" />
@@ -88,7 +88,7 @@
 
             <TextView
                 android:id="@+id/textView_login_phoneNumberMessage"
-                style="@style/AppTheme.LoginPhoneNumberMessageText"
+                style="@style/AppTheme.AllExplanationText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -103,7 +103,7 @@
         android:id="@+id/button_login_sendMessage"
         style="@style/AppTheme.Button.Main"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_all_button"
+        android:layout_height="@dimen/height_all_mainButton"
         android:layout_below="@id/relativeLayout_login_phoneNumber"
         android:layout_marginStart="20dp"
         android:layout_marginTop="80dp"

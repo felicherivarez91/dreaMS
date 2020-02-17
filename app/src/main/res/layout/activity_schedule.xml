@@ -5,14 +5,12 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/toolbar_login"
-        layout="@layout/toolbar_white"
-        />
+        android:id="@+id/toolbar_schedule"
+        layout="@layout/toolbar_white" />
 
     <FrameLayout
-        android:id="@+id/frameLayout_login"
+        android:id="@+id/frameLayout_schedule"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

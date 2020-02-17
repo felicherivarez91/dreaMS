@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_activity_quicktour_navigation_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent">
+
+        <ImageButton
+            android:id="@+id/imageButton_activity_quicktour_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_arrow_back"/>
+
+
+        <Button
+            android:id="@+id/button_activity_quicktour_skip"
+            style="@style/AppTheme.Button.Skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:text="Skip"/>
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout_quicktour"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_activity_quicktour_bottom_wrapper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="34dp">
+
+        <ImageView
+            android:id="@+id/imageView_activity_quicktour_step_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_slider_indicators_1_of_3" />
+
+
+        <Button
+            android:id="@+id/button_activity_quicktour_next_step"
+            style="@style/AppTheme.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+
+            android:background="@android:color/transparent"
+            android:text="@string/activity_quicktour_next_text" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

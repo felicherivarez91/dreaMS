@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView_fragment_schedule_titleText"
+        style="@style/AppTheme.AllScreenTitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textView_fragment_schedule_explainText"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/fragment_schedule_title_text" />
+
+
+    <TextView
+        android:id="@+id/textView_fragment_schedule_explainText"
+        style="@style/AppTheme.AllExplanationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/itemScheduleWeek_fragment_schedule"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/fragment_schedule_explain_text" />
+
+    <!-- Week schedule Region -->
+    <include
+        android:id="@+id/itemScheduleWeek_fragment_schedule"
+        layout="@layout/item_schedule_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+    <!-- ./ Week schedule Region -->
+
+
+    <Button
+        android:id="@+id/button_fragment_schedule_done"
+        style="@style/AppTheme.Button.Main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_all_mainButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/marginStart_all_mainButton"
+        android:layout_marginEnd="@dimen/marginEnd_all_mainButton"
+        android:layout_marginBottom="@dimen/marginBottom_all_mainButton"
+        android:enabled="false"
+        android:text="@string/all_done" />
+
+</RelativeLayout>

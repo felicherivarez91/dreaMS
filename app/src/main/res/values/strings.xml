@@ -10,7 +10,9 @@
     <string name="all_country_flag_content_description">Country flag</string>
     <string name="all_spain">Spain</string>
     <string name="all_switzerland">Switzerland</string>
-
+    <string name="all_continue">Continue</string>
+    <string name="all_save">Save</string>
+    <string name="all_done">Done</string>
     <!-- ./ All -->
 
     <!-- Login -->
@@ -31,6 +33,60 @@
     <string name="verifyPhone_invalid_code">The code is invalid. Please try again</string>
     <string name="verifyPhone_didnt_receive_a_code">I didn\'t receive a code!</string>
     <string name="verifyPhone_resend_code_button_text">Resend code</string>
+    <!-- ./ Verify Phone -->
+
+    <!-- Personal Information -->
+    <string name="personalInformation_accountDetails">Account details</string>
+    <string name="personalInformation_nickname">Nickname</string>
+    <string name="personalInformation_selectAvatar">Select avatar</string>
+    <string name="personalInformation_changeAvatar">Change avatar</string>
+    <string name="personalInformation_nicknameError">Please use alphabetic characters only</string>
+    <string name="personalInformation_termsAndConditionsText">I agree to dreaMS Terms and Conditions, Privacy Policy</string>
+    <string name="personalInformation_termsAndConditionsCheckboxContentDescription">Terms and conditions checkbox</string>
+
+    <!-- ./Personal Information -->
+
+    <!-- Terms And Conditions -->
+    <string name="fragment_termsandconditions_title_text">Terms and Conditions, Privacy Policy</string>
+    <string name="fragment_termsandconditions_terms_content_text">This privacy notice discloses the privacy practices for (website address). This privacy notice applies solely to information collected by this website. It will notify you of the following: \n\nWhat personally identifiable information is collected from you through the website, how it is used and with whom it may be shared. What choices are available to you regarding the use of your data. The security procedures in place to protect the misuse of your information. \n\nHow you can correct any inaccuracies in the information. Information Collection, Use, and Sharing \n\nWe are the sole owners of the information collected on this site. We only have access to/collect </string>
+    <string name="fragment_termsandconditions_agree_button_text">Agree and Accept</string>
+
+    <!-- ./ Terms And Conditions -->
+
+    <!-- Schedule -->
+    <string name="fragment_schedule_explain_text">Simply select 5 days of the week you want to perform you challenges on. You can set up your schedule every Monday.</string>
+    <string name="fragment_schedule_title_text">Please set up your schedule</string>
+    <!-- ./ Schedule -->
+
+    <!-- Quick Tour -->
+    <string name="fragment_quicktour_step_daily_challenges_title_text">Daily Challenges</string>
+    <string name="fragment_quicktour_step_daily_challenges_explanation_text">dreaMS will help you complete different types of challenges every day. Movement, Fine motor skills, Cognition, Vision and more.</string>
+    <string name="fragment_quicktour_step_record_a_relapse_title_text">Record a relapse</string>
+    <string name="fragment_quicktour_step_record_a_relapse_explanation_text">If you feel like you are experiencing a relapse, dreaMS will provide you a simple and intuitive protocol which will allow you to record the information as it happens.</string>
+    <string name="fragment_quicktour_step_connect_dreams_title_text">Connect dreaMS with PEAK and FITBIT for the purpose of the study</string>
+    <string name="fragment_quicktour_step_connect_dreams_explanation_text">To collect additional information about your physical activity and sleep, synchronize dreaMS with Apple Healtj, Google Fit and Fitbit.</string>
+    <string name="activity_quicktour_next_text">Next</string>
+
+    <!-- ./ Quick Tour -->
+
+    <!-- Permissions -->
+    <string name="fragment_permissions_title_text">... and one more step before we continue.</string>
+    <string name="fragment_permissions_explanation_text">dreaMS needs your permission for</string>
+    <string name="fragment_permissions_get_started_button_text">Get started</string>
+    <string name="permissions_google_fit">GoogleFit</string>
+    <string name="permissions_peak">PEAK</string>
+    <string name="permissions_location">Location</string>
+    <string name="permissions_activity_recognition">Activity Recognition</string>
+    <string name="permissions_external_sensors">External Sensors</string>
+
+
+    <!-- ./ Permissions -->
+
+    <!-- Dialog Third Party Apps -->
+    <string name="dialog_open_third_party_app_peak_connection">Open PEAK app to set up a connection.</string>
+    <string name="dialog_open_third_party_app_continue_to_peak_button_text">Continue to peak</string>
+
+    <!-- ./ Dialog Third Party Apps -->
 
 
 </resources>

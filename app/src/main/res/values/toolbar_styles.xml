@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Toolbar.Main" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:elevation">@dimen/elevation_all_toolbar</item>
+        <item name="android:colorPrimary">@color/white</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.Toolbar.White" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:elevation">@dimen/elevation_all_toolbar</item>
+        <item name="android:colorPrimary">@color/mainBlackColor</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+</resources>

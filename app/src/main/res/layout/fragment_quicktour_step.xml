@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_fragment_quicktour_step_image_wrapper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="410dp"
+        android:background="@color/quickTourStepImageBackgroundColor">
+
+        <ImageView
+            android:id="@+id/imageView_fragment_quicktour_step_content_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:src="@drawable/fragment_quicktour_step_content_image_step_daily_challenges" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView_fragment_quicktour_step_cloud_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/relativeLayout_fragment_quicktour_step_image_wrapper_layout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="-40dp"
+        android:src="@drawable/ic_cloud_2" />
+
+
+    <TextView
+        android:id="@+id/textView_fragment_quicktour_step_title"
+        style="@style/AppTheme.AllScreenTitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayout_fragment_quicktour_step_image_wrapper_layout"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/fragment_quicktour_step_daily_challenges_title_text"
+        android:textAlignment="center" />
+
+
+    <TextView
+        android:id="@+id/textView_fragment_quicktour_step_explanation_text"
+        style="@style/AppTheme.AllExplanationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_fragment_quicktour_step_title"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/fragment_quicktour_step_daily_challenges_explanation_text"
+        android:textAlignment="center" />
+
+
+
+</RelativeLayout>
