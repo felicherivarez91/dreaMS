@@ -10,7 +10,7 @@ interface TokenProvider {
 
 }
 
-class UserSettingsTokenProvider: TokenProvider {
+class PreferencesTokenProvider: TokenProvider {
 
     private val prefs: SharedPreferences =
         DreaMSApp.instance.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
