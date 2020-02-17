@@ -3,6 +3,9 @@
 <layout>
     <data>
         <import type="android.view.View" />
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.login.LoginViewModel" />
     </data>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -81,6 +84,8 @@
                     android:background="@android:color/transparent"
                     android:hint="@string/login_telephone_placeholder"
                     android:inputType="phone"
+                    android:enabled="@{!viewmodel.communicationInProgress}"
+                    android:text="@={viewmodel.phoneNumber}"
                     android:minWidth="100dp" />
 
             </LinearLayout>
@@ -114,9 +119,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="20dp"
-        android:enabled="false"
+        android:enabled="@{viewmodel.canContinue}"
+        android:onClick="@{() -> viewmodel.login()}"
         android:text="@string/login_sendButtonText" />
-
     <include
         android:id="@+id/relativeLayout_login_countrySelector"
         layout="@layout/custom_view_bottom_picker"
