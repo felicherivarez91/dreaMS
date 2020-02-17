@@ -26,7 +26,7 @@ public class CircularProgressBarView extends View {
 
     private float mPercent = 75;
     private float mStrokeWidth;
-    private int mProgressBackBgColor = 0xffe1e1e1;
+    private int mProgressBackBgColor = 0xffffffff;
     private float mStartAngle = 0;
     private int mBgColor = getResources().getColor(R.color.white);
     private int mFgColorStart = getResources().getColor(R.color.colorPrimary);
@@ -74,8 +74,8 @@ public class CircularProgressBarView extends View {
             mProgressBackBgColor = styledAttributes.getColor(R.styleable.CircularProgressBar_progressBarBackgroundColor, 0xffe1e1e1);
 
             mBgColor = styledAttributes.getColor(R.styleable.CircularProgressBar_backgroundColor, 0xffe1e1e1);
-            mFgColorEnd = styledAttributes.getColor(R.styleable.CircularProgressBar_foregroundColorEnd, 0xffff4800);
-            mFgColorStart = styledAttributes.getColor(R.styleable.CircularProgressBar_foregroundColorStart, 0xffffe400);
+            mFgColorEnd = styledAttributes.getColor(R.styleable.CircularProgressBar_foregroundColorEnd, getResources().getColor(R.color.colorPrimary));
+            mFgColorStart = styledAttributes.getColor(R.styleable.CircularProgressBar_foregroundColorStart, getResources().getColor(R.color.colorPrimary));
             mPercent = styledAttributes.getFloat(R.styleable.CircularProgressBar_percent, 75);
             mStartAngle = styledAttributes.getFloat(R.styleable.CircularProgressBar_startAngle, 0) + angleCorrection;
             mStrokeWidth = styledAttributes.getDimensionPixelSize(R.styleable.CircularProgressBar_strokeWidth, dpsToPixels(16));
