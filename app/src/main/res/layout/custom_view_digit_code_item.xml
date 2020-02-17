@@ -20,7 +20,8 @@
             android:paddingTop="21dp"
             android:paddingEnd="30dp"
             android:paddingBottom="21dp"
-            android:text="5" />
+            android:maxLength="1"
+            android:text="" />
 
     </RelativeLayout>
 

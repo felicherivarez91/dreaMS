@@ -6,11 +6,10 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.healios.dreams.util.application.DreaMSApplication;
+import com.healios.dreams.DreaMSApp;
 
 public class PermissionsManager {
 
@@ -114,12 +113,12 @@ public class PermissionsManager {
 
     //region: General utils
     private static Boolean isPermissionGranted(String permission) {
-        return ContextCompat.checkSelfPermission(DreaMSApplication.appContext(), permission) == PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(DreaMSApp.getInstance(), permission) == PackageManager.PERMISSION_GRANTED;
     }
 
     private static Boolean isThirdPartyAppInstalled(String appPackageName) {
         try {
-            DreaMSApplication.appContext().getPackageManager().getPackageInfo(appPackageName, PackageManager.GET_ACTIVITIES);
+            DreaMSApp.getInstance().getPackageManager().getPackageInfo(appPackageName, PackageManager.GET_ACTIVITIES);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
             Log.d(TAG, String.format("Package '%s' not found", appPackageName));
@@ -130,12 +129,14 @@ public class PermissionsManager {
     private static void askForPermission(Activity activity, String permission, int requestCode) {
         if (VersionCompatibilityManager.appIsCompatibleWithPermissionRequest()) {
             // Should we show an explanation?
-            if (activity.shouldShowRequestPermissionRationale(permission)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-            } else {
-                activity.requestPermissions(new String[]{permission}, requestCode);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (activity.shouldShowRequestPermissionRationale(permission)) {
+                    // Show an explanation to the user *asynchronously* -- don't block
+                    // this thread waiting for the user's response! After the user
+                    // sees the explanation, try again to request the permission.
+                } else {
+                    activity.requestPermissions(new String[]{permission}, requestCode);
+                }
             }
         }
 

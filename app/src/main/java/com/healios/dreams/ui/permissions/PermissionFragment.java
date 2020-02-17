@@ -3,7 +3,6 @@ package com.healios.dreams.ui.permissions;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -23,7 +22,6 @@ import android.widget.TextView;
 
 import com.healios.dreams.R;
 import com.healios.dreams.model.PermissionModel;
-import com.healios.dreams.util.application.DreaMSApplication;
 import com.healios.dreams.util.managers.PermissionsManager;
 import com.healios.dreams.util.managers.VersionCompatibilityManager;
 

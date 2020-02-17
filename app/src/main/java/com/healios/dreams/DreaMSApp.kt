@@ -11,6 +11,7 @@ class DreaMSApp: Application() {
     }
 
     companion object {
+        @JvmStatic
         lateinit var instance: DreaMSApp
             private set
     }
