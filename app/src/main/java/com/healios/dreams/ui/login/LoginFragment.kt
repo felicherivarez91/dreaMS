@@ -17,7 +17,7 @@ import com.healios.dreams.util.EventObserver
 class LoginFragment : Fragment() {
 
     private val viewModel by lazy {
-        ViewModelProvider(this, LoginViewModelFactory()).get(
+        ViewModelProvider(activity!!, LoginViewModelFactory()).get(
             LoginViewModel::class.java)
     }
 

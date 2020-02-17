@@ -1,4 +1,4 @@
-package com.healios.dreams.data.api
+package com.healios.dreams.data
 
 import retrofit2.Response
 
@@ -10,7 +10,9 @@ import retrofit2.Response
 sealed class ResponseWrapper<T> {
     companion object {
         fun <T> create(error: Throwable): ErrorResponseWrapper<T> {
-            return ErrorResponseWrapper(error.message ?: "unknown error")
+            return ErrorResponseWrapper(
+                error.message ?: "unknown error"
+            )
         }
 
         fun <T> create(response: Response<T>): ResponseWrapper<T> {
@@ -28,7 +30,9 @@ sealed class ResponseWrapper<T> {
                 } else {
                     msg
                 }
-                ErrorResponseWrapper(errorMsg ?: "unknown error")
+                ErrorResponseWrapper(
+                    errorMsg ?: "unknown error"
+                )
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.healios.dreams.data.api
 
 import androidx.lifecycle.LiveData
+import com.healios.dreams.data.ResponseWrapper
 import retrofit2.CallAdapter
 import retrofit2.CallAdapter.Factory
 import retrofit2.Retrofit

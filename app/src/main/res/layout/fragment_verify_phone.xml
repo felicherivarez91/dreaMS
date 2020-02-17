@@ -3,6 +3,9 @@
 <layout>
     <data>
         <import type="android.view.View" />
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.login.LoginViewModel" />
     </data>
 
 <LinearLayout
