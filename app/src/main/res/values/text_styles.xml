@@ -92,11 +92,25 @@
         <item name="android:textColor">@color/itemPermissionNoGrantedTextColor</item>
     </style>
 
-    <style name="AppTheme.Dialogs.ExplanationText" parent="">
+    <style name="AppTheme.Main.ExplanationText" parent="">
         <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_book</item>
     </style>
+
+
+    <style name="AppTheme.Timer.Minutes" parent="">
+        <item name="android:textSize">46sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
+    <style name="AppTheme.Timer.Seconds" parent="">
+        <item name="android:textSize">76sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
 
 
 

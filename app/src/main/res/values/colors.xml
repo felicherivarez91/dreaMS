@@ -32,6 +32,8 @@
     <color name="colorAccent">#4DC185</color>
     <color name="white">#FFFFFF</color>
 
+    <color name="colorPrimary_20">#334DC185</color>
+
 
     <!-- Main Colors -->
     <color name="mainBlackColor">#2D3344</color>
@@ -41,12 +43,13 @@
     <color name="mainStrokeColor">#E7E8F2</color>
     <color name="mainGrayBackgroundColor">#E7E8F2</color>
     <color name="mainExplanationTextColor">#818596</color>
+    <color name="mainDisabledColor">#ADB2BA</color>
     <!-- ./ Main Colors -->
 
     <color name="mainErrorColor">@color/mainRedColor</color>
 
     <!-- Button Colors -->
-    <color name="disabledButtonBackgroundColor">#ADB2BA</color>
+    <color name="disabledButtonBackgroundColor">@color/mainDisabledColor</color>
     <!-- ./ Button Colors -->
 
     <!-- Bottom Picker -->
@@ -84,6 +87,10 @@
     <color name="categoryIconUnCompletedStatusColor">#FF822C</color>
     <color name="categoryIconUnavailableStatusColor">#C5C8CC</color>
 
+    <!-- Timer -->
+    <color name="timerStepSecondColor">#D4F6E4</color>
+    <color name="timerStepChallengeSeparatorColor">@color/mainDisabledColor</color>
+    <color name="timerStepChallengeVideoBackgroundColor">#F2F3F8</color>
 
 
 </resources>

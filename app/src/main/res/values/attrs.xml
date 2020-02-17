@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="backgroundColor" format="color" />
+    <attr name="foregroundColor" format="color" />
+    <attr name="percent" format="float" />
+    <attr name="startAngle" format="float" />
+
+    <declare-styleable name="CircularProgressBar">
+        <attr name="progressBarBackgroundColor" format="color" />
+        <attr name="backgroundColor" />
+        <attr name="foregroundColorStart" format="color" />
+        <attr name="foregroundColorEnd" format="color" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="showSecondTimeLines" format="boolean" />
+        <attr name="secondTimeLineColor" format="color" />
+        <attr name="numOfSeconds" format="integer" />
+        <attr name="percent" />
+        <attr name="startAngle" />
+    </declare-styleable>
+
+</resources>
