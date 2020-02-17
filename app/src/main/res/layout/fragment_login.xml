@@ -110,6 +110,7 @@
 
     </RelativeLayout>
 
+
     <Button
         android:id="@+id/button_login_sendMessage"
         style="@style/AppTheme.Button.Main"
@@ -129,8 +130,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:visibility="gone"
-
         />
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="@{viewmodel.communicationInProgress ? View.VISIBLE : View.GONE}" />
+
 
 </RelativeLayout>
 </layout>

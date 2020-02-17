@@ -44,7 +44,9 @@ class DreaMSClient {
 
     private val gsonConverter : Converter.Factory by lazy{
         GsonConverterFactory.create(
-            GsonBuilder().setDateFormat("yyyy-MM-dd").create()
+            GsonBuilder()
+                .serializeNulls()
+                .setDateFormat("yyyy-MM-dd").create()
         )
     }
 

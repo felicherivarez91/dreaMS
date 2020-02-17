@@ -33,8 +33,10 @@ class LoginViewModel constructor(private val loginManager: LoginManager ): ViewM
 
     fun login() {
         _communicationInProgress.postValue(true)
-        loginManager.signin(phoneNumber.value!!).process {
+        loginManager.signin(phoneNumber.value!!.trim()).process {
             _ , error ->
+
+            _communicationInProgress.postValue(false)
 
             if (error == null) {
                 _acceptedPhoneEvent.postValue(Event(Unit))

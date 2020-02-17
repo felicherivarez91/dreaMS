@@ -45,7 +45,7 @@ class ApiResponse<R>(private val call: Call<R>) {
 
                 if(response?.errorBody() != null) {
                     val jsonErroBody = JSONObject(response?.errorBody()?.string())
-                    val message = jsonErroBody["message"].toString()
+                    val message = jsonErroBody["msg"].toString()
                     handler(null, ApiException(response, message))
                 }else {
                     handler(null, HttpException(response))
