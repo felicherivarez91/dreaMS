@@ -2,6 +2,7 @@ package com.healios.dreams.data.api
 
 import com.google.gson.GsonBuilder
 import com.healios.dreams.DreaMSApp
+import com.healios.dreams.data.TokenProvider
 import com.healios.dreams.util.BaseURLHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,7 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-class DreaMSClient {
+class DreaMSClient(private val tokenProvider: TokenProvider,
+                   private val usesAuthentication: Boolean = false) {
 
     private var baseURL = BaseURLHelper.DEV.raw
 
@@ -32,12 +34,10 @@ class DreaMSClient {
             .readTimeout(20, TimeUnit.SECONDS)
             .connectTimeout(20, TimeUnit.SECONDS)
 
-        /*
-        if(authenticator != null){
-            builder.addInterceptor(authenticator)
-            builder.authenticator(authenticator)
+        if (tokenProvider.tokenExists() && usesAuthentication){
+            builder.addInterceptor(TokenInterceptor(tokenProvider))
         }
-        */
+
 
         builder.build()
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View" />
         <variable
@@ -45,6 +45,10 @@
     <include
         android:id="@+id/smsCodeView_verifyPhone_inputCode"
         layout="@layout/custom_view_input_sms_code"
+        bind:code1="@={viewmodel.code1}"
+        bind:code2="@={viewmodel.code2}"
+        bind:code3="@={viewmodel.code3}"
+        bind:code4="@={viewmodel.code4}"
        />
 
     <TextView

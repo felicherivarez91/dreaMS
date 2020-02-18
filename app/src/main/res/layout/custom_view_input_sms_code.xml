@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="code1"
+            type="String" />
+        <variable
+            name="code2"
+            type="String" />
+        <variable
+            name="code3"
+            type="String" />
+        <variable
+            name="code4"
+            type="String" />
+    </data>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="82dp"
@@ -13,27 +29,31 @@
         layout="@layout/custom_view_digit_code_item"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        bind:codeCharacter="@={code1}"/>
 
     <include
         android:id="@+id/digit_code_second_item"
         layout="@layout/custom_view_digit_code_item"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        bind:codeCharacter="@={code2}"/>
 
     <include
         android:id="@+id/digit_code_third_item"
         layout="@layout/custom_view_digit_code_item"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
-
+        android:layout_weight="1"
+        bind:codeCharacter="@={code3}"/>
     <include
         android:id="@+id/digit_code_fourth_item"
         layout="@layout/custom_view_digit_code_item"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        bind:codeCharacter="@={code4}"/>
 
 </LinearLayout>
+</layout>
