@@ -18,9 +18,6 @@
         android:name="com.healios.dreams.ui.login.VerifyPhoneFragment"
         tools:layout="@layout/fragment_verify_phone"
         android:label="VerifyPhoneFragment" >
-        <action
-            android:id="@+id/action_verifyPhoneFragment_to_personalInformationFragment"
-            app:destination="@id/personalInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -31,9 +28,5 @@
             android:id="@+id/action_welcomeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/personalInformationFragment"
-        android:name="com.healios.dreams.ui.settings.PersonalInformationFragment"
-        tools:layout="@layout/fragment_personalinformation"
-        android:label="PersonalInformationFragment" />
+
 </navigation>
