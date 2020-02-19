@@ -88,5 +88,14 @@
 
     <!-- ./ Dialog Third Party Apps -->
 
+    <!-- Timer Step -->
+    <string name="fragment_timer_step_challenge_time_content_description">Challenge time</string>
+    <string name="fragment_timer_step_challenge_intensity_content_description">Challenge intensity</string>
+    <string name="fragment_timer_step_challenge_category_content_description">Challenge category</string>
+    <string name="fragment_timer_step_start_text">Start</string>
+    <string name="fragment_timer_step_play_video_button_content_description_text">Play video button</string>
+
+    <!-- ./Timer Step -->
+
 
 </resources>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Challenge Info Media -->
+    <FrameLayout
+        android:id="@+id/frameLayout_fragment_timer_step_challenge_multimedia"
+        android:layout_width="match_parent"
+        android:layout_height="252dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/imageView_fragment_timer_step_challenge_info_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
+
+        <!-- Challenge Video -->
+        <FrameLayout
+            android:id="@+id/frameLayout_fragment_timer_step_challenge_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/timerStepChallengeVideoBackgroundColor"
+            android:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/imageButton_fragment_timer_step_challenge_video_play_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_challenge_video_play_button"
+                android:contentDescription="@string/fragment_timer_step_play_video_button_content_description_text"/>
+
+        </FrameLayout>
+        <!-- ./ Challenge Video -->
+
+    </FrameLayout>
+    <!-- ./ Challenge Info Media -->
+
+    <!-- Countdown timer -->
+    <FrameLayout
+        android:id="@+id/frameLayout_fragment_timer_step_progressBar_wrapper_layout"
+        android:layout_width="252dp"
+        android:layout_height="252dp"
+        android:layout_above="@id/textView_fragment_timer_step_title"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible">
+
+        <com.healios.dreams.ui.general.CircularProgressBarView
+            android:id="@+id/circularProgressBar_fragment_timer_step"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:backgroundColor="@color/colorPrimary_20"
+            app:foregroundColorEnd="@color/colorPrimary"
+            app:foregroundColorStart="@color/colorPrimary"
+            app:numOfSeconds="60"
+            app:percent="32"
+            app:progressBarBackgroundColor="@color/white"
+            app:secondTimeLineColor="@color/timerStepSecondColor"
+            app:showSecondTimeLines="true"
+            app:strokeWidth="12dp" />
+
+        <TextView
+            android:id="@+id/textView_fragment_timer_step_time_text"
+            style="@style/AppTheme.Timer.Seconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAlignment="center" />
+
+    </FrameLayout>
+    <!-- ./Countdown timer -->
+
+    <TextView
+        android:id="@+id/textView_fragment_timer_step_title"
+        style="@style/AppTheme.AllScreenTitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center" />
+
+    <!-- Challenge Info -->
+    <LinearLayout
+        android:id="@+id/linearLayout_fragment_timer_step_challenge_wrapper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_fragment_timer_step_title"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Challenge Time -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView_fragment_timer_step_challenge_time_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:contentDescription="@string/fragment_timer_step_challenge_time_content_description"
+                    android:minWidth="24dp"
+                    android:minHeight="24dp"
+                    android:src="@drawable/ic_clock" />
+
+                <TextView
+                    android:id="@+id/textView_fragment_timer_step_challenge_time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="24dp"
+                android:background="@color/timerStepChallengeSeparatorColor" />
+
+            <!-- ./Challenge Time -->
+
+            <!-- Challenge Intensity -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView_fragment_timer_step_challenge_intensity_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:contentDescription="@string/fragment_timer_step_challenge_intensity_content_description"
+                    android:minWidth="24dp"
+                    android:minHeight="24dp"
+                    android:src="@drawable/ic_speed" />
+
+                <TextView
+                    android:id="@+id/textView_fragment_timer_step_challenge_intensity_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="24dp"
+                android:background="@color/timerStepChallengeSeparatorColor" />
+            <!-- ./Challenge Intensity -->
+
+            <!-- Challenge Category -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView_fragment_timer_step_challenge_category_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:contentDescription="@string/fragment_timer_step_challenge_category_content_description"
+                    android:minWidth="24dp"
+                    android:minHeight="24dp"
+                    android:src="@drawable/ic_movement" />
+
+                <TextView
+                    android:id="@+id/textView_fragment_timer_step_challenge_category_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+            <!-- ./Challenge Category -->
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_fragment_timer_step_challenge_explanation"
+            style="@style/AppTheme.Main.ExplanationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+    <!-- ./ Challenge Info -->
+
+    <Button
+        android:id="@+id/button_fragment_timer_step_start"
+        style="@style/AppTheme.Button.Main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_all_mainButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/marginStart_all_mainButton"
+        android:layout_marginEnd="@dimen/marginEnd_all_mainButton"
+        android:layout_marginBottom="@dimen/marginBottom_all_mainButton"
+        android:text="@string/fragment_timer_step_start_text"
+        android:visibility="gone" />
+
+</RelativeLayout>
