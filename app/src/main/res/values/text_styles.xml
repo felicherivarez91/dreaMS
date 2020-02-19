@@ -46,6 +46,11 @@
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_book</item>
         <item name="android:backgroundTint">@color/editTextUnderlineColor</item>
+
+        <!-- underline color-->
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorAccent_50</item>
+        <item name="colorControlHighlight">@color/colorAccent_50</item>
     </style>
 
     <style name="AppTheme.PersonalInformationSelectAvatarLabel">

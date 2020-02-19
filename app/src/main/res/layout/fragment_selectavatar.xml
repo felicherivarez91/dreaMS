@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.account.SelectAvatarViewModel" />
+    </data>
 
-    <include
-        android:id="@+id/toolbar_selectAvatar"
-        layout="@layout/toolbar_main" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_selectAvatar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/button_selectAvatar"
-        android:layout_below="@id/toolbar_selectAvatar" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button_selectAvatar"
-        style="@style/AppTheme.Button.Main"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_all_mainButton"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/marginStart_all_mainButton"
-        android:layout_marginTop="@dimen/marginTop_all_mainButton"
-        android:layout_marginEnd="@dimen/marginEnd_all_mainButton"
-        android:layout_marginBottom="@dimen/marginBottom_all_mainButton"
-        android:enabled="false"
-        android:text="@string/all_save"
-        />
+        <include
+            android:id="@+id/toolbar_selectAvatar"
+            layout="@layout/toolbar_main" />
 
-</RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_selectAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/button_selectAvatar"
+            android:layout_below="@id/toolbar_selectAvatar" />
+
+        <Button
+            android:id="@+id/button_selectAvatar"
+            style="@style/AppTheme.Button.Main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_all_mainButton"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/marginStart_all_mainButton"
+            android:layout_marginTop="@dimen/marginTop_all_mainButton"
+            android:layout_marginEnd="@dimen/marginEnd_all_mainButton"
+            android:layout_marginBottom="@dimen/marginBottom_all_mainButton"
+            android:enabled="@{viewmodel.canSaveAvatar, default=false}"
+            android:text="@string/all_save" />
+
+    </RelativeLayout>
+</layout>

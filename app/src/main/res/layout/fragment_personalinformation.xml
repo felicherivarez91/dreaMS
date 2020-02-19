@@ -1,129 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <data>
 
-    <!-- Nickname Region -->
-    <LinearLayout
-        android:id="@+id/linearLayout_personalInformation_nicknameWrapperLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="vertical">
+        <import type="android.view.View" />
 
-        <TextView
-            android:id="@+id/textView_personalInformation_nicknameLabel"
-            style="@style/AppTheme.AllEditTextLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/personalInformation_nickname" />
+        <import type="android.R.drawable" />
 
-        <EditText
-            android:id="@+id/editText_personalInformation_nicknameText"
-            style="@style/AppTheme.PersonalInformationNicknameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" />
+        <import type="android.R.color" />
 
-        <TextView
-            android:id="@+id/textView_personalInformation_nicknameErrorText"
-            style="@style/AppTheme.AllErrorText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/personalInformation_nicknameError"
-            android:visibility="gone" />
-
-    </LinearLayout>
-    <!-- ./ Nickname Region -->
-
-    <!-- Avatar Region -->
-    <LinearLayout
-        android:id="@+id/linearLayout_personalInformation_avatarWrapperLayout"
-        android:layout_width="@dimen/width_personalInformation_avatar"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/linearLayout_personalInformation_nicknameWrapperLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:orientation="vertical">
-
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/circleImageView_personalInformation_avatarImage"
-            android:layout_width="@dimen/width_personalInformation_avatar"
-            android:layout_height="@dimen/height_personalInformation_avatar"
-            app:civ_border_color="@color/personalInformationAvatarStrokeColor"
-            app:civ_border_width="1dp" />
-
-        <TextView
-            android:id="@+id/textView_personalInformation_selectAvatarLabel"
-            style="@style/AppTheme.PersonalInformationSelectAvatarLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/personalInformation_selectAvatar"
-            android:textAlignment="center" />
-
-    </LinearLayout>
-    <!-- ./ Avatar Region -->
-
-    <!-- Title Region -->
-    <TextView
-        android:id="@+id/textView_personalInformation_titleText"
-        style="@style/AppTheme.AllScreenTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/linearLayout_personalInformation_avatarWrapperLayout"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/personalInformation_accountDetails" />
-    <!-- ./ Title Region -->
-
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.account.PersonalInformationViewModel" />
+    </data>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout_personalInformation_termsAndConditionsWrapperLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="30dp"
-        android:layout_above="@id/button_personalInformation_continue">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/imageButton_personalInformation_termsAndConditionsCheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/all_checkbox_state"
-            android:contentDescription="@string/personalInformation_termsAndConditionsCheckboxContentDescription" />
-
-        <TextView
-            android:id="@+id/textView_personalInformation_termsAndConditionsText"
-            style="@style/AppTheme.PersonalInformationTermsAndConditionsText"
+        <!-- Nickname Region -->
+        <LinearLayout
+            android:id="@+id/linearLayout_personalInformation_nicknameWrapperLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/imageButton_personalInformation_termsAndConditionsCheckbox"
+            android:layout_centerInParent="true"
             android:layout_marginStart="20dp"
-            android:text="@string/personalInformation_termsAndConditionsText"
-            />
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_personalInformation_nicknameLabel"
+                style="@style/AppTheme.AllEditTextLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/personalInformation_nickname" />
+
+            <EditText
+                android:id="@+id/editText_personalInformation_nicknameText"
+                style="@style/AppTheme.PersonalInformationNicknameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:inputType="textPersonName|text" />
+
+            <TextView
+                android:id="@+id/textView_personalInformation_nicknameErrorText"
+                style="@style/AppTheme.AllErrorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewmodel.errorText}"
+                android:visibility="@{viewmodel.isFormatValid ? View.VISIBLE : View.GONE}" />
+
+        </LinearLayout>
+        <!-- ./ Nickname Region -->
+
+        <!-- Avatar Region -->
+        <LinearLayout
+            android:id="@+id/linearLayout_personalInformation_avatarWrapperLayout"
+            android:layout_width="@dimen/width_personalInformation_avatar"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linearLayout_personalInformation_nicknameWrapperLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:onClick="@{() -> viewmodel.onChangeAvatarPressed()}"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/circleImageView_personalInformation_avatarImage"
+                android:layout_width="@dimen/width_personalInformation_avatar"
+                android:layout_height="@dimen/height_personalInformation_avatar"
+                android:src="@{viewmodel.avatarImageResource, default=@drawable/ic_default_profile}"
+                app:civ_border_color="@color/personalInformationAvatarStrokeColor"
+                app:civ_border_width="1dp" />
+
+            <TextView
+                android:id="@+id/textView_personalInformation_selectAvatarLabel"
+                style="@style/AppTheme.PersonalInformationSelectAvatarLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewmodel.selectAvatarButtonText, default=@string/personalInformation_selectAvatar}"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+        <!-- ./ Avatar Region -->
+
+        <!-- Title Region -->
+        <TextView
+            android:id="@+id/textView_personalInformation_titleText"
+            style="@style/AppTheme.AllScreenTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linearLayout_personalInformation_avatarWrapperLayout"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/personalInformation_accountDetails" />
+        <!-- ./ Title Region -->
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_personalInformation_termsAndConditionsWrapperLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/button_personalInformation_continue"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="30dp">
+
+            <CheckBox
+                android:id="@+id/checkBox_personalInformation_termsAndConditionsCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:button="@drawable/all_checkbox_state"
+                android:contentDescription="@string/personalInformation_termsAndConditionsCheckboxContentDescription" />
+
+            <TextView
+                android:id="@+id/textView_personalInformation_termsAndConditionsText"
+                style="@style/AppTheme.PersonalInformationTermsAndConditionsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/checkBox_personalInformation_termsAndConditionsCheckbox"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/personalInformation_termsAndConditionsText" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button_personalInformation_continue"
+            style="@style/AppTheme.Button.Main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_all_mainButton"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="34dp"
+            android:enabled="@{!viewmodel.canContinue, default=false}"
+            android:text="@string/all_continue" />
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/button_personalInformation_continue"
-        style="@style/AppTheme.Button.Main"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_all_mainButton"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="34dp"
-        android:layout_alignParentBottom="true"
-        android:enabled="false"
-        android:text="@string/all_continue"/>
-
-
-</RelativeLayout>
 </layout>
