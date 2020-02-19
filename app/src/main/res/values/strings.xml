@@ -10,6 +10,8 @@
     <string name="all_country_flag_content_description">Country flag</string>
     <string name="all_spain">Spain</string>
     <string name="all_switzerland">Switzerland</string>
+    <string name="all_usa">United States</string>
+    <string name="all_netherlands">Netherlands</string>
     <string name="all_continue">Continue</string>
     <string name="all_save">Save</string>
     <string name="all_done">Done</string>
@@ -19,6 +21,7 @@
     <string name="login_login_title">Log in</string>
     <string name="login_phoneNumber_label">Phone Number</string>
     <string name="login_telephoneMessagePlaceholder">We will send a code to verify your phone number</string>
+    <string name="login_telephoneErrorMessagePlaceholder">Please enter a valid phone number</string>
     <string name="login_sendButtonText">Send</string>
     <string name="login_telephone_placeholder">(+34) 111 111 111</string>
     <string name="login_country_flag_image_content_description">Country flag</string>

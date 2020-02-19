@@ -1,145 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="viewmodel"
             type="com.healios.dreams.ui.login.LoginViewModel" />
     </data>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/textView_login_title"
-        style="@style/AppTheme.AllScreenTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="70dp"
-        android:text="@string/login_login_title" />
-
     <RelativeLayout
-        android:id="@+id/relativeLayout_login_phoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_login_title"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView_login_title"
+            style="@style/AppTheme.AllScreenTitleText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="70dp"
+            android:text="@string/login_login_title" />
 
-            <TextView
-                android:id="@+id/textView_login_phoneNumber"
-                style="@style/AppTheme.AllEditTextLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_phoneNumber_label" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout_login_phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_login_title"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:id="@+id/relativeLayout_login_flagDropdownLayout"
+                <TextView
+                    android:id="@+id/textView_login_phoneNumber"
+                    style="@style/AppTheme.AllEditTextLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical">
+                    android:text="@string/login_phoneNumber_label" />
 
-                    <ImageView
-                        android:id="@+id/imageView_login_flag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="@string/login_country_flag_image_content_description"
-                        android:src="@drawable/ic_es" />
-
-                    <ImageView
-                        android:id="@+id/image_view_login_dropDownIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@id/imageView_login_flag"
-                        android:contentDescription="@string/login_dropdown_image_content_description"
-                        android:src="@drawable/ic_dropdown" />
-
-                </RelativeLayout>
-
-                <EditText
-                    android:id="@+id/editText_login_phoneNumber"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/login_telephone_placeholder"
-                    android:inputType="phone"
-                    android:enabled="@{!viewmodel.communicationInProgress}"
-                    android:text="@={viewmodel.phoneNumber}"
-                    android:minWidth="100dp" />
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout_login_flagDropdownLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:onClick="@{() -> viewmodel.onCountrySelectorPressed()}">
+
+                        <ImageView
+                            android:id="@+id/imageView_login_flag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/login_country_flag_image_content_description"
+                            android:minWidth="24dp"
+                            android:minHeight="24dp"
+                            android:src="@{viewmodel.selectedCountry.countryFlagImage}" />
+
+                        <ImageView
+                            android:id="@+id/image_view_login_dropDownIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@id/imageView_login_flag"
+                            android:contentDescription="@string/login_dropdown_image_content_description"
+                            android:src="@drawable/ic_dropdown" />
+
+                    </RelativeLayout>
+
+                    <EditText
+                        android:id="@+id/editText_login_phoneNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@android:color/transparent"
+                        android:enabled="@{!viewmodel.communicationInProgress}"
+                        android:hint="@{viewmodel.phoneNumberHintText}"
+                        android:inputType="phone"
+                        android:minWidth="100dp"
+                        android:text="@={viewmodel.phoneNumber}" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_login_telephoneSeparatorView"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@{viewmodel.isFormValid ? @color/editTextUnderlineColor : @color/mainErrorColor}" />
+
+                <TextView
+                    android:id="@+id/textView_login_phoneNumberMessage"
+                    style="@style/AppTheme.AllExplanationText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="20dp"
+                    android:text="@{viewmodel.isFormValid ? @string/login_telephoneMessagePlaceholder : @string/login_telephoneErrorMessagePlaceholder }"
+                    android:textColor="@{viewmodel.isFormValid ? @color/mainBlackColor : @color/mainErrorColor }" />
 
             </LinearLayout>
 
-            <View
-                android:id="@+id/view_login_telephoneSeparatorView"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/editTextUnderlineColor" />
+        </RelativeLayout>
 
-            <TextView
-                android:id="@+id/textView_login_phoneNumberMessage"
-                style="@style/AppTheme.AllExplanationText"
+        <Button
+            android:id="@+id/button_login_sendMessage"
+            style="@style/AppTheme.Button.Main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_all_mainButton"
+            android:layout_below="@id/relativeLayout_login_phoneNumber"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="20dp"
+            android:enabled="@{viewmodel.canContinue}"
+            android:onClick="@{() -> viewmodel.login()}"
+            android:text="@string/login_sendButtonText" />
+
+        <!--
+        <include
+            android:id="@+id/relativeLayout_login_countrySelector"
+            layout="@layout/custom_view_bottom_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            />
+            -->
+
+        <!-- Country Selector -->
+        <RelativeLayout
+            android:id="@+id/relativeLayout_login_countrySelector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:minHeight="195dp"
+            android:visibility="@{viewmodel.shouldShowCountrySelector ? View.VISIBLE : View.GONE}">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout_bottomPicker_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="@string/login_telephoneMessagePlaceholder" />
+                android:background="@color/bottomPickerHeaderBackgroundColor"
+                android:minHeight="44dp">
 
-        </LinearLayout>
+                <ImageButton
+                    android:id="@+id/imageButton_bottomPicker_headerNavigationLeftArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/ic_left_arrow"
+                    android:onClick="@{() -> viewmodel.onPreviousButtonPressed()}" />
+
+
+                <ImageButton
+                    android:id="@+id/imageButton_bottomPicker_headerNavigationRightArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="32.5dp"
+                    android:layout_toEndOf="@id/imageButton_bottomPicker_headerNavigationLeftArrow"
+                    android:background="@drawable/ic_right_arrow"
+                    android:onClick="@{() -> viewmodel.onNextButtonPressed()}" />
+
+
+                <Button
+                    android:id="@+id/button_bottomPicker_headerNavigationDoneButton"
+                    style="@style/AppTheme.BottomPicker.Button.Done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:onClick="@{() -> viewmodel.onDoneButtonPressed()}"
+                    android:text="@string/all_done" />
+
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_bottomPicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relativeLayout_bottomPicker_header"
+                app:data="@{viewmodel.countriesList}"
+                tools:listitem="@layout/item_login_country_selector_item" />
+
+        </RelativeLayout>
+        <!-- ./Country Selector -->
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:visibility="@{viewmodel.communicationInProgress ? View.VISIBLE : View.GONE}" />
 
     </RelativeLayout>
 
-
-    <Button
-        android:id="@+id/button_login_sendMessage"
-        style="@style/AppTheme.Button.Main"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_all_mainButton"
-        android:layout_below="@id/relativeLayout_login_phoneNumber"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="20dp"
-        android:enabled="@{viewmodel.canContinue}"
-        android:onClick="@{() -> viewmodel.login()}"
-        android:text="@string/login_sendButtonText" />
-    <include
-        android:id="@+id/relativeLayout_login_countrySelector"
-        layout="@layout/custom_view_bottom_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"
-        />
-
-    <androidx.core.widget.ContentLoadingProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_centerInParent="true"
-        android:indeterminate="true"
-        android:visibility="@{viewmodel.communicationInProgress ? View.VISIBLE : View.GONE}" />
-
-
-</RelativeLayout>
 </layout>

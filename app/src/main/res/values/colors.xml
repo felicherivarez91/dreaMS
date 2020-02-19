@@ -84,6 +84,9 @@
     <color name="categoryIconUnCompletedStatusColor">#FF822C</color>
     <color name="categoryIconUnavailableStatusColor">#C5C8CC</color>
 
+    <!-- Country Selector -->
+    <color name="itemCountrySelectorUnselectedTextColor">#A4A6A6</color>
+    <color name="itemCountrySelectorSeparatorColor">#80A4A6A6</color>
 
 
 </resources>

@@ -3,6 +3,8 @@ package com.healios.dreams.util.application;
 import android.app.Application;
 import android.content.Context;
 
+import com.healios.dreams.R;
+
 public class DreaMSApplication extends Application {
 
     private static DreaMSApplication instance;
