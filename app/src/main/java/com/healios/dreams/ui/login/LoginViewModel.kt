@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.healios.dreams.data.LoginManager
 import com.healios.dreams.data.TokenProvider
+import com.healios.dreams.data.api.ApiException
 import com.healios.dreams.util.*
 
 class LoginViewModel constructor(private val loginManager: LoginManager,
@@ -29,8 +30,11 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     private val _acceptedPhoneErrorEvent = MutableLiveEvent<Throwable>()
     val acceptedPhoneErrorEvent: LiveEvent<Throwable> = _acceptedPhoneErrorEvent
 
-    private val _verifyCodeErrorEvent = MutableLiveEvent<Throwable>()
-    val verifyCodeErrorEvent: LiveEvent<Throwable> = _verifyCodeErrorEvent
+    private val _displayError = MutableLiveData<Boolean>(false)
+    val displayError: LiveData<Boolean> = _displayError
+
+    private val _errorText = MutableLiveData<String>("")
+    val errotText: LiveData<String> = _errorText
 
     private val _isFormValid =  MutableLiveData<Boolean>(true)
 
@@ -67,14 +71,18 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     }
 
     fun verifyCode() {
-        _communicationInProgress.postValue(true)
+        _communicationInProgress.value = true
+        _displayError.value = false
         loginManager.verifyCode(phoneNumber.value!!.trim(), code.value!!.trim()).process {
                 response , error ->
             if (error == null) {
                 tokenProvider.token = response?.token ?: ""
-                //_acceptedPhoneEvent.postValue(Event(Unit))
+                _verifiedCodeEvent.postValue(Event(Unit))
             }else {
-                //_acceptedPhoneErrorEvent.postValue(Event(error))
+                _displayError.postValue(true)
+                if (error is ApiException) {
+                    _errorText.postValue(error.message)
+                }
                 code1.postValue("")
                 code2.postValue("")
                 code3.postValue("")
@@ -106,6 +114,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
             checkCode()
         }
     }
+
 
     private fun checkCode() {
         if (code.value!!.length == 4 && !communicationInProgress.value!!) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View" />
         <variable
@@ -9,7 +10,6 @@
     </data>
 
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -49,7 +49,8 @@
         bind:code2="@={viewmodel.code2}"
         bind:code3="@={viewmodel.code3}"
         bind:code4="@={viewmodel.code4}"
-       />
+        bind:displayError="@{viewmodel.displayError}"
+        />
 
     <TextView
         android:id="@+id/textView_verifyPhone_errorMessage"
@@ -59,8 +60,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/verifyPhone_invalid_code"
-        android:visibility="gone"/>
+        android:visibility="@{viewmodel.displayError ? View.VISIBLE : View.INVISIBLE}"
+        android:text="@{viewmodel.errotText}"/>
 
 
     <TextView

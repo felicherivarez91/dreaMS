@@ -13,6 +13,9 @@
         <variable
             name="code4"
             type="String" />
+        <variable
+            name="displayError"
+            type="Boolean" />
     </data>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,6 +33,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        bind:displayError="@{displayError}"
         bind:codeCharacter="@={code1}"/>
 
     <include
@@ -38,6 +42,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        bind:displayError="@{displayError}"
         bind:codeCharacter="@={code2}"/>
 
     <include
@@ -46,6 +51,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        bind:displayError="@{displayError}"
         bind:codeCharacter="@={code3}"/>
     <include
         android:id="@+id/digit_code_fourth_item"
@@ -53,6 +59,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        bind:displayError="@{displayError}"
         bind:codeCharacter="@={code4}"/>
 
 </LinearLayout>
