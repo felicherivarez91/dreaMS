@@ -7,6 +7,7 @@ import com.healios.dreams.DreaMSApp
 interface TokenProvider {
 
     var token: String?
+    fun tokenExists() : Boolean
 
 }
 
@@ -23,6 +24,10 @@ class PreferencesTokenProvider: TokenProvider {
             editor.putString(TOKEN_PREFS, value)
             editor.apply()
         }
+
+    override fun tokenExists(): Boolean {
+        return !token.isNullOrBlank()
+    }
 
     companion object {
         private const val PREFERENCES_NAME = "com.healios.dreams.prefs"

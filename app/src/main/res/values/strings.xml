@@ -29,7 +29,7 @@
     <!-- Verify Phone -->
     <string name="verifyPhone_title">Verify Phone</string>
     <string name="verifyPhone_info_message">We\'ve sent a code to verify your phone number</string>
-    <string name="verifyPhone_sent_to"><![CDATA[Sent to <b>Holi</b>]]></string>
+    <string name="verifyPhone_sent_to"><![CDATA[Sent to <b><font color=#2D3344>%s</font></b>]]></string>
     <string name="verifyPhone_invalid_code">The code is invalid. Please try again</string>
     <string name="verifyPhone_didnt_receive_a_code">I didn\'t receive a code!</string>
     <string name="verifyPhone_resend_code_button_text">Resend code</string>
