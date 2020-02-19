@@ -91,6 +91,9 @@
     <color name="timerStepSecondColor">#D4F6E4</color>
     <color name="timerStepChallengeSeparatorColor">@color/mainDisabledColor</color>
     <color name="timerStepChallengeVideoBackgroundColor">#F2F3F8</color>
+    <!-- Country Selector -->
+    <color name="itemCountrySelectorUnselectedTextColor">#A4A6A6</color>
+    <color name="itemCountrySelectorSeparatorColor">#80A4A6A6</color>
 
 
 </resources>

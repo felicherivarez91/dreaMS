@@ -98,6 +98,10 @@
         <item name="android:fontFamily">@font/circularstd_book</item>
     </style>
 
+    <style name="AppTheme.CountrySelector.Selected" parent="AppTheme.Dialogs.ExplanationText"/>
+    <style name="AppTheme.CountrySelector.UnSelected" parent="AppTheme.Dialogs.ExplanationText">
+        <item name="android:textColor">@color/itemCountrySelectorUnselectedTextColor</item>
+    </style>
 
     <style name="AppTheme.Timer.Minutes" parent="">
         <item name="android:textSize">46sp</item>
