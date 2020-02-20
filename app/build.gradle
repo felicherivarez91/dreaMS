@@ -28,6 +28,10 @@ android {
         enabled = true
     }
 
+    kapt {
+        generateStubs = true
+    }
+
     android {
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8

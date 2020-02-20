@@ -30,10 +30,10 @@ public class CountryRepository {
 
 
         ArrayList<CountryModel> countries = new ArrayList<>();
-        countries.add(new CountryModel(CountryModel.SPAIN_COUNTRY_CODE, context.getResources().getString(R.string.all_spain)));
-        countries.add(new CountryModel(CountryModel.SWITZERLAND_COUNTRY_CODE,context.getResources().getString(R.string.all_switzerland)));
-        countries.add(new CountryModel(CountryModel.USA_COUNTRY_CODE,context.getResources().getString(R.string.all_usa)));
-        countries.add(new CountryModel(CountryModel.NETHERLANDS_COUNTRY_CODE,context.getResources().getString(R.string.all_netherlands)));
+        //countries.add(new CountryModel(CountryModel.SPAIN_COUNTRY_CODE, context.getResources().getString(R.string.all_spain)));
+        //countries.add(new CountryModel(CountryModel.SWITZERLAND_COUNTRY_CODE,context.getResources().getString(R.string.all_switzerland)));
+        //countries.add(new CountryModel(CountryModel.USA_COUNTRY_CODE,context.getResources().getString(R.string.all_usa)));
+        //countries.add(new CountryModel(CountryModel.NETHERLANDS_COUNTRY_CODE,context.getResources().getString(R.string.all_netherlands)))
 
         return countries;
     }

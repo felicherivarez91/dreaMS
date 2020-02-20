@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.healios.dreams.DreaMSApp
 import com.healios.dreams.data.CountryRepository
 import com.healios.dreams.data.LoginManager
 import com.healios.dreams.data.TokenProvider
+import com.healios.dreams.data.api.ApiException
 import com.healios.dreams.model.CountryModel
 import com.healios.dreams.util.*
-import com.healios.dreams.util.managers.KeyboardManager
-import com.healios.dreams.data.api.ApiException
 
 
 class LoginViewModel constructor(private val loginManager: LoginManager,
@@ -26,7 +24,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     val code3 = MutableLiveData<String>("")
     val code4 = MutableLiveData<String>("")
     val phoneNumberHintText = MutableLiveData<String>()
-    var code = MutableLiveData<String>()
+    var code = MediatorLiveData<String>()
 
     private val _communicationInProgress = MutableLiveData<Boolean>(false)
     val communicationInProgress: LiveData<Boolean> = _communicationInProgress
@@ -52,9 +50,8 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     val displayError: LiveData<Boolean> = _displayError
 
     private val _errorText = MutableLiveData<String>("")
-    val errotText: LiveData<String> = _errorText
+    val errorText: LiveData<String> = _errorText
 
-    private val _isFormValid =  MutableLiveData<Boolean>(true)
 
     val canContinue = MediatorLiveData<Boolean>()
 
@@ -77,13 +74,11 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
         }
 
         addCodeSources()
-
     }
 
     private fun setTelephoneHintText(tempSelectedCountry: CountryModel?) {
         var tempMask = tempSelectedCountry?.telephoneMask
         tempMask = tempMask?.replace("#", "1", true)
-
         phoneNumberHintText.value = tempMask
     }
 
@@ -126,6 +121,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     }
 
     private fun addCodeSources() {
+
         code.addSource(code1) {
             code.value = it + code2.value + code3.value + code4.value
             checkCode()
@@ -204,7 +200,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
         val iterator = countriesList.value?.listIterator()
         val updatedCountries = ArrayList<CountryModel>()
         iterator?.forEach {
-            it.isSelectedCountry = (it.equals(selectedCountry.value))
+            it.isSelectedCountry = it == selectedCountry.value
             updatedCountries.add(it)
         }
 

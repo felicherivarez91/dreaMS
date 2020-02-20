@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/textView_dialog_open_third_party_app_explanation_text"
-            style="@style/AppTheme.Main.ExplanationText"
+            style="@style/AppTheme.Dialogs.ExplanationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageView_dialog_open_third_party_app_icon"

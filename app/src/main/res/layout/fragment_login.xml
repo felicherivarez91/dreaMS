@@ -84,6 +84,16 @@
 
                     </RelativeLayout>
 
+                    <TextView
+                        android:id="@+id/editText_login_phoneCountryCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@android:color/transparent"
+                        android:enabled="@{!viewmodel.communicationInProgress}"
+                        style="@style/AppTheme.PersonalInformationNicknameEditText"
+                        android:text="@{viewmodel.selectedCountry.getTelephoneCountryCode()}" />
+
                     <EditText
                         android:id="@+id/editText_login_phoneNumber"
                         android:layout_width="wrap_content"
@@ -93,7 +103,9 @@
                         android:enabled="@{!viewmodel.communicationInProgress}"
                         android:hint="@{viewmodel.phoneNumberHintText}"
                         android:inputType="phone"
+                        android:maxLength="@{viewmodel.selectedCountry.getTelephoneMask().length()}"
                         android:minWidth="100dp"
+                        style="@style/AppTheme.PersonalInformationNicknameEditText"
                         android:text="@={viewmodel.phoneNumber}" />
 
                 </LinearLayout>

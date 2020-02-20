@@ -201,7 +201,7 @@
 
         <TextView
             android:id="@+id/textView_fragment_timer_step_challenge_explanation"
-            style="@style/AppTheme.Main.ExplanationText"
+            style="@style/AppTheme.Dialogs.ExplanationText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

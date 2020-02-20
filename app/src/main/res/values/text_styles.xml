@@ -92,7 +92,7 @@
         <item name="android:textColor">@color/itemPermissionNoGrantedTextColor</item>
     </style>
 
-    <style name="AppTheme.Main.ExplanationText" parent="">
+    <style name="AppTheme.Dialogs.ExplanationText" parent="">
         <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_book</item>

@@ -1,0 +1,22 @@
+[{
+  "countryName": "all_spain",
+  "countryFlag": "ic_country_flag_es",
+  "countryCode": "ES",
+  "telephoneMask": "###-###-###",
+  "telephoneCountryCode": "+34"
+},
+  {
+    "countryName": "all_switzerland",
+    "countryFlag": "ic_country_flag_ch",
+    "countryCode": "CH",
+    "telephoneMask": "## ### ####",
+    "telephoneCountryCode": "+41"
+  },
+  {
+    "countryName": "all_switzerland",
+    "countryFlag": "ic_country_flag_ch",
+    "countryCode": "CH",
+    "telephoneMask": "## ### ####",
+    "telephoneCountryCode": "+41"
+  }
+]

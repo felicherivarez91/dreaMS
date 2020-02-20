@@ -25,6 +25,8 @@
     android:layout_marginTop="30dp"
     android:layout_marginEnd="20dp"
     android:orientation="horizontal"
+    android:showDividers="middle"
+    android:divider="@drawable/all_divider_horizontal_transparent"
     android:weightSum="4">
 
     <include

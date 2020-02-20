@@ -61,7 +61,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:visibility="@{viewmodel.displayError ? View.VISIBLE : View.INVISIBLE}"
-        android:text="@{viewmodel.errotText}"/>
+        android:text="@{viewmodel.errorText}"/>
 
 
     <TextView

@@ -1,6 +1,7 @@
 package com.healios.dreams.ui.login
 
 import android.os.Bundle
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,9 @@ import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentVerifyPhoneBinding
 import com.healios.dreams.di.LoginViewModelFactory
 import com.healios.dreams.util.EventObserver
+import com.healios.dreams.util.managers.hideKeyboard
+import com.healios.dreams.util.ui.JumpTextWatcher
+import kotlinx.android.synthetic.main.custom_view_digit_code_item.view.*
 
 
 class VerifyPhoneFragment : Fragment() {
@@ -36,25 +40,37 @@ class VerifyPhoneFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
         bind()
+        setupView()
         return binding.root
     }
 
     private fun bind() {
-
         binding.textViewVerifyPhoneInfoMessageSentTo.text =
             HtmlCompat.fromHtml(getString(R.string.verifyPhone_sent_to, viewModel.phoneNumber.value),
                 HtmlCompat.FROM_HTML_MODE_COMPACT)
 
 
         viewModel.code.observe(this) {
-            Log.d("info", it)
+            if (it.length == 4) {
+                hideKeyboard()
+            }
         }
 
         viewModel.verifiedCodeEvent.observe(viewLifecycleOwner, EventObserver {
-            findNavController().navigate(R.id.action_verifyPhoneFragment_to_personalInformationFragment)
+
         })
 
+    }
 
+    private fun setupView() {
+        val firstCode = binding.smsCodeViewVerifyPhoneInputCode.digitCodeFirstItem.editTextDigitCodeItemNumber
+        val secondCode = binding.smsCodeViewVerifyPhoneInputCode.digitCodeSecondItem.editTextDigitCodeItemNumber
+        val thirdCode = binding.smsCodeViewVerifyPhoneInputCode.digitCodeThirdItem.editTextDigitCodeItemNumber
+        val forthCode = binding.smsCodeViewVerifyPhoneInputCode.digitCodeFourthItem.editTextDigitCodeItemNumber
+
+        firstCode.addTextChangedListener(JumpTextWatcher(secondCode))
+        secondCode.addTextChangedListener(JumpTextWatcher(thirdCode))
+        thirdCode.addTextChangedListener(JumpTextWatcher(forthCode))
     }
 
 

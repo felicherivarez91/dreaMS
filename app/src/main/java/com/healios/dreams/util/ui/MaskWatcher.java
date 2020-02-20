@@ -1,10 +1,7 @@
-package com.healios.dreams.util;
+package com.healios.dreams.util.ui;
 
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
 
 import com.healios.dreams.model.CountryModel;
 import com.healios.dreams.ui.login.LoginViewModel;
