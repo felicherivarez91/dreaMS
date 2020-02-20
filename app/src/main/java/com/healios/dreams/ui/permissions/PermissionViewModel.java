@@ -23,7 +23,7 @@ public class PermissionViewModel extends ViewModel {
         mPermissionRepository = PermissionRepository.getInstance();
         mPermissions = mPermissionRepository.getPermissions();
     }
-    
+
     LiveData<List<PermissionModel>> getPermissions() {
         return mPermissions;
     }

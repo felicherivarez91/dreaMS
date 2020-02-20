@@ -36,15 +36,10 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-
     private fun bind() {
         viewModel.acceptedPhoneEvent.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(R.id.action_loginFragment_to_verifyPhoneFragment)
         })
-
     }
-
-
-
 
 }

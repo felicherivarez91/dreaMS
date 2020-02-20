@@ -7,9 +7,17 @@ import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentPersonalinformationBinding
+import com.healios.dreams.di.LoginViewModelFactory
+import com.healios.dreams.di.PersonalInformationViewModelFactory
+import com.healios.dreams.ui.login.LoginViewModel
+import com.healios.dreams.util.EventObserver
 
 class PersonalInformationFragment : Fragment() {
 
@@ -18,7 +26,11 @@ class PersonalInformationFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentPersonalinformationBinding
-    private lateinit var viewModel: PersonalInformationViewModel
+
+    private val viewModel by lazy {
+        ViewModelProvider(activity!!, PersonalInformationViewModelFactory()).get(
+            PersonalInformationViewModel::class.java)
+    }
 
     //region: Lifecycle
     override fun onCreateView(
@@ -33,27 +45,34 @@ class PersonalInformationFragment : Fragment() {
             viewModel.onTextChanged(it.toString())
         }
 
-        binding.buttonPersonalInformationContinue.setOnClickListener {
-            viewModel.continueButtonPressed(binding.editTextPersonalInformationNicknameText.text.toString())
-        }
-        
         bind()
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(PersonalInformationViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     //endregion
 
     private fun bind() {
 
+        binding.buttonPersonalInformationContinue.setOnClickListener {
+            viewModel.continueButtonPressed(binding.editTextPersonalInformationNicknameText.text.toString())
+        }
+
+        binding.checkBoxPersonalInformationTermsAndConditionsCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.onCheckedChangeListener(isChecked)
+        }
+
         binding.textViewPersonalInformationTermsAndConditionsText.text =
             HtmlCompat.fromHtml(getString(R.string.personalInformation_termsAndConditionsText),
             HtmlCompat.FROM_HTML_MODE_COMPACT)
+
+        viewModel.acceptedNickname.observe(viewLifecycleOwner, EventObserver {
+            //TODO: Show Schedule Fragment
+            //findNavController().navigate(R.id.action_verifyPhoneFragment_to_personalInformationFragment)
+        })
+
+        viewModel.changeAvatarEvent.observe(viewLifecycleOwner, EventObserver {
+            findNavController().navigate(R.id.action_personalInformationFragment_to_selectAvatarFragment)
+        })
 
     }
 

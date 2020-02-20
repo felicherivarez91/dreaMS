@@ -18,7 +18,7 @@ class SelectAvatarFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentSelectavatarBinding
-    private lateinit var viewModel: SelectAvatarViewModel
+    //private lateinit var viewModel: SelectAvatarViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,21 +26,18 @@ class SelectAvatarFragment : Fragment() {
     ): View? {
         binding = FragmentSelectavatarBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        binding.viewmodel = viewModel
+        //binding.viewmodel = viewModel
+
+        
 
         bind()
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SelectAvatarViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 
     private fun bind() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+
     }
 
 }

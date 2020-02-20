@@ -41,7 +41,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:inputType="textPersonName|text" />
+                android:inputType="textPersonName|text"
+                android:backgroundTint="@{!viewmodel.isFormatValid ? @color/mainErrorColor : @color/colorAccent_50, default=@color/editTextUnderlineColor_50 }"
+                />
 
             <TextView
                 android:id="@+id/textView_personalInformation_nicknameErrorText"
@@ -49,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.errorText}"
-                android:visibility="@{viewmodel.isFormatValid ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{viewmodel.isFormatValid ? View.GONE : View.VISIBLE }" />
 
         </LinearLayout>
         <!-- ./ Nickname Region -->
@@ -62,7 +64,7 @@
             android:layout_above="@id/linearLayout_personalInformation_nicknameWrapperLayout"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:onClick="@{() -> viewmodel.onChangeAvatarPressed()}"
+            android:onClick="@{()-> viewmodel.onChangeAvatarPressed()}"
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -78,6 +80,7 @@
                 style="@style/AppTheme.PersonalInformationSelectAvatarLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@{viewmodel.selectAvatarButtonText, default=@string/personalInformation_selectAvatar}"
                 android:textAlignment="center" />
 
@@ -137,7 +140,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="34dp"
-            android:enabled="@{!viewmodel.canContinue, default=false}"
+            android:enabled="@{viewmodel.canContinue, default=false}"
             android:text="@string/all_continue" />
 
     </RelativeLayout>
