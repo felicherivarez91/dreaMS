@@ -1,24 +1,36 @@
 package com.healios.dreams.ui.account
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import com.healios.dreams.R
-import com.healios.dreams.databinding.FragmentPersonalinformationBinding
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.healios.dreams.databinding.FragmentSelectavatarBinding
+import com.healios.dreams.di.SelectAvatarViewModelFactory
+import com.healios.dreams.model.AvatarModel
 
-class SelectAvatarFragment : Fragment() {
+interface AvatarRecyclerViewLister {
+    fun onItemClick(position: Int, avatar: AvatarModel)
+}
+
+class SelectAvatarFragment : Fragment(), AvatarRecyclerViewLister{
+
 
     companion object {
         fun newInstance() = SelectAvatarFragment()
     }
 
     private lateinit var binding: FragmentSelectavatarBinding
-    //private lateinit var viewModel: SelectAvatarViewModel
+
+    private val viewModel by lazy {
+        ViewModelProvider(activity!!, SelectAvatarViewModelFactory()).get(
+            SelectAvatarViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,9 +38,7 @@ class SelectAvatarFragment : Fragment() {
     ): View? {
         binding = FragmentSelectavatarBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        //binding.viewmodel = viewModel
-
-        
+        binding.viewmodel = viewModel
 
         bind()
         return binding.root
@@ -36,8 +46,27 @@ class SelectAvatarFragment : Fragment() {
 
 
     private fun bind() {
+        binding.recyclerViewSelectAvatar.apply {
+            val numberOfRows = 2
+            //layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, numberOfRows,LinearLayoutManager.VERTICAL,false)
+            itemAnimator = DefaultItemAnimator()
+            adapter = SelectAvatarRecyclerViewAdapter(viewModel.avatarList.value!!, this@SelectAvatarFragment)
+        }
+
+        viewModel.avatarList.observe(viewLifecycleOwner, Observer {
+            val adapter = binding.recyclerViewSelectAvatar.adapter
+            if (adapter is SelectAvatarRecyclerViewAdapter){
+                adapter.setData(it)
+            }
+        })
+
+    }
 
 
+    // <AvatarRecyclerViewLister>
+    override fun onItemClick(position: Int, avatar: AvatarModel) {
+        viewModel.onItemClick(position, avatar)
     }
 
 }

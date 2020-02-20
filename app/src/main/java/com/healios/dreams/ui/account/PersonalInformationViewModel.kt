@@ -4,20 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
 import com.healios.dreams.DreaMSApp
 import com.healios.dreams.R
+import com.healios.dreams.data.AccountInfoProvider
 import com.healios.dreams.data.AccountInformationManager
-import com.healios.dreams.data.LoginManager
 import com.healios.dreams.data.TokenProvider
 import com.healios.dreams.util.EmptyLiveEvent
 import com.healios.dreams.util.EmptyMutableLiveEvent
 import com.healios.dreams.util.Event
-import com.healios.dreams.util.LiveEvent
 
-class PersonalInformationViewModel constructor(
+class PersonalInformationViewModel(
     private val accountInformationManager: AccountInformationManager,
-    private val tokenProvider: TokenProvider
+    private val tokenProvider: TokenProvider,
+    private val accountInfoProvider: AccountInfoProvider
 ) : ViewModel() {
 
     private val _communicationInProgress = MutableLiveData<Boolean>(false)
@@ -55,8 +54,11 @@ class PersonalInformationViewModel constructor(
             canContinue.value = it && _isFormValid.value!!
         }
 
-        selectAvatarButtonText.postValue(DreaMSApp.instance.getString(R.string.personalInformation_selectAvatar))
-
+        if (accountInfoProvider.isDefaultAvatar()) {
+            selectAvatarButtonText.postValue(DreaMSApp.instance.getString(R.string.personalInformation_selectAvatar))
+        }else {
+            selectAvatarButtonText.postValue(DreaMSApp.instance.getString(R.string.personalInformation_changeAvatar))
+        }
 
     }
     //endregion
@@ -88,13 +90,11 @@ class PersonalInformationViewModel constructor(
             _communicationInProgress.postValue(false)
 
             if (error == null) {
-
-            } else {
                 _acceptedNickname.postValue(Event(Unit))
+            } else {
+                _errorText.postValue(DreaMSApp.instance.getString(R.string.personalInformation_nicknameTakenError))
             }
         }
-
-
     }
 
     fun onCheckedChangeListener(checked: Boolean) {

@@ -20,6 +20,10 @@ object InjectorUtils {
         return PreferencesTokenProvider()
     }
 
+    fun getAccountInfoProvider(): AccountInfoProvider {
+        return PreferencesAccountInfoProvider()
+    }
+
 
 }
 

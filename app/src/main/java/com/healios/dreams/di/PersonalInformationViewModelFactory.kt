@@ -8,7 +8,7 @@ import com.healios.dreams.ui.account.PersonalInformationViewModel
 class PersonalInformationViewModelFactory : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return PersonalInformationViewModel(InjectorUtils.getAccountInformationManager(), InjectorUtils.getTokenProvider()) as T
+        return PersonalInformationViewModel(InjectorUtils.getAccountInformationManager(), InjectorUtils.getTokenProvider(), InjectorUtils.getAccountInfoProvider()) as T
     }
 
 

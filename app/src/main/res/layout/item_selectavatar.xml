@@ -1,36 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="avatar"
+            type="com.healios.dreams.model.AvatarModel" />
+
+    </data>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout_itemSelectAvatarWrapperLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="163dp"
-        android:minHeight="145dp">
+        android:clipToPadding="false"
+        >
 
-        <ImageView
-            android:id="@+id/imageView_itemSelectAvatar_avatar"
+        <RelativeLayout
+            android:id="@+id/relativeLayout_itemSelectAvatarWrapperLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="27dp"
-            android:layout_marginBottom="27dp"
-            android:layout_marginStart="29dp"
-            android:layout_marginEnd="29dp"
-            android:src="@drawable/selectavatar_m_1" />
+            android:minWidth="163dp"
+            android:minHeight="145dp"
+            android:layout_margin="5dp"
+            android:elevation="1dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@{avatar.selected ? @drawable/fragment_select_avatar_item_shape_selected : @drawable/fragment_select_avatar_item_shape_unselected }">
 
-        <ImageView
-            android:id="@+id/imageView_itemSelectAvatar_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_done"
-            android:visibility="invisible"/>
+            <ImageView
+                android:id="@+id/imageView_itemSelectAvatar_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="29dp"
+                android:layout_marginBottom="27dp"
+                android:src="@{avatar.avatarResource}" />
+
+            <ImageView
+                android:id="@+id/imageView_itemSelectAvatar_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_done"
+                android:visibility="@{avatar.selected ? View.VISIBLE : View.GONE }" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-</RelativeLayout>
+</layout>

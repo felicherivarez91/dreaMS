@@ -31,6 +31,6 @@ class PreferencesTokenProvider: TokenProvider {
 
     companion object {
         private const val PREFERENCES_NAME = "com.healios.dreams.prefs"
-        private const val TOKEN_PREFS = "token"
+        private const val TOKEN_PREFS = "avatar"
     }
 }
