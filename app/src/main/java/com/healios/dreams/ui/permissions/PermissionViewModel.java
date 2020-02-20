@@ -23,24 +23,15 @@ public class PermissionViewModel extends ViewModel {
         mPermissionRepository = PermissionRepository.getInstance();
         mPermissions = mPermissionRepository.getPermissions();
     }
-
-
-    public LiveData<List<PermissionModel>> getPermissions() {
+    
+    LiveData<List<PermissionModel>> getPermissions() {
         return mPermissions;
     }
 
-    public void updatePermissionStatus(int position, boolean isEnabled){
-       //TODO:
+    void updatePermissionStatus(int position, boolean isEnabled){
         List<PermissionModel> permissionModelList = mPermissions.getValue();
         permissionModelList.get(position).setEnabled(isEnabled);
         mPermissions.postValue(permissionModelList);
-
-        /*
-        ArrayList<PermissionModel> modelArrayList = new ArrayList<>();
-        modelArrayList.add(new PermissionModel("DEMo",true));
-        mPermissions.postValue(modelArrayList);
-        */
-
     }
 
 }
