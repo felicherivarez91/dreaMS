@@ -1,24 +1,25 @@
 package com.healios.dreams.ui.login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.healios.dreams.DreaMSApp
 import com.healios.dreams.data.CountryRepository
 import com.healios.dreams.data.LoginManager
 import com.healios.dreams.data.TokenProvider
 import com.healios.dreams.data.api.ApiException
 import com.healios.dreams.model.CountryModel
 import com.healios.dreams.util.*
+import com.healios.dreams.R
+
 
 
 class LoginViewModel constructor(private val loginManager: LoginManager,
-                                 private val tokenProvider: TokenProvider): ViewModel() {
+                                 private val tokenProvider: TokenProvider,
+                                 private val countryRepository: CountryRepository): ViewModel() {
 
     private var selectedCountryPosition: Int = 0
 
     val selectedCountry = MutableLiveData<CountryModel>()
-    val phoneNumber = MutableLiveData<String>()
+    val phoneNumber = MutableLiveData<String>("")
     val code1 = MutableLiveData<String>("")
     val code2 = MutableLiveData<String>("")
     val code3 = MutableLiveData<String>("")
@@ -44,23 +45,39 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     private val _countriesList = MutableLiveData<List<CountryModel>>()
     val countriesList: LiveData<List<CountryModel>> = _countriesList
 
-    private val _isFormValid =  MutableLiveData<Boolean>(false)
-    val isFormValid: LiveData<Boolean> = _isFormValid
-    private val _displayError = MutableLiveData<Boolean>(false)
-    val displayError: LiveData<Boolean> = _displayError
+    private val _validationError = MutableLiveData<Boolean>(false)
+    val validationError: LiveData<Boolean> = _validationError
+
+    private val _verificationError = MutableLiveData<Boolean>(false)
+    val verificationError: LiveData<Boolean> = _verificationError
 
     private val _errorText = MutableLiveData<String>("")
     val errorText: LiveData<String> = _errorText
 
+    private val fullPhonenumber = Transformations.map(phoneNumber) {
+        selectedCountry.value!!.telephoneCountryCode + " " + phoneNumber.value
+    }
+
+    private val _isFormValid =  Transformations.map(fullPhonenumber) {
+        val regex =  selectedCountry.value?.validationRegex?.toRegex()
+        if(regex == null)
+            false
+        else {
+            it.matches(regex)
+        }
+    }
+    val isFormValid: LiveData<Boolean> = _isFormValid
 
     val canContinue = MediatorLiveData<Boolean>()
 
     init {
-        val countries = CountryRepository.getInstance().countries
+
+        _errorText.value = DreaMSApp.instance.resources.getString(R.string.login_telephoneErrorMessagePlaceholder)
+        val countries = countryRepository.getCountries()
         _countriesList.postValue(countries)
 
-        val tempSelectedCountry = countries?.get(0)
-        tempSelectedCountry?.isSelectedCountry = true
+        val tempSelectedCountry = countries.get(0)
+        tempSelectedCountry.isSelectedCountry = true
         selectedCountry.value = tempSelectedCountry
         selectedCountry.postValue(tempSelectedCountry)
 
@@ -84,7 +101,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
 
     fun login() {
         _communicationInProgress.postValue(true)
-        loginManager.signin(phoneNumber.value!!.trim()).process {
+        loginManager.signin(fullPhonenumber.value!!.trim()).process {
             _ , error ->
 
             _communicationInProgress.postValue(false)
@@ -92,21 +109,24 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
             if (error == null) {
                 _acceptedPhoneEvent.postValue(Event(Unit))
             }else {
-                _acceptedPhoneErrorEvent.postValue(Event(error))
+                _validationError.postValue(true)
+                if (error is ApiException) {
+                    _errorText.postValue(error.message)
+                }
             }
         }
     }
 
     fun verifyCode() {
         _communicationInProgress.value = true
-        _displayError.value = false
+        _verificationError.value = false
         loginManager.verifyCode(phoneNumber.value!!.trim(), code.value!!.trim()).process {
                 response , error ->
             if (error == null) {
                 tokenProvider.token = response?.token ?: ""
                 _verifiedCodeEvent.postValue(Event(Unit))
             }else {
-                _displayError.postValue(true)
+                _verificationError.postValue(true)
                 if (error is ApiException) {
                     _errorText.postValue(error.message)
                 }
@@ -143,7 +163,6 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
         }
     }
 
-
     private fun checkCode() {
         if (code.value!!.length == 4 && !communicationInProgress.value!!) {
             verifyCode()
@@ -172,10 +191,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     //endregion
 
     //region: EditText Format
-    fun setPhoneFormatValid(isValid:Boolean){
-        _isFormValid.postValue(isValid)
-        _isFormValid.value = isValid
-    }
+
 
     fun onCountrySelectorPressed() {
         _shouldShowCountrySelector.postValue(true)
@@ -211,6 +227,8 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
         if (hasFocus) {
             //Hide Country selector
             _shouldShowCountrySelector.postValue(false)
+            _validationError.value = false
+            _errorText.value = DreaMSApp.instance.resources.getString(R.string.login_telephoneErrorMessagePlaceholder)
         }
     }
 

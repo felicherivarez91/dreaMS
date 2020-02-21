@@ -29,14 +29,14 @@ public class MaskWatcher extends PhoneNumberFormattingTextWatcher {
 
     private void setupMaskFromCountry() {
         this.countryModel = viewModel.getSelectedCountry().getValue();
-        this.mask = this.countryModel != null ? this.countryModel.getTelephoneMask() : "### ### ###";
+        this.mask = this.countryModel != null ? this.countryModel.telephoneMask : "### ### ###";
     }
     //endregion
 
 
     public void setCountryModel(CountryModel countryModel) {
         this.countryModel = countryModel;
-        this.mask = countryModel.getTelephoneMask();
+        this.mask = countryModel.telephoneMask;
     }
 
     @Override
@@ -54,7 +54,6 @@ public class MaskWatcher extends PhoneNumberFormattingTextWatcher {
         setupMaskFromCountry();
 
         if (isRunning || isDeleting) {
-            viewModel.setPhoneFormatValid(isValidPhone(editable.toString()));
             return;
         }
         isRunning = true;
@@ -76,30 +75,8 @@ public class MaskWatcher extends PhoneNumberFormattingTextWatcher {
 
         isRunning = false;
 
-        viewModel.setPhoneFormatValid(isValidPhone(editable.toString()));
     }
 
-    private boolean isValidPhone(String phoneText) {
-        final String ES_MASK = "^\\+34 \\d{3}-\\d{3}-\\d{3}$";
-        final String CH_MASK = "\\+41 \\d{2} \\d{3} \\d{4}$";
-        final String US_MASK = "^\\+1 \\d{3}-\\d{3}-\\d{4}$";
-        final String NL_MASK = "\\+31 6 \\d{8}$";
-
-        switch (countryModel.getCountryCode().toUpperCase()) {
-            case "ES":
-                return phoneText.matches(ES_MASK);
-            case "CH":
-                return phoneText.matches(CH_MASK);
-            case "US":
-                return phoneText.matches(US_MASK);
-            case "NL":
-                return phoneText.matches(NL_MASK);
-            default:
-                return true;
-        }
-
-
-    }
 
 
 }

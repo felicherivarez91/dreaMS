@@ -70,7 +70,7 @@
                             android:contentDescription="@string/login_country_flag_image_content_description"
                             android:minWidth="24dp"
                             android:minHeight="24dp"
-                            android:src="@{viewmodel.selectedCountry.countryFlagImage}" />
+                            android:src="@{viewmodel.selectedCountry.countryFlag}"/>
 
                         <ImageView
                             android:id="@+id/image_view_login_dropDownIcon"
@@ -88,22 +88,22 @@
                         android:id="@+id/editText_login_phoneCountryCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="8dp"
                         android:background="@android:color/transparent"
                         android:enabled="@{!viewmodel.communicationInProgress}"
                         style="@style/AppTheme.PersonalInformationNicknameEditText"
-                        android:text="@{viewmodel.selectedCountry.getTelephoneCountryCode()}" />
+                        android:text="@{viewmodel.selectedCountry.telephoneCountryCode}" />
 
                     <EditText
                         android:id="@+id/editText_login_phoneNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="8dp"
                         android:background="@android:color/transparent"
                         android:enabled="@{!viewmodel.communicationInProgress}"
                         android:hint="@{viewmodel.phoneNumberHintText}"
                         android:inputType="phone"
-                        android:maxLength="@{viewmodel.selectedCountry.getTelephoneMask().length()}"
+                        android:maxLength="@{viewmodel.selectedCountry.telephoneMask.length()}"
                         android:minWidth="100dp"
                         style="@style/AppTheme.PersonalInformationNicknameEditText"
                         android:text="@={viewmodel.phoneNumber}" />
@@ -115,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="10dp"
-                    android:background="@{viewmodel.isFormValid ? @color/editTextUnderlineColor : @color/mainErrorColor}" />
+                    android:background="@{viewmodel.isFormValid &amp;&amp; !viewmodel.validationError ? @color/editTextUnderlineColor : @color/mainErrorColor}" />
 
                 <TextView
                     android:id="@+id/textView_login_phoneNumberMessage"
@@ -124,8 +124,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginTop="20dp"
-                    android:text="@{viewmodel.isFormValid ? @string/login_telephoneMessagePlaceholder : @string/login_telephoneErrorMessagePlaceholder }"
-                    android:textColor="@{viewmodel.isFormValid ? @color/mainBlackColor : @color/mainErrorColor }" />
+                    android:text="@{viewmodel.isFormValid &amp;&amp; !viewmodel.validationError? @string/login_telephoneMessagePlaceholder : viewmodel.errorText }"
+                    android:textColor="@{viewmodel.isFormValid &amp;&amp; !viewmodel.validationError ? @color/mainBlackColor : @color/mainErrorColor }" />
 
             </LinearLayout>
 
@@ -135,25 +135,11 @@
             android:id="@+id/button_login_sendMessage"
             style="@style/AppTheme.Button.Main"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_all_mainButton"
             android:layout_below="@id/relativeLayout_login_phoneNumber"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="20dp"
             android:enabled="@{viewmodel.canContinue}"
             android:onClick="@{() -> viewmodel.login()}"
             android:text="@string/login_sendButtonText" />
-
-        <!--
-        <include
-            android:id="@+id/relativeLayout_login_countrySelector"
-            layout="@layout/custom_view_bottom_picker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:visibility="gone"
-            />
-            -->
 
         <!-- Country Selector -->
         <RelativeLayout

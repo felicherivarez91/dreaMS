@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/all_country_flag_content_description"
-                android:src="@{country.countryFlagImage}" />
+                android:src="@{country.countryFlag}" />
 
             <TextView
                 android:id="@+id/textView_countrySelectorItemCell_countryName"
@@ -38,7 +38,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_toEndOf="@id/imageView_countrySelectorItemCell_countryFlag"
-                android:text="@{country.countryName}"
+                android:textResource="@{country.countryName}"
                 android:textColor="@{ country.selectedCountry ? @color/mainBlackColor : @color/itemCountrySelectorUnselectedTextColor}"/>
 
         </RelativeLayout>

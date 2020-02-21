@@ -71,6 +71,7 @@ class LoginFragment : Fragment(), CountrySelectorRecyclerViewListener, View.OnFo
             findNavController().navigate(R.id.action_loginFragment_to_verifyPhoneFragment)
         })
 
+
         viewModel.shouldShowCountrySelector.observe(viewLifecycleOwner, Observer {
             if (it) {
                 hideKeyboard()

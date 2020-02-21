@@ -3,6 +3,7 @@
     <style name="AppTheme.WelcomeText">
         <item name="android:textSize">34sp</item>
         <item name="android:letterSpacing">0.01</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
@@ -46,6 +47,10 @@
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_book</item>
         <item name="android:backgroundTint">@color/editTextUnderlineColor</item>
+    </style>
+
+    <style name="AppTheme.InputTextError" parent="AppTheme.PersonalInformationNicknameEditText">
+        <item name="android:backgroundTint">@color/mainErrorColor</item>
     </style>
 
     <style name="AppTheme.PersonalInformationSelectAvatarLabel">

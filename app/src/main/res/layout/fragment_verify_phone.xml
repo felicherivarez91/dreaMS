@@ -49,7 +49,7 @@
         bind:code2="@={viewmodel.code2}"
         bind:code3="@={viewmodel.code3}"
         bind:code4="@={viewmodel.code4}"
-        bind:displayError="@{viewmodel.displayError}"
+        bind:displayError="@{viewmodel.verificationError}"
         />
 
     <TextView
@@ -60,7 +60,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:visibility="@{viewmodel.displayError ? View.VISIBLE : View.INVISIBLE}"
+        android:visibility="@{viewmodel.verificationError ? View.VISIBLE : View.INVISIBLE}"
         android:text="@{viewmodel.errorText}"/>
 
 
@@ -76,7 +76,7 @@
 
     <Button
         android:id="@+id/button_verifyPhone_resendCode"
-        style="@style/AppTheme.Button.White"
+        style="@style/AppTheme.Button.Main.White.NoBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/verifyPhone_resend_code_button_text"/>

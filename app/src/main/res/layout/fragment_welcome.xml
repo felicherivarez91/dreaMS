@@ -42,14 +42,12 @@
             android:text="@string/welcome_message"
             android:textAlignment="center"
             android:layout_marginTop="27.6dp"
-            android:textAppearance="@style/AppTheme.WelcomeText" />
+            style="@style/AppTheme.WelcomeText"/>
         <Button
             android:id="@+id/button_welcome_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
-            style="@style/AppTheme.Button.White"
+            style="@style/AppTheme.Button.Main.White"
             android:text="@string/welcome_login"/>
 
     </LinearLayout>

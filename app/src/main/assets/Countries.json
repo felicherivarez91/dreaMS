@@ -3,20 +3,32 @@
   "countryFlag": "ic_country_flag_es",
   "countryCode": "ES",
   "telephoneMask": "###-###-###",
-  "telephoneCountryCode": "+34"
+  "telephoneCountryCode": "+34",
+  "validationRegex" : "^\\+34 \\d{3}-\\d{3}-\\d{3}$"
 },
   {
     "countryName": "all_switzerland",
     "countryFlag": "ic_country_flag_ch",
     "countryCode": "CH",
     "telephoneMask": "## ### ####",
-    "telephoneCountryCode": "+41"
+    "telephoneCountryCode": "+41",
+    "validationRegex" : "\\+41 \\d{2} \\d{3} \\d{4}$"
+
   },
   {
-    "countryName": "all_switzerland",
+    "countryName": "all_usa",
     "countryFlag": "ic_country_flag_ch",
-    "countryCode": "CH",
-    "telephoneMask": "## ### ####",
-    "telephoneCountryCode": "+41"
+    "countryCode": "US",
+    "telephoneMask": "###-###-####",
+    "telephoneCountryCode": "+1",
+    "validationRegex": "^\\+1 \\d{3}-\\d{3}-\\d{4}$"
+  },
+  {
+    "countryName": "all_netherlands",
+    "countryFlag": "ic_country_flag_ch",
+    "countryCode": "NL",
+    "telephoneMask": "6 ########",
+    "telephoneCountryCode": "+31",
+    "validationRegex": "\\+31 6 \\d{8}$"
   }
 ]

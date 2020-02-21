@@ -10,6 +10,7 @@ class DreaMSApp: Application() {
         instance = this
     }
 
+
     companion object {
         @JvmStatic
         lateinit var instance: DreaMSApp
