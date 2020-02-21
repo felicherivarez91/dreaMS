@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.text.HtmlCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
@@ -88,14 +89,13 @@ class PersonalInformationFragment : Fragment() {
             viewModel.onCheckedChangeListener(isChecked)
         }
 
-        viewModel.acceptedNickname.observe(viewLifecycleOwner, EventObserver {
-            //TODO: Show Schedule Fragment
-        })
-
         viewModel.changeAvatarEvent.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(R.id.action_personalInformationFragment_to_selectAvatarFragment)
         })
 
+        viewModel.acceptedNickname.observe(viewLifecycleOwner, EventObserver {
+            findNavController().navigate(R.id.action_personalInformationFragment_to_scheduleFragment)
+        })
 
     }
 

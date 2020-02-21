@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_nav_graph"
-    app:startDestination="@id/personalInformationFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_personalInformationFragment_to_termsAndConditionsFragment"
             app:destination="@id/termsAndConditionsFragment" />
+        <action
+            android:id="@+id/action_personalInformationFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
     </fragment>
 
     <fragment
@@ -58,5 +61,10 @@
         android:name="com.healios.dreams.ui.account.TermsAndConditionsFragment"
         android:label="TermsAndConditionsFragment"
         tools:layout="@layout/fragment_termsandconditions"/>
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.healios.dreams.ui.schedule.ScheduleFragment"
+        android:label="ScheduleFragment"
+        tools:layout="@layout/fragment_schedule"/>
 
 </navigation>

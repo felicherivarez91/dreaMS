@@ -37,7 +37,6 @@ class PersonalInformationViewModel(
     private val _changeAvatarEvent = EmptyMutableLiveEvent()
     val changeAvatarEvent : EmptyLiveEvent = _changeAvatarEvent
 
-
     val canContinue = MediatorLiveData<Boolean>()
     var selectAvatarButtonText = MutableLiveData<String>()
     var avatarImageResource = MutableLiveData<Int>(R.drawable.ic_default_profile)
