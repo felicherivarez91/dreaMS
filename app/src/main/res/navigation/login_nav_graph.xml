@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_personalInformationFragment_to_selectAvatarFragment"
             app:destination="@id/selectAvatarFragment" />
+        <action
+            android:id="@+id/action_personalInformationFragment_to_termsAndConditionsFragment"
+            app:destination="@id/termsAndConditionsFragment" />
     </fragment>
 
     <fragment
@@ -49,5 +52,11 @@
         android:name="com.healios.dreams.ui.account.SelectAvatarFragment"
         android:label="SelectAvatarFragment"
         tools:layout="@layout/fragment_selectavatar" />
+
+    <fragment
+        android:id="@+id/termsAndConditionsFragment"
+        android:name="com.healios.dreams.ui.account.TermsAndConditionsFragment"
+        android:label="TermsAndConditionsFragment"
+        tools:layout="@layout/fragment_termsandconditions"/>
 
 </navigation>

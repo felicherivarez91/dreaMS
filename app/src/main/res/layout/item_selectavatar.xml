@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="android.view.View"/>
@@ -10,23 +11,25 @@
 
     </data>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_itemSelectAvatar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        >
+        android:minWidth="163dp"
+        android:minHeight="145dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="@dimen/cornerRadius_all_general"
+        android:background="@{avatar.selected ? @drawable/fragment_select_avatar_item_shape_selected : @drawable/fragment_select_avatar_item_shape_unselected }">
 
         <RelativeLayout
             android:id="@+id/relativeLayout_itemSelectAvatarWrapperLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="163dp"
-            android:minHeight="145dp"
-            android:layout_margin="5dp"
-            android:elevation="1dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@{avatar.selected ? @drawable/fragment_select_avatar_item_shape_selected : @drawable/fragment_select_avatar_item_shape_unselected }">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imageView_itemSelectAvatar_avatar"
@@ -47,10 +50,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/ic_done"
-                android:visibility="@{avatar.selected ? View.VISIBLE : View.GONE }" />
+                android:visibility="@{ avatar.selected ? View.VISIBLE : View.GONE, default = gone }" />
 
         </RelativeLayout>
 
-    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </layout>

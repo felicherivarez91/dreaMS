@@ -45,10 +45,10 @@ class SelectAvatarFragment : Fragment(), AvatarRecyclerViewLister{
     }
 
 
+
     private fun bind() {
         binding.recyclerViewSelectAvatar.apply {
             val numberOfRows = 2
-            //layoutManager = LinearLayoutManager(context)
             layoutManager = GridLayoutManager(context, numberOfRows,LinearLayoutManager.VERTICAL,false)
             itemAnimator = DefaultItemAnimator()
             adapter = SelectAvatarRecyclerViewAdapter(viewModel.avatarList.value!!, this@SelectAvatarFragment)
@@ -61,12 +61,22 @@ class SelectAvatarFragment : Fragment(), AvatarRecyclerViewLister{
             }
         })
 
-    }
+        viewModel.selectedAvatar.observe(viewLifecycleOwner, Observer {
+            val adapter = binding.recyclerViewSelectAvatar.adapter
+            if (adapter is SelectAvatarRecyclerViewAdapter){
+                adapter.updateAvatar(it)
+            }
+        })
 
+        viewModel.savedAvatar.observe(viewLifecycleOwner, Observer {
+            val avatarResource = it.avatarResource
+        })
+    }
 
     // <AvatarRecyclerViewLister>
     override fun onItemClick(position: Int, avatar: AvatarModel) {
-        viewModel.onItemClick(position, avatar)
+        //viewModel.onItemClick(position, avatar)
+        viewModel.onItemChanged(position, avatar)
     }
 
 }

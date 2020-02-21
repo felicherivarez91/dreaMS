@@ -1,7 +1,5 @@
 package com.healios.dreams.data;
 
-import androidx.lifecycle.MutableLiveData;
-
 import com.healios.dreams.R;
 import com.healios.dreams.model.AvatarModel;
 

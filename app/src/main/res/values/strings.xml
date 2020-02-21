@@ -42,7 +42,8 @@
     <string name="personalInformation_changeAvatar">Change avatar</string>
     <string name="personalInformation_nicknameError">Please use alphabetic characters only</string>
     <string name="personalInformation_nicknameTakenError">This nickname has been taken</string>
-    <string name="personalInformation_termsAndConditionsText"><![CDATA[I agree to dreaMS <b><u>Terms and Conditions, Privacy Policy</b></u>]]></string>
+    <string name="personalInformation_termsAndConditionsText"><![CDATA[I agree to dreaMS <b>Terms and Conditions, Privacy Policy</b>]]></string>
+    <string name="personalInformation_termsAndConditionsLinkText">Terms and Conditions, Privacy Policy</string>
     <string name="personalInformation_termsAndConditionsCheckboxContentDescription">Terms and conditions checkbox</string>
 
     <!-- ./Personal Information -->

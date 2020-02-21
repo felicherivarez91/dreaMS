@@ -20,6 +20,9 @@
             android:id="@+id/recyclerView_selectAvatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:layout_above="@id/button_selectAvatar"
             android:layout_below="@id/toolbar_selectAvatar" />
 
@@ -34,6 +37,7 @@
             android:layout_marginEnd="@dimen/marginEnd_all_mainButton"
             android:layout_marginBottom="@dimen/marginBottom_all_mainButton"
             android:enabled="@{viewmodel.canSaveAvatar, default=false}"
+            android:onClick="@{() -> viewmodel.onSaveButtonPressed()}"
             android:text="@string/all_save" />
 
     </RelativeLayout>

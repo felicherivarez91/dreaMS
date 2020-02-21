@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.healios.dreams.DreaMSApp
 import com.healios.dreams.databinding.ItemSelectavatarBinding
 import com.healios.dreams.model.AvatarModel
 
 class SelectAvatarRecyclerViewAdapter(private var avatarList: List<AvatarModel>, private var listener: AvatarRecyclerViewLister) :
     Adapter<SelectAvatarRecyclerViewAdapter.SelectAvatarItemViewHolder>() {
+
 
     private lateinit var binding: ItemSelectavatarBinding
 
@@ -20,9 +20,8 @@ class SelectAvatarRecyclerViewAdapter(private var avatarList: List<AvatarModel>,
 
     override fun getItemCount(): Int = avatarList.size
 
-
     override fun onBindViewHolder(holder: SelectAvatarItemViewHolder, position: Int) {
-        val avatar = avatarList[position]
+        val avatar = avatarList!![position]
         holder.bind(avatar)
     }
 
@@ -31,21 +30,30 @@ class SelectAvatarRecyclerViewAdapter(private var avatarList: List<AvatarModel>,
         this.notifyDataSetChanged()
     }
 
+    fun updateAvatar(it: AvatarModel?) {
+
+        val selectedAvatarPosition = avatarList.indexOf(it)
+
+        avatarList.forEachIndexed { index, avatarModel ->
+            if (avatarModel == it){
+                avatarList[selectedAvatarPosition].isSelected = it.isSelected
+            }else{
+                avatarList[index].isSelected = false
+            }
+            this.notifyItemChanged(index)
+        }
+    }
+
     inner class SelectAvatarItemViewHolder(val binding: ItemSelectavatarBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(avatar: AvatarModel) {
             if (avatar.avatarResource != 0)
                 binding.avatar = avatar
 
-            binding.relativeLayoutItemSelectAvatarWrapperLayout.setOnClickListener {
+            binding.cardViewItemSelectAvatar.setOnClickListener {
                 listener.onItemClick(layoutPosition, avatar)
             }
-
         }
-
-
-
-
 
     }
 }

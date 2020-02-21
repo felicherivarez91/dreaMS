@@ -47,11 +47,15 @@ class PersonalInformationViewModel(
     init {
 
         canContinue.addSource(_isFormValid) {
-            canContinue.value = it && _agreeTermsAndConditions.value!!
+            canContinue.value = it && _agreeTermsAndConditions.value!! && !_communicationInProgress.value!!
         }
 
         canContinue.addSource(_agreeTermsAndConditions) {
-            canContinue.value = it && _isFormValid.value!!
+            canContinue.value = it && _isFormValid.value!! && !_communicationInProgress.value!!
+        }
+
+        canContinue.addSource(_communicationInProgress){
+            canContinue.value = !it && _isFormValid.value!! && _agreeTermsAndConditions.value!!
         }
 
         if (accountInfoProvider.isDefaultAvatar()) {
@@ -59,6 +63,8 @@ class PersonalInformationViewModel(
         }else {
             selectAvatarButtonText.postValue(DreaMSApp.instance.getString(R.string.personalInformation_changeAvatar))
         }
+
+
 
     }
     //endregion
@@ -85,6 +91,8 @@ class PersonalInformationViewModel(
     }
 
     private fun checkUniqueNickName(currentText: String) {
+        _communicationInProgress.postValue(true)
+
         accountInformationManager.checkUniqueNickname(currentText, null).process { _, error ->
 
             _communicationInProgress.postValue(false)
