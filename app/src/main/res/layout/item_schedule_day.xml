@@ -25,7 +25,8 @@
             android:layout_height="match_parent"
             android:background="@drawable/schedule_selected_item_background_selector"
             android:textOff=""
-            android:textOn="" />
+            android:textOn=""
+            />
 
 
     </RelativeLayout>
