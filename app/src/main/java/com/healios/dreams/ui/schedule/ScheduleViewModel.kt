@@ -10,5 +10,6 @@ class ScheduleViewModel(
     tokenProvider: TokenProvider,
     accountInfoProvider: AccountInfoProvider
 ) : ViewModel() {
-    // TODO: Implement the ViewModel
+
+
 }

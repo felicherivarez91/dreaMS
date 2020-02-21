@@ -13,6 +13,15 @@
     <string name="all_continue">Continue</string>
     <string name="all_save">Save</string>
     <string name="all_done">Done</string>
+
+    <string name="all_day_monday">Monday</string>
+    <string name="all_day_tuesday">Tuesday</string>
+    <string name="all_day_wednesday">Wednesday</string>
+    <string name="all_day_thursday">Thursday</string>
+    <string name="all_day_friday">Friday</string>
+    <string name="all_day_saturday">Saturday</string>
+    <string name="all_day_sunday">Sunday</string>
+
     <!-- ./ All -->
 
     <!-- Login -->
