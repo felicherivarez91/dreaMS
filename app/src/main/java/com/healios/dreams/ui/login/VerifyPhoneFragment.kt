@@ -49,7 +49,7 @@ class VerifyPhoneFragment : Fragment() {
         }
 
         viewModel.verifiedCodeEvent.observe(viewLifecycleOwner, EventObserver {
-            findNavController().navigate(R.id.action_verifyPhoneFragment_to_personalInformationFragment)
+            findNavController().navigate(VerifyPhoneFragmentDirections.actionVerifyPhoneFragmentToPersonalInformationFragment())
         })
 
 

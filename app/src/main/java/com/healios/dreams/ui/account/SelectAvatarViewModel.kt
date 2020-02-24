@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.healios.dreams.data.AvatarRepository
 import com.healios.dreams.model.AvatarModel
+import com.healios.dreams.util.Event
+import com.healios.dreams.util.LiveEvent
+import com.healios.dreams.util.MutableLiveEvent
 
 class SelectAvatarViewModel : ViewModel() {
 
@@ -14,9 +17,14 @@ class SelectAvatarViewModel : ViewModel() {
     private val _selectedAvatar = MutableLiveData<AvatarModel>()
     val selectedAvatar: LiveData<AvatarModel> = _selectedAvatar
 
-
     private val _savedAvatar = MutableLiveData<AvatarModel>()
     val savedAvatar: LiveData<AvatarModel> = _savedAvatar
+
+    private val _newAvatarSet = MutableLiveEvent<AvatarModel>()
+    val newAvatarSet: LiveEvent<AvatarModel> = _newAvatarSet
+
+
+    var toolbarTitle = MutableLiveData<String>("")
 
     var canSaveAvatar = MutableLiveData<Boolean>(false)
 
@@ -58,5 +66,6 @@ class SelectAvatarViewModel : ViewModel() {
 
     fun onSaveButtonPressed(){
         _savedAvatar.postValue(selectedAvatar.value)
+        _newAvatarSet.postValue(Event(selectedAvatar.value!!))
     }
 }

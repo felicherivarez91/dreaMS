@@ -84,9 +84,9 @@ class PersonalInformationFragment : Fragment() {
             viewModel.onCheckedChangeListener(isChecked)
         }
 
-        viewModel.changeAvatarEvent.observe(viewLifecycleOwner, EventObserver {
-            findNavController().navigate(R.id.action_personalInformationFragment_to_selectAvatarFragment)
-        })
+        binding.linearLayoutPersonalInformationAvatarWrapperLayout.setOnClickListener {
+            findNavController().navigate(PersonalInformationFragmentDirections.actionPersonalInformationFragmentToSelectAvatarFragment())
+        }
 
         viewModel.acceptedNickname.observe(viewLifecycleOwner, EventObserver {
             val action =

@@ -38,9 +38,6 @@ class PersonalInformationViewModel(
     private val _acceptedNickname = EmptyMutableLiveEvent()
     val acceptedNickname: EmptyLiveEvent = _acceptedNickname
 
-    private val _changeAvatarEvent = EmptyMutableLiveEvent()
-    val changeAvatarEvent : EmptyLiveEvent = _changeAvatarEvent
-
     val canContinue = MediatorLiveData<Boolean>()
     var selectAvatarButtonText = MutableLiveData<String>()
     var avatarImageResource = MutableLiveData<Int>(R.drawable.ic_default_profile)
@@ -72,10 +69,6 @@ class PersonalInformationViewModel(
         }
     }
     //endregion
-
-    fun onChangeAvatarPressed() {
-        _changeAvatarEvent.postValue(Event(Unit))
-    }
 
     fun continueButtonPressed(nickname: String) {
         checkUniqueNickName(nickname)
@@ -120,6 +113,9 @@ class PersonalInformationViewModel(
 
     fun withArgs(args: PersonalInformationFragmentArgs) {
         this.avatarId = args.avatarId
+        if (avatarId != 0)
+            selectAvatarButtonText.postValue(DreaMSApp.instance.applicationContext.getString(R.string.personalInformation_changeAvatar))
+
 
         if (args.avatarResource != 0)
             avatarImageResource.postValue(args.avatarResource)
