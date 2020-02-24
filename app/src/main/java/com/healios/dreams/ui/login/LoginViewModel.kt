@@ -9,15 +9,15 @@ import com.healios.dreams.data.api.ApiException
 import com.healios.dreams.model.CountryModel
 import com.healios.dreams.util.*
 import com.healios.dreams.R
-
+import com.healios.dreams.data.UserPreferences
 
 
 class LoginViewModel constructor(private val loginManager: LoginManager,
                                  private val tokenProvider: TokenProvider,
-                                 private val countryRepository: CountryRepository): ViewModel() {
+                                 private val countryRepository: CountryRepository,
+                                 private val userPreferences: UserPreferences): ViewModel() {
 
     private var selectedCountryPosition: Int = 0
-
     val selectedCountry = MutableLiveData<CountryModel>()
     val phoneNumber = MutableLiveData<String>("")
     val code1 = MutableLiveData<String>("")
@@ -36,11 +36,11 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     private val _verifiedCodeEvent = EmptyMutableLiveEvent()
     val verifiedCodeEvent: EmptyLiveEvent = _verifiedCodeEvent
 
-    private val _acceptedPhoneErrorEvent = MutableLiveEvent<Throwable>()
-    val acceptedPhoneErrorEvent: LiveEvent<Throwable> = _acceptedPhoneErrorEvent
+    private val _startVerificationEvent = EmptyMutableLiveEvent()
+    val startVerificationEvent: EmptyLiveEvent = _startVerificationEvent
 
-    private val _shouldShowCountrySelector = MutableLiveData<Boolean>(false)
-    val shouldShowCountrySelector: LiveData<Boolean> = _shouldShowCountrySelector
+    private val _showCountrySelector = MutableLiveData<Boolean>(false)
+    val showCountrySelector: LiveData<Boolean> = _showCountrySelector
 
     private val _countriesList = MutableLiveData<List<CountryModel>>()
     val countriesList: LiveData<List<CountryModel>> = _countriesList
@@ -54,7 +54,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     private val _errorText = MutableLiveData<String>("")
     val errorText: LiveData<String> = _errorText
 
-    private val fullPhonenumber = Transformations.map(phoneNumber) {
+     val fullPhonenumber = Transformations.map(phoneNumber) {
         selectedCountry.value!!.telephoneCountryCode + " " + phoneNumber.value
     }
 
@@ -66,29 +66,15 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
             it.matches(regex)
         }
     }
-    val isFormValid: LiveData<Boolean> = _isFormValid
 
+    val isFormValid: LiveData<Boolean> = _isFormValid
     val canContinue = MediatorLiveData<Boolean>()
 
     init {
 
+        setupSelectedCountry()
+        setupContinueStatus()
         _errorText.value = DreaMSApp.instance.resources.getString(R.string.login_telephoneErrorMessagePlaceholder)
-        val countries = countryRepository.getCountries()
-        _countriesList.postValue(countries)
-
-        val tempSelectedCountry = countries.get(0)
-        tempSelectedCountry.isSelectedCountry = true
-        selectedCountry.value = tempSelectedCountry
-        selectedCountry.postValue(tempSelectedCountry)
-
-        setTelephoneHintText(tempSelectedCountry)
-
-        canContinue.addSource(communicationInProgress) {
-            canContinue.value = !it && _isFormValid.value!!
-        }
-        canContinue.addSource(_isFormValid) {
-            canContinue.value = it && !communicationInProgress.value!!
-        }
 
         addCodeSources()
     }
@@ -101,6 +87,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
 
     fun login() {
         _communicationInProgress.postValue(true)
+        userPreferences.defaultCountry = selectedCountry.value!!.countryCode
         loginManager.signin(fullPhonenumber.value!!.trim()).process {
             _ , error ->
 
@@ -117,10 +104,19 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
         }
     }
 
-    fun verifyCode() {
+    fun resendCode() {
+        _communicationInProgress.postValue(true)
+        loginManager.resendCode(fullPhonenumber.value!!).process {
+            _, error ->
+            _communicationInProgress.postValue(false)
+        }
+    }
+
+    private fun verifyCode() {
+        _startVerificationEvent.postValue(Event(Unit))
         _communicationInProgress.value = true
         _verificationError.value = false
-        loginManager.verifyCode(phoneNumber.value!!.trim(), code.value!!.trim()).process {
+        loginManager.verifyCode(fullPhonenumber.value!!, code.value!!.trim()).process {
                 response , error ->
             if (error == null) {
                 tokenProvider.token = response?.token ?: ""
@@ -130,13 +126,12 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
                 if (error is ApiException) {
                     _errorText.postValue(error.message)
                 }
-                code1.postValue("")
-                code2.postValue("")
-                code3.postValue("")
-                code4.postValue("")
             }
+            code4.postValue("")
+            code2.postValue("")
+            code3.postValue("")
+            code1.postValue("")
             _communicationInProgress.postValue(false)
-
         }
     }
 
@@ -171,7 +166,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
 
     //region: Country Selector
     fun onDoneButtonPressed() {
-        _shouldShowCountrySelector.postValue(false)
+        _showCountrySelector.postValue(false)
     }
 
     fun onPreviousButtonPressed() {
@@ -194,17 +189,37 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
 
 
     fun onCountrySelectorPressed() {
-        _shouldShowCountrySelector.postValue(true)
+        _showCountrySelector.postValue(true)
     }
 
     fun hideCountrySelector() {
-        _shouldShowCountrySelector.postValue(false)
+        _showCountrySelector.postValue(false)
     }
 
     fun onCountrySelected(position: Int) {
         selectedCountryPosition = position
         selectCountryForSelectedPosition()
         hideCountrySelector()
+    }
+
+    private fun setupSelectedCountry() {
+        val countries = countryRepository.getCountries()
+        _countriesList.postValue(countries)
+        val defaultCountry = userPreferences.defaultCountry ?: "CH"
+        val tempSelectedCountry = countries.find { country -> country.countryCode == defaultCountry } ?: countries[0]
+        tempSelectedCountry.isSelectedCountry = true
+        selectedCountry.value = tempSelectedCountry
+        selectedCountry.postValue(tempSelectedCountry)
+        setTelephoneHintText(tempSelectedCountry)
+    }
+
+    private fun setupContinueStatus() {
+        canContinue.addSource(communicationInProgress) {
+            canContinue.value = !it && _isFormValid.value!!
+        }
+        canContinue.addSource(_isFormValid) {
+            canContinue.value = it && !communicationInProgress.value!!
+        }
     }
 
     private fun selectCountryForSelectedPosition() {
@@ -226,7 +241,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
     fun onPhoneNumberTextFocusChange(hasFocus: Boolean) {
         if (hasFocus) {
             //Hide Country selector
-            _shouldShowCountrySelector.postValue(false)
+            _showCountrySelector.postValue(false)
             _validationError.value = false
             _errorText.value = DreaMSApp.instance.resources.getString(R.string.login_telephoneErrorMessagePlaceholder)
         }

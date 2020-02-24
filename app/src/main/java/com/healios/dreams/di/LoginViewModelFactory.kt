@@ -11,7 +11,8 @@ class LoginViewModelFactory : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return LoginViewModel(InjectorUtils.getLoginManager(),
             InjectorUtils.getTokenProvider(),
-            InjectorUtils.getCountryRepository()) as T
+            InjectorUtils.getCountryRepository(),
+            InjectorUtils.getUserPreferences()) as T
     }
 
 

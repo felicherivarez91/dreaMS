@@ -14,4 +14,8 @@ interface DreaMSService {
     @POST("auth/signin")
     fun verifyPhone(@Body loginRequest: LoginRequest) : ApiResponse<LoginResponse>
 
+    @POST("auth/signin")
+    fun resendCode(@Body loginRequest: LoginRequest) : ApiResponse<Unit>
+
+
 }

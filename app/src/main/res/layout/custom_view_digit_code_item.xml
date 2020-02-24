@@ -8,7 +8,10 @@
         <variable
             name="displayError"
             type="Boolean"/>
-¡    </data>
+        <variable
+            name="communicationInProgress"
+            type="Boolean" />
+    </data>
         <EditText
             android:id="@+id/editText_digitCodeItem_number"
             style="@style/AppTheme.VerifyPhoneDigitNumberText"
@@ -22,5 +25,9 @@
             android:maxLength="1"
             android:inputType="number"
             android:textAlignment="center"
-            android:text="@={codeCharacter}" />
+            android:focusableInTouchMode="true"
+            android:enabled="@{!communicationInProgress}"
+            android:focusable="true"
+            android:text="@={codeCharacter}"
+            android:importantForAutofill="no" />
 </layout>

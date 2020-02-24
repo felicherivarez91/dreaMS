@@ -72,7 +72,7 @@ class LoginFragment : Fragment(), CountrySelectorRecyclerViewListener, View.OnFo
         })
 
 
-        viewModel.shouldShowCountrySelector.observe(viewLifecycleOwner, Observer {
+        viewModel.showCountrySelector.observe(viewLifecycleOwner, Observer {
             if (it) {
                 hideKeyboard()
             }

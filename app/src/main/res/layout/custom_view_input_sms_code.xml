@@ -16,6 +16,9 @@
         <variable
             name="displayError"
             type="Boolean" />
+        <variable
+            name="communicationInProgress"
+            type="Boolean" />
     </data>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,6 +30,9 @@
     android:orientation="horizontal"
     android:showDividers="middle"
     android:divider="@drawable/all_divider_horizontal_transparent"
+    android:focusable="true"
+    android:id="@+id/linearLayout_digit_code_items"
+    android:focusableInTouchMode="true"
     android:weightSum="4">
 
     <include
@@ -36,6 +42,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         bind:displayError="@{displayError}"
+        bind:communicationInProgress="@{communicationInProgress}"
         bind:codeCharacter="@={code1}"/>
 
     <include

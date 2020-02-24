@@ -2,7 +2,6 @@ package com.healios.dreams.di
 
 import com.healios.dreams.data.*
 import com.healios.dreams.data.api.DreaMSClient
-import com.healios.dreams.data.api.TokenInterceptor
 
 object InjectorUtils {
 
@@ -12,11 +11,15 @@ object InjectorUtils {
     }
 
     fun getTokenProvider(): TokenProvider {
-        return PreferencesTokenProvider()
+        return PreferencesProvider()
     }
 
     fun getCountryRepository(): CountryRepository {
         return JSONCountryRepository()
+    }
+
+    fun getUserPreferences(): UserPreferences {
+        return PreferencesProvider()
     }
 
 

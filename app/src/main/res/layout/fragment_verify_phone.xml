@@ -11,6 +11,8 @@
 
 <LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_height="match_parent">
 
     <TextView
@@ -49,6 +51,7 @@
         bind:code2="@={viewmodel.code2}"
         bind:code3="@={viewmodel.code3}"
         bind:code4="@={viewmodel.code4}"
+        bind:communicationInProgress="@{viewmodel.communicationInProgress}"
         bind:displayError="@{viewmodel.verificationError}"
         />
 
@@ -79,7 +82,18 @@
         style="@style/AppTheme.Button.Main.White.NoBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> viewmodel.resendCode()}"
+        android:enabled="@{!viewmodel.communicationInProgress}"
         android:text="@string/verifyPhone_resend_code_button_text"/>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="@{viewmodel.communicationInProgress ? View.VISIBLE : View.GONE}" />
 
 
 </LinearLayout>

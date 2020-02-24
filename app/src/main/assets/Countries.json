@@ -17,7 +17,7 @@
   },
   {
     "countryName": "all_usa",
-    "countryFlag": "ic_country_flag_ch",
+    "countryFlag": "ic_country_flag_us",
     "countryCode": "US",
     "telephoneMask": "###-###-####",
     "telephoneCountryCode": "+1",
@@ -25,7 +25,7 @@
   },
   {
     "countryName": "all_netherlands",
-    "countryFlag": "ic_country_flag_ch",
+    "countryFlag": "ic_country_flag_nl",
     "countryCode": "NL",
     "telephoneMask": "6 ########",
     "telephoneCountryCode": "+31",

@@ -148,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:minHeight="195dp"
-            android:visibility="@{viewmodel.shouldShowCountrySelector ? View.VISIBLE : View.GONE}">
+            android:visibility="@{viewmodel.showCountrySelector ? View.VISIBLE : View.GONE}">
 
             <RelativeLayout
                 android:id="@+id/relativeLayout_bottomPicker_header"

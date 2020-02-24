@@ -10,6 +10,8 @@ import javax.inject.Singleton
 interface LoginManager {
     fun signin(phoneNumber: String) : ApiResponse<Unit>
     fun verifyCode(phoneNumber: String, code: String) : ApiResponse<LoginResponse>
+    fun resendCode(phoneNumber: String) : ApiResponse<Unit>
+
 }
 
 class DefaultLoginManager constructor(private val loginService: DreaMSService) : LoginManager{
@@ -20,6 +22,9 @@ class DefaultLoginManager constructor(private val loginService: DreaMSService) :
 
     override fun verifyCode(phoneNumber: String, code: String) : ApiResponse<LoginResponse> =
         loginService.verifyPhone(LoginRequest(phoneNumber, code))
+
+    override fun resendCode(phoneNumber: String): ApiResponse<Unit> =
+        loginService.resendCode(LoginRequest(phoneNumber, null))
 
 
 
