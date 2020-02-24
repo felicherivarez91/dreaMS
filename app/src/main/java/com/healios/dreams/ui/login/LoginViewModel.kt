@@ -238,6 +238,14 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
         _countriesList.postValue(updatedCountries)
     }
 
+    fun setupVerifyCode() {
+        code1.postValue("")
+        code2.postValue("")
+        code3.postValue("")
+        code4.postValue("")
+        _verificationError.postValue(false)
+    }
+
     fun onPhoneNumberTextFocusChange(hasFocus: Boolean) {
         if (hasFocus) {
             //Hide Country selector

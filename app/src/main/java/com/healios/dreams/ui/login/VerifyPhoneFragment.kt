@@ -46,6 +46,11 @@ class VerifyPhoneFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.setupVerifyCode()
+    }
+
     private fun bind() {
         binding.textViewVerifyPhoneInfoMessageSentTo.text =
             HtmlCompat.fromHtml(getString(R.string.verifyPhone_sent_to, viewModel.fullPhonenumber.value),
@@ -64,6 +69,8 @@ class VerifyPhoneFragment : Fragment() {
         })
 
     }
+
+
 
     private fun setupView() {
         firstCode = binding.smsCodeViewVerifyPhoneInputCode.digitCodeFirstItem.editTextDigitCodeItemNumber
