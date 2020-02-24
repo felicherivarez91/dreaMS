@@ -17,10 +17,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.healios.dreams.R;
+import com.healios.dreams.databinding.FragmentPermissionsBinding;
 import com.healios.dreams.model.PermissionModel;
 import com.healios.dreams.util.managers.PermissionsManager;
 import com.healios.dreams.util.managers.VersionCompatibilityManager;
@@ -33,66 +32,63 @@ import static com.healios.dreams.util.managers.PermissionsManager.PERMISSION_BOD
 import static com.healios.dreams.util.managers.PermissionsManager.PERMISSION_CAMERA_REQUEST_CODE;
 import static com.healios.dreams.util.managers.PermissionsManager.PERMISSION_RECORD_AUDIO_REQUEST_CODE;
 
-public class PermissionFragment extends Fragment implements PermissionRecyclerViewListener, View.OnClickListener {
+public class PermissionFragment_Java extends Fragment implements PermissionRecyclerViewListener {
 
-    private final String TAG = PermissionFragment.class.getSimpleName();
+    private final String TAG = PermissionFragment_Java.class.getSimpleName();
 
-    private TextView titleTextView;
-    private TextView explanationTextView;
-    private RecyclerView permissionRecyclerView;
-    private Button getStartedButton;
-
-
-    private PermissionRecyclerViewAdapter mAdapter;
-    private PermissionViewModel mViewModel;
+    private PermissionRecyclerViewAdapter_JAVA mAdapter;
+    private PermissionViewModel_Java mViewModel;
     private int currentPermissionPosition;
 
-    public static PermissionFragment newInstance() {
-        return new PermissionFragment();
+    private FragmentPermissionsBinding binding;
+
+    public static PermissionFragment_Java newInstance() {
+        return new PermissionFragment_Java();
     }
 
     //region: Lifecycle
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_permissions, container, false);
-        setUpView(view);
-        return view;
+        //View view = inflater.inflate(R.layout.fragment_permissions, container, false);
+        //setUpView(view);
+        //return view;
+        binding = FragmentPermissionsBinding.inflate(inflater, container, false);
+        //binding.setViewmodel(mViewModel);
+
+
+        bind();
+        return binding.getRoot();
     }
 
+    /*
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initViewModel();
         initRecyclerView();
     }
+
+     */
     //endregion
 
-    private void setUpView(View view) {
-        attachView(view);
+    private void bind() {
         initView();
         setListeners();
     }
 
     private void setListeners() {
-        this.getStartedButton.setOnClickListener(this);
-    }
-
-    private void attachView(View view) {
-        this.titleTextView = view.findViewById(R.id.textView_fragment_permissions_title);
-        this.explanationTextView = view.findViewById(R.id.textView_fragment_permissions_explanation);
-        this.permissionRecyclerView = view.findViewById(R.id.recyclerView_fragment_permissions);
-        this.getStartedButton = view.findViewById(R.id.button_fragment_permissions_get_started);
+        //this.getStartedButton.setOnClickListener(this);
     }
 
     private void initView() {
-        this.titleTextView.setText(this.getContext().getString(R.string.fragment_permissions_title_text));
-        this.explanationTextView.setText(this.getContext().getString(R.string.fragment_permissions_explanation_text));
-        this.getStartedButton.setText(this.getContext().getString(R.string.fragment_permissions_get_started_button_text));
+        binding.textViewFragmentPermissionsTitle.setText(this.getContext().getString(R.string.fragment_permissions_title_text));
+        binding.textViewFragmentPermissionsExplanation.setText(this.getContext().getString(R.string.fragment_permissions_explanation_text));
+        binding.buttonFragmentPermissionsGetStarted.setText(this.getContext().getString(R.string.fragment_permissions_get_started_button_text));
     }
 
     private void initViewModel() {
-        mViewModel = ViewModelProviders.of(this).get(PermissionViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(PermissionViewModel_Java.class);
         mViewModel.init();
         mViewModel.getPermissions().observe(this, new Observer<List<PermissionModel>>() {
             @Override
@@ -109,17 +105,17 @@ public class PermissionFragment extends Fragment implements PermissionRecyclerVi
                 return;
             }
         }
-        this.getStartedButton.setEnabled(true);
+        //this.getStartedButton.setEnabled(true);
     }
 
     private void initRecyclerView() {
-        mAdapter = new PermissionRecyclerViewAdapter(this);
+        mAdapter = new PermissionRecyclerViewAdapter_JAVA(this);
 
-        permissionRecyclerView.setAdapter(mAdapter);
+        binding.recyclerViewFragmentPermissions.setAdapter(mAdapter);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
-        permissionRecyclerView.setLayoutManager(layoutManager);
-        permissionRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        binding.recyclerViewFragmentPermissions.setLayoutManager(layoutManager);
+        binding.recyclerViewFragmentPermissions.setItemAnimator(new DefaultItemAnimator());
 
         mAdapter.setPermissions(mViewModel.getPermissions().getValue());
     }
@@ -253,14 +249,4 @@ public class PermissionFragment extends Fragment implements PermissionRecyclerVi
         }
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.equals(this.getStartedButton)){
-            getStartedButtonPressed();
-        }
-    }
-
-    private void getStartedButtonPressed() {
-        //TODO: Get started action
-    }
 }

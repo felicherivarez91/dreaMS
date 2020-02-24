@@ -7,21 +7,22 @@ import androidx.lifecycle.ViewModel;
 import com.healios.dreams.data.PermissionRepository;
 import com.healios.dreams.model.PermissionModel;
 
-import java.security.Permission;
-import java.util.ArrayList;
 import java.util.List;
 
-public class PermissionViewModel extends ViewModel {
+public class PermissionViewModel_Java extends ViewModel {
 
     private MutableLiveData<List<PermissionModel>> mPermissions;
     private PermissionRepository mPermissionRepository;
+
+
+    public MutableLiveData<Boolean> canContinue = new MutableLiveData<>(false);
 
     public void init() {
         if (mPermissions != null){
             return;
         }
         mPermissionRepository = PermissionRepository.getInstance();
-        mPermissions = mPermissionRepository.getPermissions();
+        mPermissions = mPermissionRepository.getPermissionsLiveData();
     }
 
     LiveData<List<PermissionModel>> getPermissions() {

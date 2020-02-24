@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_nav_graph"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/quickTourFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -107,6 +107,15 @@
         android:id="@+id/quickTourFragment"
         android:name="com.healios.dreams.ui.quicktour.QuickTourFragment"
         android:label="QuickTourFragment"
-        tools:layout="@layout/fragment_quicktour_step" />
+        tools:layout="@layout/fragment_quicktour_step" >
+        <action
+            android:id="@+id/action_quickTourFragment_to_permissionFragment"
+            app:destination="@id/permissionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/permissionFragment"
+        android:name="com.healios.dreams.ui.permissions.PermissionFragment"
+        android:label="fragment_permissions"
+        tools:layout="@layout/fragment_permissions" />
 
 </navigation>

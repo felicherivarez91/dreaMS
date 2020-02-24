@@ -105,6 +105,10 @@
     <string name="fragment_timer_step_challenge_category_content_description">Challenge category</string>
     <string name="fragment_timer_step_start_text">Start</string>
     <string name="fragment_timer_step_play_video_button_content_description_text">Play video button</string>
+    <string name="all_skip">Skip</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- ./Timer Step -->
 

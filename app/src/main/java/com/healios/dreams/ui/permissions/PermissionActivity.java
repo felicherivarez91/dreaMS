@@ -14,7 +14,7 @@ public class PermissionActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
     private ActionBar actionBar;
 
-    private PermissionFragment permissionFragment;
+    private PermissionFragment_Java permissionFragmentJava;
 
 
     @Override
@@ -45,10 +45,10 @@ public class PermissionActivity extends AppCompatActivity {
 
     private void loadInitialFragment() {
 
-        permissionFragment = PermissionFragment.newInstance();
-        permissionFragment.setArguments(getIntent().getExtras());
+        permissionFragmentJava = PermissionFragment_Java.newInstance();
+        permissionFragmentJava.setArguments(getIntent().getExtras());
 
-        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout_activity_permissions, permissionFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout_activity_permissions, permissionFragmentJava).commit();
     }
 
 }

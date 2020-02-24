@@ -2,7 +2,6 @@ package com.healios.dreams.ui.permissions;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,13 +10,13 @@ import com.healios.dreams.model.PermissionModel;
 
 import java.util.List;
 
-public class PermissionRecyclerViewAdapter extends RecyclerView.Adapter<PermissionRecyclerViewAdapter.PermissionViewHolder> {
+public class PermissionRecyclerViewAdapter_JAVA extends RecyclerView.Adapter<PermissionRecyclerViewAdapter_JAVA.PermissionViewHolder> {
 
     private List<PermissionModel> permissionList;
 
     private PermissionRecyclerViewListener listener;
 
-    public PermissionRecyclerViewAdapter(PermissionRecyclerViewListener listener) {
+    public PermissionRecyclerViewAdapter_JAVA(PermissionRecyclerViewListener listener) {
         this.listener = listener;
     }
 
