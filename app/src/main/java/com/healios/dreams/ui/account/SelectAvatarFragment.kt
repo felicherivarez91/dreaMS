@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentSelectavatarBinding
 import com.healios.dreams.di.SelectAvatarViewModelFactory
 import com.healios.dreams.model.AvatarModel
@@ -44,8 +46,6 @@ class SelectAvatarFragment : Fragment(), AvatarRecyclerViewLister{
         return binding.root
     }
 
-
-
     private fun bind() {
         binding.recyclerViewSelectAvatar.apply {
             val numberOfRows = 2
@@ -69,13 +69,13 @@ class SelectAvatarFragment : Fragment(), AvatarRecyclerViewLister{
         })
 
         viewModel.savedAvatar.observe(viewLifecycleOwner, Observer {
-            val avatarResource = it.avatarResource
+            val action = SelectAvatarFragmentDirections.actionSelectAvatarFragmentToPersonalInformationFragment(it.avatarCompleteImageResource, it.avatarId)
+            findNavController().navigate(action)
         })
     }
 
     // <AvatarRecyclerViewLister>
     override fun onItemClick(position: Int, avatar: AvatarModel) {
-        //viewModel.onItemClick(position, avatar)
         viewModel.onItemChanged(position, avatar)
     }
 

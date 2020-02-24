@@ -8,12 +8,14 @@ public class AvatarModel {
 
     private int avatarId;
     private int avatarResource;
+    private int avatarCompleteImageResource;
     private boolean isSelected;
 
 
-    public AvatarModel(int avatarId, int avatarResource) {
+    public AvatarModel(int avatarId, int avatarResource, int avatarCompleteImageResource) {
         this.avatarId = avatarId;
         this.avatarResource = avatarResource;
+        this.avatarCompleteImageResource = avatarCompleteImageResource;
         this.isSelected = false;
     }
 
@@ -41,6 +43,13 @@ public class AvatarModel {
         isSelected = selected;
     }
 
+    public int getAvatarCompleteImageResource() {
+        return avatarCompleteImageResource;
+    }
+
+    public void setAvatarCompleteImageResource(int avatarCompleteImageResource) {
+        this.avatarCompleteImageResource = avatarCompleteImageResource;
+    }
 
     @BindingAdapter({"android:src"})
     public static void setImageViewResource(ImageView imageView, int resource) {

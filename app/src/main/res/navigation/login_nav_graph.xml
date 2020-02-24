@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_nav_graph"
-    app:startDestination="@id/scheduleFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -30,6 +30,15 @@
         android:name="com.healios.dreams.ui.account.PersonalInformationFragment"
         android:label="PersonalInformationFragment"
         tools:layout="@layout/fragment_personalinformation">
+        <argument
+            android:name="avatarResource"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="avatarId"
+            android:defaultValue="0"
+            app:argType="integer" />
+
         <action
             android:id="@+id/action_personalInformationFragment_to_selectAvatarFragment"
             app:destination="@id/selectAvatarFragment" />
@@ -39,6 +48,7 @@
         <action
             android:id="@+id/action_personalInformationFragment_to_scheduleFragment"
             app:destination="@id/scheduleFragment" />
+
     </fragment>
 
     <fragment
@@ -54,13 +64,30 @@
         android:id="@+id/selectAvatarFragment"
         android:name="com.healios.dreams.ui.account.SelectAvatarFragment"
         android:label="SelectAvatarFragment"
-        tools:layout="@layout/fragment_selectavatar" />
+        tools:layout="@layout/fragment_selectavatar">
+
+        <action
+            android:id="@+id/action_selectAvatarFragment_to_personalInformationFragment"
+            app:destination="@+id/personalInformationFragment"
+            app:popUpTo="@+id/personalInformationFragment"
+            app:popUpToInclusive="true">
+
+            <argument
+                android:name="avatarResource"
+                app:argType="integer" />
+            <argument
+                android:name="avatarId"
+                app:argType="integer" />
+
+        </action>
+
+    </fragment>
 
     <fragment
         android:id="@+id/termsAndConditionsFragment"
         android:name="com.healios.dreams.ui.account.TermsAndConditionsFragment"
         android:label="TermsAndConditionsFragment"
-        tools:layout="@layout/fragment_termsandconditions"/>
+        tools:layout="@layout/fragment_termsandconditions" />
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.healios.dreams.ui.schedule.ScheduleFragment"
@@ -69,11 +96,17 @@
         <action
             android:id="@+id/action_scheduleFragment_to_quickTourFragment"
             app:destination="@id/quickTourFragment" />
+        <argument
+            android:name="avatarResourceId"
+            app:argType="integer" />
+        <argument
+            android:name="nickname"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/quickTourFragment"
         android:name="com.healios.dreams.ui.quicktour.QuickTourFragment"
         android:label="QuickTourFragment"
-        tools:layout="@layout/fragment_quicktour_step"/>
+        tools:layout="@layout/fragment_quicktour_step" />
 
 </navigation>

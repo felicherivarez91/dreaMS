@@ -1,29 +1,20 @@
 package com.healios.dreams.ui.account
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.text.HtmlCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.observe
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentPersonalinformationBinding
-import com.healios.dreams.di.LoginViewModelFactory
 import com.healios.dreams.di.PersonalInformationViewModelFactory
-import com.healios.dreams.ui.login.LoginViewModel
 import com.healios.dreams.util.EventObserver
 import com.healios.dreams.util.makeLinks
-import org.w3c.dom.Text
 
 class PersonalInformationFragment : Fragment() {
 
@@ -39,6 +30,8 @@ class PersonalInformationFragment : Fragment() {
         )
     }
 
+    private val args: PersonalInformationFragmentArgs by navArgs()
+
     //region: Lifecycle
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +44,8 @@ class PersonalInformationFragment : Fragment() {
         binding.editTextPersonalInformationNicknameText.addTextChangedListener {
             viewModel.onTextChanged(it.toString())
         }
+
+        viewModel.withArgs(args)
 
         bind()
         return binding.root
@@ -94,7 +89,12 @@ class PersonalInformationFragment : Fragment() {
         })
 
         viewModel.acceptedNickname.observe(viewLifecycleOwner, EventObserver {
-            findNavController().navigate(R.id.action_personalInformationFragment_to_scheduleFragment)
+            val action =
+                PersonalInformationFragmentDirections.actionPersonalInformationFragmentToScheduleFragment(
+                    viewModel.avatarImageResource.value!!,
+                    viewModel.nickname
+                )
+            findNavController().navigate(action)
         })
 
     }

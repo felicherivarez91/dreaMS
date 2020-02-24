@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentScheduleBinding
 import com.healios.dreams.di.ScheduleViewModelFactory
+import com.healios.dreams.ui.account.PersonalInformationFragmentArgs
 
 class ScheduleFragment : Fragment() {
 
@@ -26,6 +30,9 @@ class ScheduleFragment : Fragment() {
         )
     }
 
+    private val args: ScheduleFragmentArgs by navArgs()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +40,7 @@ class ScheduleFragment : Fragment() {
         binding = FragmentScheduleBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
+        viewModel.withArgs(args)
 
 
         bind()
@@ -43,6 +51,9 @@ class ScheduleFragment : Fragment() {
 
         setupWeekDays()
 
+        viewModel.scheduleSettedUp.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(R.id.action_scheduleFragment_to_quickTourFragment)
+        })
 
     }
 

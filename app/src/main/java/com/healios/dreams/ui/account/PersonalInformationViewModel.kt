@@ -9,6 +9,7 @@ import com.healios.dreams.R
 import com.healios.dreams.data.AccountInfoProvider
 import com.healios.dreams.data.AccountInformationManager
 import com.healios.dreams.data.TokenProvider
+import com.healios.dreams.data.api.ApiException
 import com.healios.dreams.util.EmptyLiveEvent
 import com.healios.dreams.util.EmptyMutableLiveEvent
 import com.healios.dreams.util.Event
@@ -28,6 +29,9 @@ class PersonalInformationViewModel(
     private val _agreeTermsAndConditions = MutableLiveData<Boolean>(false)
     val agreeTermsAndConditions: LiveData<Boolean> = _agreeTermsAndConditions
 
+    private val _displayError = MutableLiveData<Boolean>(false)
+    val displayError: LiveData<Boolean> = _displayError
+
     private val _errorText = MutableLiveData<String>("")
     val errorText: LiveData<String> = _errorText
 
@@ -40,6 +44,10 @@ class PersonalInformationViewModel(
     val canContinue = MediatorLiveData<Boolean>()
     var selectAvatarButtonText = MutableLiveData<String>()
     var avatarImageResource = MutableLiveData<Int>(R.drawable.ic_default_profile)
+
+
+    var avatarId: Int = 0
+    var nickname:String = ""
 
 
     //region: Init viewmodel
@@ -62,9 +70,6 @@ class PersonalInformationViewModel(
         }else {
             selectAvatarButtonText.postValue(DreaMSApp.instance.getString(R.string.personalInformation_changeAvatar))
         }
-
-
-
     }
     //endregion
 
@@ -92,14 +97,19 @@ class PersonalInformationViewModel(
     private fun checkUniqueNickName(currentText: String) {
         _communicationInProgress.postValue(true)
 
-        accountInformationManager.checkUniqueNickname(currentText, null).process { _, error ->
+        accountInformationManager.checkUniqueNickname(currentText, avatarId).process { _, error ->
 
             _communicationInProgress.postValue(false)
 
             if (error == null) {
+                nickname = currentText
                 _acceptedNickname.postValue(Event(Unit))
             } else {
-                _errorText.postValue(DreaMSApp.instance.getString(R.string.personalInformation_nicknameTakenError))
+                _displayError.postValue(true)
+                if (error is ApiException) {
+                    _errorText.postValue(error.message)
+                }
+                //_errorText.postValue(DreaMSApp.instance.getString(R.string.personalInformation_nicknameTakenError))
             }
         }
     }
@@ -107,5 +117,15 @@ class PersonalInformationViewModel(
     fun onCheckedChangeListener(checked: Boolean) {
         _agreeTermsAndConditions.postValue(checked)
     }
+
+    fun withArgs(args: PersonalInformationFragmentArgs) {
+        this.avatarId = args.avatarId
+
+        if (args.avatarResource != 0)
+            avatarImageResource.postValue(args.avatarResource)
+
+    }
+
+
 
 }
