@@ -22,6 +22,15 @@ object InjectorUtils {
         return PreferencesProvider()
     }
 
+    fun getUserManager(): UserManager {
+        return DefaultUserManager(DreaMSClient(getTokenProvider(),
+            true).dreamMSService)
+    }
+
+    fun getUserCollectionDataRepository(): UserCollectionDataRepository {
+        return JSONUserCollectionDataRepository()
+    }
+
 
 }
 

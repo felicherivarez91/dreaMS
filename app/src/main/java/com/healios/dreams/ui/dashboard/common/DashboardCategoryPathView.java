@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard;
+package com.healios.dreams.ui.dashboard.common;
 
 import android.app.Activity;
 import android.content.Context;

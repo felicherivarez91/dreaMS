@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_nav_graph"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/dashboardFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.healios.dreams.ui.login.LoginFragment"
@@ -28,5 +28,10 @@
             android:id="@+id/action_welcomeFragment_to_loginFragment"
             app:destination="@id/loginFragment"/>
     </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.healios.dreams.ui.dashboard.DashboardFragment"
+        android:label="DashboardFragment"
+        tools:layout="@layout/fragment_dashboard"/>
 
 </navigation>
