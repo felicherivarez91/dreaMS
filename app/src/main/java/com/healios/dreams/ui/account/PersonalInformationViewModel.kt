@@ -42,10 +42,8 @@ class PersonalInformationViewModel(
     var selectAvatarButtonText = MutableLiveData<String>()
     var avatarImageResource = MutableLiveData<Int>(R.drawable.ic_default_profile)
 
-
     var avatarId: Int = 0
     var nickname:String = ""
-
 
     //region: Init viewmodel
     init {

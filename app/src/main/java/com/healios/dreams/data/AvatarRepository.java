@@ -33,10 +33,10 @@ public class AvatarRepository {
         avatarArray.add(new AvatarModel(1, R.drawable.selectavatar_m_1, R.drawable.user_m_1));
         avatarArray.add(new AvatarModel(2, R.drawable.selectavatar_m_2, R.drawable.user_m_2));
         avatarArray.add(new AvatarModel(3, R.drawable.selectavatar_m_3, R.drawable.user_m_3));
-        //avatarArray.add(new AvatarModel(4, R.drawable.selectavatar_m_4, R.drawable.user_m_4));
-        //FIXME: Uncomment when resource is available
-        //avatarArray.add(new AvatarModel(5, R.drawable.selectavatar_m_5));
-        //avatarArray.add(new AvatarModel(6, R.drawable.selectavatar_m_6));
+        avatarArray.add(new AvatarModel(4, R.drawable.selectavatar_m_4, R.drawable.user_m_4));
+        //TODO: Add avatar icons for 5 (Men Green T shirt) and 6 (men with red T shirt and without beard)
+        //avatarArray.add(new AvatarModel(5, R.drawable.selectavatar_m_5, ));
+        //avatarArray.add(new AvatarModel(6, R.drawable.selectavatar_m_6, ));
         avatarArray.add(new AvatarModel(7, R.drawable.selectavatar_f_1, R.drawable.user_f_1));
         avatarArray.add(new AvatarModel(8, R.drawable.selectavatar_f_2, R.drawable.user_f_2));
         avatarArray.add(new AvatarModel(9, R.drawable.selectavatar_f_3, R.drawable.user_f_3));

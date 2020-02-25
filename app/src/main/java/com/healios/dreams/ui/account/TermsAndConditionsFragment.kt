@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.healios.dreams.databinding.FragmentTermsandconditionsBinding
 import com.healios.dreams.di.TermsAndConditionsViewModelFactory
 
@@ -30,6 +32,10 @@ class TermsAndConditionsFragment : Fragment() {
         binding = FragmentTermsandconditionsBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
+
+        binding.toolbarTermsAndConditions.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
         bind()
         return binding.root

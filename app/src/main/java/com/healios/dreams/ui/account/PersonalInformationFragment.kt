@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -46,7 +47,6 @@ class PersonalInformationFragment : Fragment() {
         }
 
         viewModel.withArgs(args)
-
         bind()
         return binding.root
     }

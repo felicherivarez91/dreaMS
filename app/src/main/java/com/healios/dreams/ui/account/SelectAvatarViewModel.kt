@@ -23,7 +23,6 @@ class SelectAvatarViewModel : ViewModel() {
     private val _newAvatarSet = MutableLiveEvent<AvatarModel>()
     val newAvatarSet: LiveEvent<AvatarModel> = _newAvatarSet
 
-
     var toolbarTitle = MutableLiveData<String>("")
 
     var canSaveAvatar = MutableLiveData<Boolean>(false)
@@ -36,7 +35,6 @@ class SelectAvatarViewModel : ViewModel() {
         canSaveAvatar.postValue( selectedAvatar.value != null)
     }
     //endregion
-
 
     fun onItemClick(position: Int, avatar: AvatarModel) {
 
