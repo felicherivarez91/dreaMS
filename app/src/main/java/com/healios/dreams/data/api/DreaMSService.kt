@@ -1,7 +1,10 @@
 package com.healios.dreams.data.api
 
+import android.app.UiAutomation
+import com.healios.dreams.model.AccounDetailsRequest
 import com.healios.dreams.model.LoginRequest
 import com.healios.dreams.model.LoginResponse
+import com.healios.dreams.model.UniqueNicknameRequest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -17,5 +20,9 @@ interface DreaMSService {
     @POST("auth/signin")
     fun resendCode(@Body loginRequest: LoginRequest) : ApiResponse<Unit>
 
+    @POST("auth/signup")
+    fun checkUniqueNickname(@Body uniqueNicknameParams: UniqueNicknameRequest) : ApiResponse<Unit>
 
+    @POST("auth/signup")
+    fun completeAccountDetails(@Body accountDetails: AccounDetailsRequest) : ApiResponse<Unit>
 }

@@ -47,6 +47,11 @@
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_book</item>
         <item name="android:backgroundTint">@color/editTextUnderlineColor</item>
+
+        <!-- underline color-->
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">@color/colorAccent_50</item>
+        <item name="colorControlHighlight">@color/colorAccent_50</item>
     </style>
 
     <style name="AppTheme.InputTextError" parent="AppTheme.PersonalInformationNicknameEditText">
@@ -72,16 +77,9 @@
     </style>
 
     <style name="AppTheme.ItemScheduleDayText">
-        <item name="android:textColor">@color/itemScheduleDayNameTextColor</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@drawable/item_schedule_day_name_text_color_selector</item>
         <item name="android:fontFamily">@font/circularstd_bold</item>
-    </style>
-
-    <style name="AppTheme.ItemScheduleDaySelectedText" parent="AppTheme.ItemScheduleDayText">
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="AppTheme.ItemScheduleDayUnselectedText" parent="AppTheme.ItemScheduleDayText">
-        <item name="android:textColor">@color/itemScheduleDayNameTextColor</item>
     </style>
 
     <style name="AppTheme.PermissionText">
