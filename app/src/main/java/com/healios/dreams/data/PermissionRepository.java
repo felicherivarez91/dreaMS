@@ -24,12 +24,19 @@ public class PermissionRepository {
         return instance;
     }
 
-    public MutableLiveData<List<PermissionModel>> getPermissions() {
+    public MutableLiveData<List<PermissionModel>> getPermissionsLiveData() {
         setRequiredPermissionsToCompleteLogin();
 
         MutableLiveData<List<PermissionModel>> data = new MutableLiveData<>();
         data.setValue(dataSet);
         return data;
+    }
+
+
+    public List<PermissionModel> getPermissions() {
+        setRequiredPermissionsToCompleteLogin();
+
+        return dataSet;
     }
 
     private void setRequiredPermissionsToCompleteLogin() {

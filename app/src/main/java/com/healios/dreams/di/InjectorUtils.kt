@@ -11,6 +11,11 @@ object InjectorUtils {
             false).dreamMSService)
     }
 
+    fun getAccountInformationManager(): AccountInformationManager {
+        return DefaultAccountInformationManager(DreaMSClient(getTokenProvider(),
+            true).dreamMSService)
+    }
+
     fun getTokenProvider(): TokenProvider {
         return PreferencesProvider()
     }
@@ -25,6 +30,10 @@ object InjectorUtils {
 
     fun getPermissionManager(): PermissionsManager {
         return PermissionsManager()
+    }
+
+    fun getAccountInfoProvider(): AccountInfoProvider {
+        return PreferencesAccountInfoProvider()
     }
 
 

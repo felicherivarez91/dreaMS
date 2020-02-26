@@ -15,6 +15,15 @@
     <string name="all_continue">Continue</string>
     <string name="all_save">Save</string>
     <string name="all_done">Done</string>
+
+    <string name="all_day_monday">Monday</string>
+    <string name="all_day_tuesday">Tuesday</string>
+    <string name="all_day_wednesday">Wednesday</string>
+    <string name="all_day_thursday">Thursday</string>
+    <string name="all_day_friday">Friday</string>
+    <string name="all_day_saturday">Saturday</string>
+    <string name="all_day_sunday">Sunday</string>
+
     <!-- ./ All -->
 
     <!-- Login -->
@@ -44,14 +53,16 @@
     <string name="personalInformation_selectAvatar">Select avatar</string>
     <string name="personalInformation_changeAvatar">Change avatar</string>
     <string name="personalInformation_nicknameError">Please use alphabetic characters only</string>
-    <string name="personalInformation_termsAndConditionsText">I agree to dreaMS Terms and Conditions, Privacy Policy</string>
+    <string name="personalInformation_nicknameTakenError">This nickname has been taken</string>
+    <string name="personalInformation_termsAndConditionsText"><![CDATA[I agree to dreaMS <b>Terms and Conditions, Privacy Policy</b>]]></string>
+    <string name="personalInformation_termsAndConditionsLinkText">Terms and Conditions, Privacy Policy</string>
     <string name="personalInformation_termsAndConditionsCheckboxContentDescription">Terms and conditions checkbox</string>
 
     <!-- ./Personal Information -->
 
     <!-- Terms And Conditions -->
     <string name="fragment_termsandconditions_title_text">Terms and Conditions, Privacy Policy</string>
-    <string name="fragment_termsandconditions_terms_content_text">This privacy notice discloses the privacy practices for (website address). This privacy notice applies solely to information collected by this website. It will notify you of the following: \n\nWhat personally identifiable information is collected from you through the website, how it is used and with whom it may be shared. What choices are available to you regarding the use of your data. The security procedures in place to protect the misuse of your information. \n\nHow you can correct any inaccuracies in the information. Information Collection, Use, and Sharing \n\nWe are the sole owners of the information collected on this site. We only have access to/collect </string>
+    <string name="fragment_termsandconditions_terms_content_text">Available soon</string>
     <string name="fragment_termsandconditions_agree_button_text">Agree and Accept</string>
 
     <!-- ./ Terms And Conditions -->
@@ -97,6 +108,10 @@
     <string name="fragment_timer_step_challenge_category_content_description">Challenge category</string>
     <string name="fragment_timer_step_start_text">Start</string>
     <string name="fragment_timer_step_play_video_button_content_description_text">Play video button</string>
+    <string name="all_skip">Skip</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- ./Timer Step -->
 
