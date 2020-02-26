@@ -2,6 +2,7 @@ package com.healios.dreams.di
 
 import com.healios.dreams.data.*
 import com.healios.dreams.data.api.DreaMSClient
+import com.healios.dreams.util.managers.PermissionsManager
 
 object InjectorUtils {
 
@@ -20,6 +21,10 @@ object InjectorUtils {
 
     fun getUserPreferences(): UserPreferences {
         return PreferencesProvider()
+    }
+
+    fun getPermissionManager(): PermissionsManager {
+        return PermissionsManager()
     }
 
 

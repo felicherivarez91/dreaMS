@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="metadata"
+            type="com.healios.dreams.model.challenge.ChallengeMetadata" />
+    </data>
+
 <LinearLayout android:id="@+id/linearLayout_fragment_timer_step_challenge_wrapper_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@id/textView_fragment_timer_step_title"
     android:layout_marginStart="20dp"
     android:layout_marginTop="36dp"
     android:layout_marginEnd="20dp"
@@ -16,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
+        android:text="@{metadata.name}"
         android:textAlignment="center" />
 
     <LinearLayout
@@ -46,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="12dp"
+                android:text="@{metadata.time}"
                 android:layout_marginEnd="12dp"/>
 
         </LinearLayout>
@@ -79,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="12dp"
+                android:text="@{metadata.intensity.description}"
                 android:layout_marginEnd="12dp" />
 
         </LinearLayout>
@@ -111,6 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="12dp"
+                android:text="@{metadata.category.description}"
                 android:layout_marginEnd="12dp"/>
 
         </LinearLayout>
@@ -127,3 +137,4 @@
         android:textAlignment="center" />
 
 </LinearLayout>
+</layout>

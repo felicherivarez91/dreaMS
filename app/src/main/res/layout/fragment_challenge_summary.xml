@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.challenge.summary.ChallengeSummaryViewModel" />
+    </data>
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Countdown timer -->
+
     <FrameLayout
         android:layout_marginTop="74dp"
         android:layout_width="match_parent"
@@ -14,15 +21,12 @@
         android:layout_height="252dp"
         android:layout_gravity="center"
         android:visibility="visible">
-
         <VideoView
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </FrameLayout>
-    <!-- ./Countdown timer -->
 
-    <include android:id="@+id/custom_view_challenge_info_timer"
-        layout="@layout/custom_view_challenge_info"/>
+    <include layout="@layout/custom_view_challenge_info"/>
 
 </LinearLayout>
+</layout>

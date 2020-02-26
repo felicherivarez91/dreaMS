@@ -5,22 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.healios.dreams.R
+import com.healios.dreams.databinding.FragmentChallengeSummaryBinding
+import com.healios.dreams.di.ChallengeViewModelFactory
+import com.healios.dreams.model.challenge.ChallengeWorkingData
 
-class ChallengeSummary : Fragment() {
+class ChallengeSummaryFragment : Fragment() {
 
-    companion object {
-        fun newInstance() =
-            ChallengeSummary()
-    }
-
-    //private lateinit var viewModel: ChallengeSummaryViewModel
+    private lateinit var binding: FragmentChallengeSummaryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_challenge_summary, container, false)
+        binding = FragmentChallengeSummaryBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

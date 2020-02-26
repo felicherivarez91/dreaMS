@@ -100,5 +100,17 @@
 
     <!-- ./Timer Step -->
 
+    <!-- Challenge -->
+    <string name="challenge_category_motion">Motion</string>
+    <string name="challenge_category_finemotor_skills">Fine motor skills</string>
+    <string name="challenge_category_cognitive">Cognitive</string>
+    <string name="challenge_category_vision_and_surveys">Vision and Surveys</string>
+
+    <string name="challenge_intensity_low">Low</string>
+    <string name="challenge_intensity_medium">Medium</string>
+    <string name="challenge_intensity_high">High</string>
+
+
+
 
 </resources>

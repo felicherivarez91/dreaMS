@@ -1,6 +1,11 @@
 package com.healios.dreams.model.challenge
 
-enum class ChallengeCategory {
+import com.healios.dreams.R
 
-    MOTION, FINEMOTORSKILLS, COGNITIVE, VISIONANDSURVEYS
+enum class ChallengeCategory(val description: Int) {
+
+    MOTION(R.string.challenge_category_motion),
+    FINEMOTORSKILLS(R.string.challenge_category_finemotor_skills),
+    COGNITIVE(R.string.challenge_category_cognitive),
+    VISIONANDSURVEYS(R.string.challenge_category_vision_and_surveys)
 }
