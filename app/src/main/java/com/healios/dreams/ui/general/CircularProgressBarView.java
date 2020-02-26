@@ -41,6 +41,8 @@ public class CircularProgressBarView extends View {
 
     private ObjectAnimator animator;
     private boolean showTimeLines;
+    private boolean mBackgroundShouldOverStepProgressBar = false;
+
 
     public CircularProgressBarView(Context context) {
         super(context);
@@ -70,8 +72,9 @@ public class CircularProgressBarView extends View {
                 R.styleable.CircularProgressBar,
                 0, 0);
         try {
-
+            // Background
             mProgressBackBgColor = styledAttributes.getColor(R.styleable.CircularProgressBar_progressBarBackgroundColor, 0xffe1e1e1);
+            mBackgroundShouldOverStepProgressBar = styledAttributes.getBoolean(R.styleable.CircularProgressBar_backgroundShouldOverStepProgressBar, false);
 
             mBgColor = styledAttributes.getColor(R.styleable.CircularProgressBar_backgroundColor, 0xffe1e1e1);
             mFgColorEnd = styledAttributes.getColor(R.styleable.CircularProgressBar_foregroundColorEnd, getResources().getColor(R.color.colorPrimary));
@@ -145,10 +148,9 @@ public class CircularProgressBarView extends View {
         float centerX = xp + (usableWidth / 2);
         float centerY = yp + (usableHeight / 2);
 
-        float radius = (Math.min(usableWidth, usableHeight) / 2);
+        float radius = mBackgroundShouldOverStepProgressBar ? (Math.min(usableWidth, usableHeight) / 2) : (Math.min(usableWidth, usableHeight) / 2) - (1.5f * mStrokeWidth);
 
         canvas.drawCircle(centerX, centerY, radius, backgroundPatinBrush);
-
     }
 
     private void drawCircularProgressBar(Canvas canvas) {

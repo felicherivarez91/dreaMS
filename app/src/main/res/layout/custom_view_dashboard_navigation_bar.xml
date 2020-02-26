@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.dashboard.DashboardViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="2dp">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_fragment_dashboard_background_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_dashboard_nav_bar_bg" />
+
+        <TextView
+            android:id="@+id/textView_fragment_dashboard_demo_mode_text"
+            style="@style/AppTheme.Dashboard.Header.DemoMode.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/relativeLayout_fragment_dashboard_header_global_wrapper_layout"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/fragment_dashboard_demo_version"
+            android:visibility="@{viewmodel.isDemoMode ? View.VISIBLE : View.GONE, default = gone}" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_fragment_dashboard_header_global_wrapper_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/relativeLayout_fragment_dashboard_background_layout"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp">
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout_fragment_dashboard_header_wrapper_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_fragment_dashboard_header_title"
+                    style="@style/AppTheme.Dashboard.Header.Title.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewmodel.headerTitleText}" />
+
+                <TextView
+                    android:id="@+id/textView_fragment_dashboard_header_explanation"
+                    style="@style/AppTheme.Dashboard.Header.Explanation.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewmodel.allCompletedForToday ? @string/fragment_dashboard_header_explanation_all_completed_for_today : @string/fragment_dashboard_header_explanation_your_plan_for_today }" />
+
+            </LinearLayout>
+
+            <!-- Circular Progress Bar -->
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentEnd="true">
+
+                <com.healios.dreams.ui.general.CircularProgressBarView
+                    android:id="@+id/circularProgressBar_fragment_dashboard_challenges"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    app:backgroundColor="@color/white_50"
+                    app:foregroundColorEnd="@color/white"
+                    app:foregroundColorStart="@color/white"
+                    app:numOfSeconds="60"
+                    app:percent="@{viewmodel.percentOfChallengesCompleted, default = 0}"
+                    app:progressBarBackgroundColor="@android:color/transparent"
+                    app:secondTimeLineColor="@color/timerStepSecondColor"
+                    app:showSecondTimeLines="false"
+                    app:strokeWidth="6dp" />
+
+
+                <TextView
+                    android:id="@+id/textView_fragment_dashboard_progressbar_num_challenges_completed"
+                    style="@style/AppTheme.Dashboard.ProgressBar.Challenges.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@{viewmodel.numOfChallengesCompleted}" />
+
+            </RelativeLayout>
+            <!-- ./Circular Progress Bar -->
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</layout>

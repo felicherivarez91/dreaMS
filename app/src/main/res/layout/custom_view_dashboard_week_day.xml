@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.dashboard.DashboardViewModel" />
+
+        <variable
+            name="percentOfCompletedChallenges"
+            type="Integer" />
+        
+        <variable
+            name="isAvailable"
+            type="Boolean" />
+
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_dashboard_week_day_unavailable_background"
+        android:minWidth="46dp"
+        android:minHeight="60dp">
+
+        <TextView
+            android:id="@+id/textView_fragment_dashboard_week_day_item_day_title"
+            style="@{isAvailable ? style/AppTheme.Dashboard.Week.TextView : @style/AppTheme.Dashboard.Week.TextView.Disabled}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="Mon"
+            android:textAlignment="center" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_fragment_dashboard_week_day_progress_bar_wrapper"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/textView_fragment_dashboard_week_day_item_day_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp">
+
+            <com.healios.dreams.ui.general.CircularProgressBarView
+                android:id="@+id/circularProgressBar_fragment_dashboard_week_day_challenges_completed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:backgroundColor="@color/colorPrimary_20"
+                app:foregroundColorEnd="@color/colorPrimary"
+                app:foregroundColorStart="@color/colorPrimary"
+                app:numOfSeconds="60"
+                app:percent="@{percentOfCompletedChallenges, default = 0}"
+                app:backgroundShouldOverStepProgressBar="false"
+                app:progressBarBackgroundColor="@color/white_50"
+                app:secondTimeLineColor="@color/timerStepSecondColor"
+                app:showSecondTimeLines="false"
+                app:strokeWidth="2dp"
+                android:visibility="@{isAvailable ? View.VISIBLE : View.GONE, default = gone}"/>
+
+            <ImageView
+                android:id="@+id/imageView_fragment_dashboard_week_day_challenges_completed_progressbar_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppTheme.WelcomeText">
         <item name="android:textSize">34sp</item>
         <item name="android:letterSpacing">0.01</item>
@@ -97,30 +98,70 @@
         <item name="android:textColor">@color/itemPermissionNoGrantedTextColor</item>
     </style>
 
-    <style name="AppTheme.Dialogs.ExplanationText" parent="">
+    <style name="AppTheme.Dialogs.ExplanationText" parent="AppTheme">
         <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_book</item>
     </style>
 
-    <style name="AppTheme.CountrySelector.Selected" parent="AppTheme.Dialogs.ExplanationText"/>
+    <style name="AppTheme.CountrySelector.Selected" parent="AppTheme.Dialogs.ExplanationText" />
+
     <style name="AppTheme.CountrySelector.UnSelected" parent="AppTheme.Dialogs.ExplanationText">
         <item name="android:textColor">@color/itemCountrySelectorUnselectedTextColor</item>
     </style>
 
-    <style name="AppTheme.Timer.Minutes" parent="">
+    <style name="AppTheme.Timer.Minutes" parent="AppTheme">
         <item name="android:textSize">46sp</item>
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_bold</item>
     </style>
 
-    <style name="AppTheme.Timer.Seconds" parent="">
+    <style name="AppTheme.Timer.Seconds" parent="AppTheme">
         <item name="android:textSize">76sp</item>
         <item name="android:textColor">@color/mainBlackColor</item>
         <item name="android:fontFamily">@font/circularstd_bold</item>
     </style>
 
+    <style name="AppTheme.Dashboard.Week.TextView" parent="AppTheme">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
 
+    <style name="AppTheme.Dashboard.Week.TextView.Disabled" parent="AppTheme.Dashboard.Week.TextView">
+        <item name="android:textColor">@color/itemDashboardWeekDayUnavailableTextColor</item>
+    </style>
+
+    <style name="AppTheme.Dashboard.Week.Date.TextView" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/mainExplanationTextColor</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+    </style>
+
+    <style name="AppTheme.Dashboard.Header.DemoMode.TextView" parent="AppTheme">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="AppTheme.Dashboard.Header.Title.TextView" parent="AppTheme">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+    </style>
+
+    <style name="AppTheme.Dashboard.Header.Explanation.TextView" parent="AppTheme">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+    </style>
+
+    <style name="AppTheme.Dashboard.ProgressBar.Challenges.TextView" parent="AppTheme">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
 
 
 </resources>

@@ -9,6 +9,7 @@
     <declare-styleable name="CircularProgressBar">
         <attr name="progressBarBackgroundColor" format="color" />
         <attr name="backgroundColor" />
+        <attr name="backgroundShouldOverStepProgressBar" format="boolean" />
         <attr name="foregroundColorStart" format="color" />
         <attr name="foregroundColorEnd" format="color" />
         <attr name="strokeWidth" format="dimension" />

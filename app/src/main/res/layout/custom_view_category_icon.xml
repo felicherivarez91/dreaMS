@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@id/imageView_custom_view_category_icon_image"
         android:layout_alignBottom="@id/imageView_custom_view_category_icon_image"
-        android:background="@drawable/ic_done"
+        android:background="@drawable/ic_done_rounded"
         android:contentDescription="@string/all_done"
         android:elevation="10dp"
         android:minWidth="26dp"

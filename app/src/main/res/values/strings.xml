@@ -73,7 +73,7 @@
     <!-- ./ Quick Tour -->
 
     <!-- Permissions -->
-    <string name="fragment_permissions_title_text">... and one more step before we continue.</string>
+    <string name="fragment_permissions_title_text">… and one more step before we continue.</string>
     <string name="fragment_permissions_explanation_text">dreaMS needs your permission for</string>
     <string name="fragment_permissions_get_started_button_text">Get started</string>
     <string name="permissions_google_fit">GoogleFit</string>
@@ -99,6 +99,14 @@
     <string name="fragment_timer_step_play_video_button_content_description_text">Play video button</string>
 
     <!-- ./Timer Step -->
+
+    <!-- Dashboard -->
+    <string name="fragment_dashboard_your_week">Your Week</string>
+    <string name="fragment_dashboard_header_explanation_your_plan_for_today">Your plan for today</string>
+    <string name="fragment_dashboard_header_explanation_all_completed_for_today">All completed for today</string>
+    <string name="fragment_dashboard_header_title"><![CDATA[Hi, <b>%s!</b>]]></string>
+    <string name="fragment_dashboard_demo_version">Demo version</string>
+    <!-- ./Dashboard -->
 
 
 </resources>

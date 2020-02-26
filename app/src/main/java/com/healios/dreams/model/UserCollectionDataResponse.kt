@@ -78,7 +78,7 @@ data class Test(
     val peakCode: String? = null,
     val intensityID: Long,
     val restartedAt: Any? = null,
-    val testID: Long,
+    val testId: Long,
     val code: String,
     val startedAt: Long? = null,
     val cantDoItAt: List<Long>? = null,

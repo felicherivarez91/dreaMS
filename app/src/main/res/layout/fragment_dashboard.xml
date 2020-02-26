@@ -1,17 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="viewmodel"
             type="com.healios.dreams.ui.dashboard.DashboardViewModel" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/dashboardNavigationNar_fragment_dashboard"
+            layout="@layout/custom_view_dashboard_navigation_bar"
+            app:viewmodel="@{viewmodel}" />
+
+        <!-- Week region -->
+        <RelativeLayout
+            android:id="@+id/relativeLayout_fragment_dashboard_week_wrapper_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dashboardNavigationNar_fragment_dashboard"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout_fragment_dashboard_week_info_wrapper_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView_fragment_dashboard_your_week_label"
+                    style="@style/AppTheme.Dashboard.Week.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/fragment_dashboard_your_week" />
+
+                <TextView
+                    android:id="@+id/textView_fragment_dashboard_your_week_date_text"
+                    style="@style/AppTheme.Dashboard.Week.Date.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="@{viewmodel.weekDateText}" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relativeLayout_fragment_dashboard_week_info_wrapper_layout"
+                android:gravity="center_vertical"
+
+                android:minHeight="60dp"
+                android:orientation="horizontal"
+                android:weightSum="7">
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_monday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    bind:percentOfCompletedChallenges="@{viewmodel.mondayPercentOfCompletedChallenges}"
+                    />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_tuesday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_wednesday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_thursday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_friday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_saturday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_sunday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+        <!-- ./ Week region -->
+
+        <!-- Tab Bar -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout_fragment_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout_fragment_dashboard_week_wrapper_layout"/>
+        <!-- ./ Tab Bar -->
 
         <TextView
             android:layout_width="wrap_content"

@@ -32,6 +32,8 @@
     <color name="colorAccent">#4DC185</color>
     <color name="white">#FFFFFF</color>
 
+    <color name="white_50">#80FFFFFF</color>
+
     <color name="colorPrimary_20">#334DC185</color>
 
 
@@ -44,6 +46,7 @@
     <color name="mainGrayBackgroundColor">#E7E8F2</color>
     <color name="mainExplanationTextColor">#818596</color>
     <color name="mainDisabledColor">#ADB2BA</color>
+    <color name="mainDisabledColor_20">#33ADB2BA</color>
     <!-- ./ Main Colors -->
 
     <color name="mainErrorColor">@color/mainRedColor</color>
@@ -85,6 +88,7 @@
     <!-- Category Icon Status -->
     <color name="categoryIconCompletedStatusColor">@color/colorPrimary</color>
     <color name="categoryIconUnCompletedStatusColor">#FF822C</color>
+    <color name="categoryIconUnCompletedStatusColor_10">#1AFF822C</color>
     <color name="categoryIconUnavailableStatusColor">#C5C8CC</color>
 
     <!-- Timer -->
@@ -94,6 +98,23 @@
     <!-- Country Selector -->
     <color name="itemCountrySelectorUnselectedTextColor">#A4A6A6</color>
     <color name="itemCountrySelectorSeparatorColor">#80A4A6A6</color>
+
+    <!-- Dashboard Week Day Item -->
+    <color name="itemDashboardWeekDayCompletedBackgroundColor">@color/colorPrimary_20</color>
+    <color name="itemDashboardWeekDayCompletedTextColor">@color/mainBlackColor</color>
+
+    <color name="itemDashboardWeekDayUncompletedBackgroundColor">@color/categoryIconUnCompletedStatusColor_10</color>
+    <color name="itemDashboardWeekDayUncompletedTextColor">@color/mainBlackColor</color>
+
+    <color name="itemDashboardWeekDayCurrentUncompletedBackgroundColor">@color/categoryIconUnCompletedStatusColor</color>
+    <color name="itemDashboardWeekDayCurrentUncompletedTextColor">@color/white</color>
+
+    <color name="itemDashboardWeekDayCurrentCompletedBackgroundColor">@color/colorPrimary</color>
+    <color name="itemDashboardWeekDayCurrentCompletedTextColor">@color/white</color>
+
+    <color name="itemDashboardWeekDayUnavailableBackgroundColor">@color/mainDisabledColor_20</color>
+    <color name="itemDashboardWeekDayUnavailableTextColor">#818596</color>
+    <!-- ./ Dashboard Week Day Item -->
 
 
 </resources>

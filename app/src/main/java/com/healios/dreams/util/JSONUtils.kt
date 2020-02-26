@@ -70,9 +70,6 @@ class JSONUtils {
 
                 fileInputStream.close()
 
-                //val listType: Type = object : TypeToken<T>() {}.type
-                //return Gson().fromJson(jsonString, listType)
-
                 Gson().fromJson(jsonString, cls)
 
             } catch (fileNotFound: FileNotFoundException) {
