@@ -82,11 +82,6 @@ class DreaMSDateUtils {
             }
         }
 
-
-        fun getDayOfWeekOfDateString(dateString: String):Int{
-           return 0
-        }
-
         fun getDateStringFromDateIncrementedOnDays(startDatString: String, numOfDays:Int) : String{
             val date = getDateFromDateString(startDatString)
             val cal = Calendar.getInstance()

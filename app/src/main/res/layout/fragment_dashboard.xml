@@ -29,12 +29,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/dashboardNavigationNar_fragment_dashboard"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="20dp"
+
+            >
 
             <RelativeLayout
                 android:id="@+id/relativeLayout_fragment_dashboard_week_info_wrapper_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewmodel.parentOnCLick()}"
+
+                >
 
                 <TextView
                     android:id="@+id/textView_fragment_dashboard_your_week_label"
@@ -60,10 +65,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/relativeLayout_fragment_dashboard_week_info_wrapper_layout"
                 android:gravity="center_vertical"
-
                 android:minHeight="60dp"
                 android:orientation="horizontal"
-                android:weightSum="7">
+                android:weightSum="7"
+                android:baselineAligned="false">
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_monday"
@@ -73,7 +78,7 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     bind:day="@{viewmodel.week[0]}"
-                    />
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[0])}" />
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_tuesday"
@@ -83,7 +88,7 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     bind:day="@{viewmodel.week[1]}"
-                    />
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[1])}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_wednesday"
@@ -93,7 +98,7 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     bind:day="@{viewmodel.week[2]}"
-                    />
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[2])}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_thursday"
@@ -103,7 +108,7 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     bind:day="@{viewmodel.week[3]}"
-                    />
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[3])}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_friday"
@@ -113,7 +118,7 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     bind:day="@{viewmodel.week[4]}"
-                    />
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[4])}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_saturday"
@@ -123,7 +128,7 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     bind:day="@{viewmodel.week[5]}"
-                    />
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[5])}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_sunday"
@@ -133,7 +138,7 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     bind:day="@{viewmodel.week[6]}"
-                    />
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[6])}"/>
 
             </LinearLayout>
 
@@ -146,7 +151,7 @@
             android:id="@+id/tabLayout_fragment_dashboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/relativeLayout_fragment_dashboard_week_wrapper_layout"/>
+            android:layout_below="@+id/relativeLayout_fragment_dashboard_week_wrapper_layout" />
         <!-- ./ Tab Bar -->
 
         <!-- Info Layout -->
@@ -164,8 +169,8 @@
                 android:layout_centerHorizontal="true"
                 android:minWidth="295dp"
                 android:minHeight="240dp"
-                android:src="@{viewmodel.noChallengesScheduled ? @drawable/ic_dashboard_info_no_challenges_scheduled : @drawable/ic_dashboard_info_all_challenges_completed_for_today}"/>
-            
+                android:src="@{viewmodel.noChallengesScheduled ? @drawable/ic_dashboard_info_no_challenges_scheduled : @drawable/ic_dashboard_info_all_challenges_completed_for_today}" />
+
             <TextView
                 android:id="@+id/textView_fragment_dashboard_info_title"
                 style="@style/AppTheme.Dashboard.Info.Title.TextView"
@@ -175,8 +180,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp"
-                android:textAlignment="center"
-                android:text="@{viewmodel.noChallengesScheduled ? @string/fragment_dashboard_info_no_challenges_scheduled_title_text : @string/fragment_dashboard_info_you_ve_completed_all_challenges_for_today }"/>
+                android:text="@{viewmodel.noChallengesScheduled ? @string/fragment_dashboard_info_no_challenges_scheduled_title_text : @string/fragment_dashboard_info_you_ve_completed_all_challenges_for_today }"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/textView_fragment_dashboard_info_explanation"
@@ -185,13 +190,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView_fragment_dashboard_info_title"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
-                android:textAlignment="center"
-                android:visibility="@{viewmodel.noChallengesScheduled ? View.VISIBLE : View.GONE, default = gone}"
                 android:text="@string/fragment_dashboard_info_no_challenges_scheduled_explanation_text"
-                />
+                android:textAlignment="center"
+                android:visibility="@{viewmodel.noChallengesScheduled ? View.VISIBLE : View.GONE, default = gone}" />
 
         </RelativeLayout>
 

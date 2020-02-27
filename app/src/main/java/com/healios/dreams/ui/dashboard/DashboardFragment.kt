@@ -37,6 +37,9 @@ class DashboardFragment : Fragment() {
 
     private fun bind() {
 
+
+
+/*
         binding.weekDayFragmentDashboardMonday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Mon"
         binding.weekDayFragmentDashboardTuesday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Tue"
         binding.weekDayFragmentDashboardWednesday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Wed"
@@ -44,6 +47,7 @@ class DashboardFragment : Fragment() {
         binding.weekDayFragmentDashboardFriday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Fri"
         binding.weekDayFragmentDashboardSaturday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Sat"
         binding.weekDayFragmentDashboardSunday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Sun"
+*/
 
     }
 

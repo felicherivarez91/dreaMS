@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="viewmodel"
@@ -14,15 +15,6 @@
             name="day"
             type="com.healios.dreams.ui.dashboard.DayOfTheWeek" />
 
-        <variable
-            name="percentOfCompletedChallenges"
-            type="Integer" />
-
-        <variable
-            name="isAvailable"
-            type="Boolean" />
-
-
     </data>
 
     <RelativeLayout
@@ -30,17 +22,16 @@
         android:layout_height="wrap_content"
         android:minWidth="46dp"
         android:minHeight="60dp"
-        android:onClick="@{() -> viewmodel.onWeekDayClick(day)}"
         >
+
         <RelativeLayout
             android:id="@+id/textView_fragment_dashboard_week_day_item_day_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minWidth="46dp"
-            android:minHeight="60dp"
-            android:background="@{day.dailyChallenge == null ? @drawable/item_dashboard_week_day_unavailable_background :  (day.allDailyChallengesCompleted ? @drawable/item_dashboard_week_day_completed_background : @drawable/item_dashboard_week_day_uncompleted_background) }"
             android:alpha="@{day.selectedDay ? 1.0f : (day.dailyChallenge == null ? 0.2f : (day.allDailyChallengesCompleted ? 0.21f : 0.12f)) }"
-            />
+            android:background="@{day.dailyChallenge == null ? @drawable/item_dashboard_week_day_unavailable_background :  (day.allDailyChallengesCompleted ? @drawable/item_dashboard_week_day_completed_background : @drawable/item_dashboard_week_day_uncompleted_background) }"
+            android:minWidth="46dp"
+            android:minHeight="60dp" />
 
         <TextView
             android:id="@+id/textView_fragment_dashboard_week_day_item_day_title"
@@ -53,8 +44,8 @@
             android:lines="1"
             android:maxLines="1"
             android:text="@{day.dayName.substring(0,3)}"
-            android:textColor="@{day.selectedDay ? @color/white : (day.dailyChallenge == null ? @color/itemDashboardWeekDayUnavailableTextColor : @color/mainBlackColor) }"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@{day.selectedDay ? @color/white : (day.dailyChallenge == null ? @color/itemDashboardWeekDayUnavailableTextColor : @color/mainBlackColor) }" />
 
         <RelativeLayout
             android:id="@+id/relativeLayout_fragment_dashboard_week_day_progress_bar_wrapper"
@@ -69,24 +60,24 @@
                 android:id="@+id/circularProgressBar_fragment_dashboard_week_day_challenges_completed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="@{day.dailyChallenge == null ? View.GONE : View.VISIBLE, default = gone}"
                 app:backgroundColor="@color/colorPrimary_20"
+                app:backgroundShouldOverStepProgressBar="false"
                 app:foregroundColorEnd="@color/colorPrimary"
                 app:foregroundColorStart="@color/colorPrimary"
                 app:numOfSeconds="60"
-                app:percent="@{percentOfCompletedChallenges, default = 0}"
-                app:backgroundShouldOverStepProgressBar="false"
+                app:percent="@{day.percentOfCompletedChallenges, default = 0}"
                 app:progressBarBackgroundColor="@color/white_50"
                 app:secondTimeLineColor="@color/timerStepSecondColor"
                 app:showSecondTimeLines="false"
-                app:strokeWidth="2dp"
-                android:visibility="@{isAvailable ? View.VISIBLE : View.GONE, default = gone}"/>
+                app:strokeWidth="2dp" />
 
             <ImageView
                 android:id="@+id/imageView_fragment_dashboard_week_day_challenges_completed_progressbar_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </RelativeLayout>
 

@@ -170,15 +170,20 @@ class DashboardViewModel constructor(
             day.dateScheduled == DreaMSDateUtils.getTodayDateString()
         }
 
-        selectedDay = DreaMSDateUtils.getDayOfWeekOfDateString(DreaMSDateUtils.getTodayDateString())
+        selectedDay = DreaMSDateUtils.dayDifferenceBetween(patient!!.attendance.currentAttendance.weekStartsOn, DreaMSDateUtils.getTodayDateString()) + 1
 
-        if (currentDayList.isNotEmpty())
-            currentDay = currentDayList.first()
-
-        if (noChallengesForToday) {
-            _shouldShowInfoLayout.postValue(noChallengesForToday)
-            _noChallengesScheduled.postValue(noChallengesForToday)
+        if (patient!!.activeDays().contains(selectedDay)) {
+            val dailyChallengePosition = getDailyChallengePosition()
+            currentDay = dailyChallenges[dailyChallengePosition!!]
         }
+
+
+        if (patient!!.currentSchedulePosition()[selectedDay - 1] == 0) {
+            _shouldShowInfoLayout.postValue(true)
+            _noChallengesScheduled.postValue(true)
+        }
+
+
 
     }
 
@@ -208,8 +213,6 @@ class DashboardViewModel constructor(
 
     private fun setWeekProgress() {
 
-
-
         val activeDays = patient!!.activeDays()
         val dayNames: ArrayList<String> = ArrayList(7)
         dayNames.add("Monday")
@@ -234,29 +237,13 @@ class DashboardViewModel constructor(
                 DayOfTheWeekStatus.UNAVAILABLE,
                 (dayNumber == selectedDay),
                 activeDays.indexOf(dayNumber),
-                false
+                false,
+                percentOfCompletedChallenges
                 )
 
             week.add(dayOfTheWeek)
         }
         _week.postValue(week)
-    }
-
-    private fun manageDays(currentDay: Day) {
-        val dayOfTheWeekFromDateString =
-            DreaMSDateUtils.getDayOfTheWeekFromDateString(currentDay.dateScheduled)
-        Log.d(TAG, dayOfTheWeekFromDateString)
-
-        when (dayOfTheWeekFromDateString.substring(0, 3)) {
-            "lun" -> configureMonday(currentDay)
-        }
-    }
-
-    private fun configureMonday(day: Day) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        Log.d(TAG, "Configuring Monday day ... ")
-
-        _mondayPercentOfCompletedChallenges.postValue(25/*getPercentOfCompletedChallenges(day)*/)
     }
 
     private fun setDemoMode() {
@@ -278,7 +265,7 @@ class DashboardViewModel constructor(
     }
 
     private fun setRemainingChallengesForTheWeek() {
-        val challengesCompletedVsTotal:String = String.format("%d / %d",challengesCompleted,totalChallengesToday)
+        val challengesCompletedVsTotal:String = String.format("%d/%d",challengesCompleted,totalChallengesToday)
         _numOfChallengesCompleted.postValue(challengesCompletedVsTotal)
 
         _percentOfChallengesCompleted.postValue(percentOfCompletedChallenges)
@@ -337,12 +324,19 @@ class DashboardViewModel constructor(
     //endregion
 
     //region: Public methods
+
+    fun parentOnCLick(){
+        Log.d(TAG,"[CLICK]")
+    }
     fun onWeekDayClick(dayClicked: DayOfTheWeek?) {
+        Log.d(TAG,"[CLICK]")
         if (dayClicked != null) {
             _week.value!!.forEachIndexed { index, day ->
-                selectedDay = day.challengePosition
+                selectedDay = dayClicked.numOfTheWeek
                 day.isSelectedDay = (day == dayClicked)
             }
+
+            _week.postValue(_week.value)
 
         }else{
             //TODO: CLicked on unavailable day
@@ -354,7 +348,7 @@ class DashboardViewModel constructor(
 
     //region: Utils
     private fun getDailyChallengePosition(): Int? {
-        val dcCount: Int? = patient?.currentSchedulePosition()?.subList(0,selectedDay)?.filter { it == 1 }?.size
+        val dcCount: Int? = patient?.currentSchedulePosition()?.subList(0,selectedDay-1)?.filter { it == 1 }?.size
         if (dcCount != null){
             if (dcCount == 0){
                 return 0
@@ -378,7 +372,8 @@ class DayOfTheWeek(
     var status: DayOfTheWeekStatus,
     var isSelectedDay:Boolean,
     val challengePosition:Int,
-    var allDailyChallengesCompleted:Boolean
+    var allDailyChallengesCompleted:Boolean,
+    var percentOfCompletedChallenges:Int
 )
 
 enum class DayOfTheWeekStatus {
