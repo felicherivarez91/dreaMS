@@ -163,5 +163,11 @@
         <item name="android:fontFamily">@font/circularstd_bold</item>
     </style>
 
+    <style name="AppTheme.Dashboard.Info.Title.TextView" parent="AppTheme">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
 
 </resources>

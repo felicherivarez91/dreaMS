@@ -1,10 +1,15 @@
 package com.healios.dreams.model
 
+import com.healios.dreams.DreaMSApp
+import com.healios.dreams.util.DreaMSDateUtils
+import java.util.*
+import kotlin.collections.ArrayList
+
 data class UserCollectionDataResponse(
-    val data: Data
+    val data: UserData
 )
 
-data class Data(
+data class UserData(
     val studyParticipant: StudyParticipant,
     val patient: Patient,
     val accounts: Accounts,
@@ -56,6 +61,36 @@ data class Patient(
     val relapses: List<Relapse>,
     val uuid: String
 )
+
+//region: Patient Extensions
+fun Patient.activeDays(): List<Int> {
+    var startOfWeek =
+        DreaMSDateUtils.getDateFromDateString(attendance.currentAttendance.weekStartsOn)
+    var activesDaysAux = ArrayList<Int>()
+
+    attendance.currentAttendance.days.forEach { dailyChallenge ->
+        val dailyChallengeDate: Date =
+            DreaMSDateUtils.getDateFromDateString(dailyChallenge.dateScheduled)
+        activesDaysAux.add(
+            DreaMSDateUtils.dayDifferenceBetween(
+                startOfWeek,
+                dailyChallengeDate
+            ) + 1
+        )
+    }
+
+    return activesDaysAux
+}
+
+fun Patient.currentSchedulePosition(): List<Int> {
+    var schedule = Array(7) { 0 }
+    activeDays().forEach { day ->
+        schedule[day - 1] = 1
+    }
+    return schedule.toList()
+}
+
+//endregion
 
 data class Attendance(
     val previousAttendance: CurrentAttendanceClass,
@@ -179,3 +214,4 @@ data class ScreeningData(
     val glasses: Long,
     val acuity: Long
 )
+

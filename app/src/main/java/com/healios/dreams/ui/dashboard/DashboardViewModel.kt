@@ -10,8 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.healios.dreams.DreaMSApp
 import com.healios.dreams.R
 import com.healios.dreams.data.*
-import com.healios.dreams.model.Day
-import com.healios.dreams.model.UserCollectionDataResponse
+import com.healios.dreams.model.*
 import com.healios.dreams.util.DreaMSDateUtils
 
 
@@ -25,35 +24,118 @@ class DashboardViewModel constructor(
     private val TAG: String = DashboardViewModel::class.java.simpleName
 
 
-    private var userCollectionData: UserCollectionDataResponse? = null
-    private val context:Context = DreaMSApp.instance.applicationContext
-
-    private lateinit var currentDay:Day
-    private lateinit var currentDateString:String
-
     private val _communicationInProgress = MutableLiveData<Boolean>(false)
     val communicationInProgress: LiveData<Boolean> = _communicationInProgress
 
     private val _isDemoMode = MutableLiveData<Boolean>(true)
-    val isDemoMode:LiveData<Boolean> = _isDemoMode
+    val isDemoMode: LiveData<Boolean> = _isDemoMode
 
     private val _headerTitleText = MutableLiveData<Spanned>()
     val headerTitleText: LiveData<Spanned> = _headerTitleText
 
     private val _allCompletedForToday = MutableLiveData<Boolean>(false)
-    val allCompletedForToday:LiveData<Boolean> = _allCompletedForToday
+    val allCompletedForToday: LiveData<Boolean> = _allCompletedForToday
 
     private val _numOfChallengesCompleted = MutableLiveData<String>()
     val numOfChallengesCompleted: LiveData<String> = _numOfChallengesCompleted
 
-    private val _percentOfChallengesCompleted = MutableLiveData<Long>(0)
-    val percentOfChallengesCompleted:LiveData<Long> = _percentOfChallengesCompleted
+    private val _percentOfChallengesCompleted = MutableLiveData<Int>(0)
+    val percentOfChallengesCompleted: LiveData<Int> = _percentOfChallengesCompleted
 
     private val _weekDateText = MutableLiveData<String>()
     val weekDateText: LiveData<String> = _weekDateText
 
-    private val _mondayPercentOfCompletedChallenges = MutableLiveData<Int>(0)
+    private val _mondayPercentOfCompletedChallenges = MutableLiveData(0)
     val mondayPercentOfCompletedChallenges: LiveData<Int> = _mondayPercentOfCompletedChallenges
+
+    private val _mondayDay = MutableLiveData<Day>()
+    val mondayDay: LiveData<Day> = _mondayDay
+
+    private val _week = MutableLiveData<List<DayOfTheWeek>>()
+    val week: LiveData<List<DayOfTheWeek>> = _week
+
+    //region: Info layout parameters
+    private val _infoImageResource = MutableLiveData<Int>()
+    val infoImageResource:LiveData<Int> = _infoImageResource
+
+    private val _shouldShowInfoLayout = MutableLiveData<Boolean>(false)
+    val shouldShowInfoLayout:LiveData<Boolean> = _shouldShowInfoLayout
+
+    private val _noChallengesScheduled= MutableLiveData<Boolean>(false)
+    val noChallengesScheduled:LiveData<Boolean> = _noChallengesScheduled
+    //endregion
+
+    private val context: Context = DreaMSApp.instance.applicationContext
+
+
+    private var selectedDay:Int = DreaMSDateUtils.getDayOfWeekOfToday()
+    private var userData: UserData? = null
+
+    private var currentDay: Day? = null
+
+    private var patient: Patient?
+        get() = userData?.patient
+        set(value) {}
+
+    private var dailyChallenges: List<Day>
+        get() = patient?.attendance?.currentAttendance?.days ?: ArrayList()
+        set(value) {}
+
+    private var todayTests: List<Test>?
+        get() {
+            val challengePosition = getDailyChallengePosition()
+            return if (challengePosition != null) {
+                dailyChallenges[challengePosition].tests
+            }else{
+                null
+            }
+        }
+        set(value) {}
+
+    private var totalChallengesToday: Int
+        get() {
+            if (dailyChallenges.isEmpty()) {
+                return 0
+            }
+            return todayTests?.size ?: 0
+        }
+        set(value) {}
+
+    private var challengesCompleted: Int
+        get() {
+            if (dailyChallenges.isEmpty()){
+                return 0
+            }
+
+            return todayTests?.filter { test ->
+                test.completedAt != null
+            }?.size ?: 0
+        }
+        set(value) {}
+
+    private var nickname: String
+        get() {
+            return patient?.nickname ?: ""
+        }
+        set(value) {}
+
+    private var noChallengesForToday: Boolean
+        get() {
+            if (dailyChallenges.isEmpty()){
+                return true
+            }
+            return patient?.currentSchedulePosition()?.get(selectedDay) == 0
+        }
+        set(value) {}
+
+    private var percentOfCompletedChallenges: Int
+        get() {
+            if (totalChallengesToday == 0)
+                return 0
+
+            return ((challengesCompleted / totalChallengesToday) * 100)
+        }
+        set(value) {}
 
 
     //region: Initializer
@@ -64,12 +146,11 @@ class DashboardViewModel constructor(
         retrieveUserCollectionData()
 
         setData()
-
     }
     //endregion
 
     private fun setData() {
-        if (userCollectionData != null ){
+        if (userData != null) {
 
             // Get important information
             getInitialData()
@@ -81,16 +162,23 @@ class DashboardViewModel constructor(
     }
 
     private fun getInitialData() {
-        currentDateString = DreaMSDateUtils.getTodayDateString()
-        Log.d(TAG,"[HOY] "+currentDateString)
-        val daysOfTheCurrentWeek = userCollectionData!!.data.patient.attendance.currentAttendance.days
+        Log.d(TAG, "[HOY] " + DreaMSDateUtils.getTodayDateString())
+        val daysOfTheCurrentWeek =
+            patient!!.attendance.currentAttendance.days
 
         val currentDayList = daysOfTheCurrentWeek.filter { day ->
-            day.dateScheduled.equals(currentDateString)
+            day.dateScheduled == DreaMSDateUtils.getTodayDateString()
         }
-        currentDay = currentDayList.first()
 
+        selectedDay = DreaMSDateUtils.getDayOfWeekOfDateString(DreaMSDateUtils.getTodayDateString())
 
+        if (currentDayList.isNotEmpty())
+            currentDay = currentDayList.first()
+
+        if (noChallengesForToday) {
+            _shouldShowInfoLayout.postValue(noChallengesForToday)
+            _noChallengesScheduled.postValue(noChallengesForToday)
+        }
 
     }
 
@@ -105,9 +193,6 @@ class DashboardViewModel constructor(
         // Show remaining challenges for the week
         setRemainingChallengesForTheWeek()
 
-        // Set explanation text
-        setExplanationText()
-
         // Set "Your week" Data
         setYourWeekData()
     }
@@ -117,21 +202,52 @@ class DashboardViewModel constructor(
         // Set Week Date
         setYourWeekDate()
 
-        // Set Week Days
-
-        val daysOfCurrentAttendance = userCollectionData!!.data.patient.attendance.currentAttendance.days
-
-        daysOfCurrentAttendance.forEach { currentDay ->
-            manageDays(currentDay)
-        }
-
+        // Set Week Days Progress
+        setWeekProgress()
     }
 
-    private fun manageDays(currentDay: Day){
-        val dayOfTheWeekFromDateString = DreaMSDateUtils.getDayOfTheWeekFromDateString(currentDay.dateScheduled)
-        Log.d(TAG,dayOfTheWeekFromDateString)
+    private fun setWeekProgress() {
 
-        when(dayOfTheWeekFromDateString.substring(0,3)){
+
+
+        val activeDays = patient!!.activeDays()
+        val dayNames: ArrayList<String> = ArrayList(7)
+        dayNames.add("Monday")
+        dayNames.add("Tuesday")
+        dayNames.add("Wednesday")
+        dayNames.add("Thursday")
+        dayNames.add("Friday")
+        dayNames.add("Saturday")
+        dayNames.add("Sunday")
+
+        val week = ArrayList<DayOfTheWeek>()
+
+        dayNames.forEachIndexed { index, dayName ->
+            val dayNumber = index + 1
+            val dayDate =  DreaMSDateUtils.getDateStringFromDateIncrementedOnDays(patient!!.attendance.currentAttendance.weekStartsOn, (dayNumber - 1))
+            val dailyChallenge:Day? = dailyChallenges.firstOrNull { it.dateScheduled == dayDate }
+
+            val dayOfTheWeek = DayOfTheWeek(dayNumber,
+                dayName,
+                dayDate,
+                dailyChallenge,
+                DayOfTheWeekStatus.UNAVAILABLE,
+                (dayNumber == selectedDay),
+                activeDays.indexOf(dayNumber),
+                false
+                )
+
+            week.add(dayOfTheWeek)
+        }
+        _week.postValue(week)
+    }
+
+    private fun manageDays(currentDay: Day) {
+        val dayOfTheWeekFromDateString =
+            DreaMSDateUtils.getDayOfTheWeekFromDateString(currentDay.dateScheduled)
+        Log.d(TAG, dayOfTheWeekFromDateString)
+
+        when (dayOfTheWeekFromDateString.substring(0, 3)) {
             "lun" -> configureMonday(currentDay)
         }
     }
@@ -141,64 +257,43 @@ class DashboardViewModel constructor(
         Log.d(TAG, "Configuring Monday day ... ")
 
         _mondayPercentOfCompletedChallenges.postValue(25/*getPercentOfCompletedChallenges(day)*/)
-
-
-
     }
 
-
     private fun setDemoMode() {
-        _isDemoMode.postValue(userCollectionData!!.data.studyParticipant.isDemoMode)
+        _isDemoMode.postValue(userData?.studyParticipant?.isDemoMode ?: true)
     }
 
     private fun setUserName() {
-        val nickname:String = userCollectionData!!.data.patient.nickname
 
         val userName = nickname.substringBefore(" ")
 
-        val fullNameText:String = context.getString(R.string.fragment_dashboard_header_title, userName)
-        val formattedText = HtmlCompat.fromHtml(fullNameText,
-            HtmlCompat.FROM_HTML_MODE_COMPACT)
+        val fullNameText: String =
+            context.getString(R.string.fragment_dashboard_header_title, userName)
+        val formattedText = HtmlCompat.fromHtml(
+            fullNameText,
+            HtmlCompat.FROM_HTML_MODE_COMPACT
+        )
 
         _headerTitleText.postValue(formattedText)
     }
 
     private fun setRemainingChallengesForTheWeek() {
+        val challengesCompletedVsTotal:String = String.format("%d / %d",challengesCompleted,totalChallengesToday)
+        _numOfChallengesCompleted.postValue(challengesCompletedVsTotal)
 
-
-
-        //FIXME: Revisar
-        /*
-        val numberOfChallenges: Long = userCollectionData!!.data.studyParticipant.numberOfChallenges
-        val numberOfChallengesCompleted: Long = userCollectionData!!.data.studyParticipant.numberOfChallengesCompleted
-
-        if (numberOfChallenges != 0.toLong()) {
-            _percentOfChallengesCompleted.postValue((numberOfChallengesCompleted / numberOfChallenges) * 100)
-        }else {
-            _percentOfChallengesCompleted.postValue(0)
-        }
-
-        _numOfChallengesCompleted.postValue(String.format("%d / %d",numberOfChallengesCompleted, numberOfChallenges))
-         */
-
+        _percentOfChallengesCompleted.postValue(percentOfCompletedChallenges)
     }
-
-    private fun setExplanationText() {
-        //TODO("not implemented")
-    }
-
 
     private fun setYourWeekDate() {
 
         val weekStartsOn =
-            userCollectionData!!.data.patient.attendance.currentAttendance.weekStartsOn
+            patient!!.attendance.currentAttendance.weekStartsOn
         val weekEndsOn =
-            userCollectionData!!.data.patient.attendance.currentAttendance.weekEndsOn
+            patient!!.attendance.currentAttendance.weekEndsOn
 
         _weekDateText.postValue(DreaMSDateUtils.getCurrentWeek(weekStartsOn, weekEndsOn))
 
     }
-
 
     //region: API Calls
     private fun askServerForData() {
@@ -211,43 +306,84 @@ class DashboardViewModel constructor(
             //return
         }
 
-        userManager.getUserCollectionById(userId, UserType.PATIENT,null).process { userDataModel, error ->
+        userManager.getUserCollectionById(userId, UserType.PATIENT, null)
+            .process { userDataModel, error ->
 
-            if (error == null){
-                if (userDataModel != null) {
-                    //Save data into asset
-                    userCollectionDataRepository.saveUserCollectionDataLocally(userDataModel)
-                }else{
-                    //TODO: Error, data is null
-                    Log.e(TAG, "[ERROR] User Collection Data is null!")
+                if (error == null) {
+                    if (userDataModel != null) {
+                        //Save data into asset
+                        userCollectionDataRepository.saveUserCollectionDataLocally(userDataModel)
+                    } else {
+                        //TODO: Error, data is null
+                        Log.e(TAG, "[ERROR] User Collection Data is null!")
+                    }
+                } else {
+                    //TODO: Error in API response
+                    Log.e(TAG, error.localizedMessage ?: "[ERROR] in response!")
                 }
-            }else{
-                //TODO: Error in API response
-                Log.e(TAG, error.localizedMessage ?: "[ERROR] in response!")
+                _communicationInProgress.postValue(false)
             }
-            _communicationInProgress.postValue(false)
-        }
 
     }
     //endregion
 
     //region: Local file data
     fun retrieveUserCollectionData() {
-        userCollectionData = userCollectionDataRepository.getUserCollectionData()
+        val userCollectionData = userCollectionDataRepository.getUserCollectionData()
+        userData = userCollectionData?.data
+    }
+
+
+    //endregion
+
+    //region: Public methods
+    fun onWeekDayClick(dayClicked: DayOfTheWeek?) {
+        if (dayClicked != null) {
+            _week.value!!.forEachIndexed { index, day ->
+                selectedDay = day.challengePosition
+                day.isSelectedDay = (day == dayClicked)
+            }
+
+        }else{
+            //TODO: CLicked on unavailable day
+        }
     }
 
 
     //endregion
 
     //region: Utils
-    private fun getPercentOfCompletedChallenges(day:Day): Int {
-        val numOfTotalChallenges = day.tests?.size ?: 0
-        val completedChallenges = day.tests?.filter { it.completedAt != null }
-        val numOfCompletedChallenges = completedChallenges?.size ?: 0
-
-        return (numOfCompletedChallenges / numOfTotalChallenges) * 100
-
+    private fun getDailyChallengePosition(): Int? {
+        val dcCount: Int? = patient?.currentSchedulePosition()?.subList(0,selectedDay)?.filter { it == 1 }?.size
+        if (dcCount != null){
+            if (dcCount == 0){
+                return 0
+            }
+            return dcCount - 1
+        }else{
+            return 0
+        }
     }
 
     //endregion
+}
+
+
+//
+class DayOfTheWeek(
+    val numOfTheWeek: Int,
+    val dayName:String,
+    val dayDateString:String,
+    var dailyChallenge: Day?,
+    var status: DayOfTheWeekStatus,
+    var isSelectedDay:Boolean,
+    val challengePosition:Int,
+    var allDailyChallengesCompleted:Boolean
+)
+
+enum class DayOfTheWeekStatus {
+    COMPLETED,
+    UNCOMPLETED,
+    UNAVAILABLE,
+    SELECTED
 }

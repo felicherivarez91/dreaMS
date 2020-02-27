@@ -112,7 +112,7 @@
     <color name="itemDashboardWeekDayCurrentCompletedBackgroundColor">@color/colorPrimary</color>
     <color name="itemDashboardWeekDayCurrentCompletedTextColor">@color/white</color>
 
-    <color name="itemDashboardWeekDayUnavailableBackgroundColor">@color/mainDisabledColor_20</color>
+    <color name="itemDashboardWeekDayUnavailableBackgroundColor">@color/mainDisabledColor</color>
     <color name="itemDashboardWeekDayUnavailableTextColor">#818596</color>
     <!-- ./ Dashboard Week Day Item -->
 

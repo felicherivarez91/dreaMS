@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
         <import type="android.view.View"/>
 
@@ -11,9 +11,13 @@
             type="com.healios.dreams.ui.dashboard.DashboardViewModel" />
 
         <variable
+            name="day"
+            type="com.healios.dreams.ui.dashboard.DayOfTheWeek" />
+
+        <variable
             name="percentOfCompletedChallenges"
             type="Integer" />
-        
+
         <variable
             name="isAvailable"
             type="Boolean" />
@@ -24,13 +28,23 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/item_dashboard_week_day_unavailable_background"
         android:minWidth="46dp"
-        android:minHeight="60dp">
+        android:minHeight="60dp"
+        android:onClick="@{() -> viewmodel.onWeekDayClick(day)}"
+        >
+        <RelativeLayout
+            android:id="@+id/textView_fragment_dashboard_week_day_item_day_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="46dp"
+            android:minHeight="60dp"
+            android:background="@{day.dailyChallenge == null ? @drawable/item_dashboard_week_day_unavailable_background :  (day.allDailyChallengesCompleted ? @drawable/item_dashboard_week_day_completed_background : @drawable/item_dashboard_week_day_uncompleted_background) }"
+            android:alpha="@{day.selectedDay ? 1.0f : (day.dailyChallenge == null ? 0.2f : (day.allDailyChallengesCompleted ? 0.21f : 0.12f)) }"
+            />
 
         <TextView
             android:id="@+id/textView_fragment_dashboard_week_day_item_day_title"
-            style="@{isAvailable ? style/AppTheme.Dashboard.Week.TextView : @style/AppTheme.Dashboard.Week.TextView.Disabled}"
+            style="@style/AppTheme.Dashboard.Week.TextView.Disabled"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -38,7 +52,8 @@
             android:layout_marginEnd="10dp"
             android:lines="1"
             android:maxLines="1"
-            android:text="Mon"
+            android:text="@{day.dayName.substring(0,3)}"
+            android:textColor="@{day.selectedDay ? @color/white : (day.dailyChallenge == null ? @color/itemDashboardWeekDayUnavailableTextColor : @color/mainBlackColor) }"
             android:textAlignment="center" />
 
         <RelativeLayout
