@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="height_personalInformation_avatar">120dp</dimen>
@@ -19,6 +19,8 @@
     <!-- ./ Main Button Dimens -->
 
 
+    <!-- If we want the same size of bottom navigation text -->
+    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">12sp</dimen>
 
 
 </resources>

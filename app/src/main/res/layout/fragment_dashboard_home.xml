@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.dashboard.DashboardHomeViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/dashboardNavigationNar_fragment_dashboard"
+            layout="@layout/custom_view_dashboard_navigation_bar"
+            app:viewmodel="@{viewmodel}" />
+
+        <!-- Week region -->
+        <RelativeLayout
+            android:id="@+id/relativeLayout_fragment_dashboard_home_week_wrapper_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dashboardNavigationNar_fragment_dashboard"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout_fragment_dashboard_home_week_info_wrapper_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewmodel.parentOnCLick()}"
+
+                >
+
+                <TextView
+                    android:id="@+id/textView_fragment_dashboard_home_your_week_label"
+                    style="@style/AppTheme.Dashboard.Week.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/fragment_dashboard_home_your_week" />
+
+                <TextView
+                    android:id="@+id/textView_fragment_dashboard_home_your_week_date_text"
+                    style="@style/AppTheme.Dashboard.Week.Date.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="@{viewmodel.weekDateText}" />
+
+            </RelativeLayout>
+
+            <!-- Week Days -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relativeLayout_fragment_dashboard_home_week_info_wrapper_layout"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:minHeight="60dp"
+                android:orientation="horizontal"
+                android:weightSum="7">
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_home_monday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[0])}"
+                    bind:day="@{viewmodel.week[0]}" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_home_tuesday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[1])}"
+                    bind:day="@{viewmodel.week[1]}" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_home_wednesday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[2])}"
+                    bind:day="@{viewmodel.week[2]}" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_home_thursday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[3])}"
+                    bind:day="@{viewmodel.week[3]}" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_home_friday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[4])}"
+                    bind:day="@{viewmodel.week[4]}" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_home_saturday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[5])}"
+                    bind:day="@{viewmodel.week[5]}" />
+
+                <include
+                    android:id="@+id/weekDay_fragment_dashboard_home_sunday"
+                    layout="@layout/custom_view_dashboard_week_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1"
+                    android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[6])}"
+                    bind:day="@{viewmodel.week[6]}" />
+
+            </LinearLayout>
+            <!-- ./ Week Days -->
+
+        </RelativeLayout>
+        <!-- ./ Week region -->
+
+        <!-- Tab Bar -->
+        <RelativeLayout
+            android:id="@+id/relativeLayout_dashboard_tabLayout_wrapper_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout_fragment_dashboard_home_week_wrapper_layout">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout_fragment_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:tabSelectedTextColor="@color/colorPrimary"
+                app:tabTextAppearance="@style/AppTheme.TabLayout.TabBar.Text" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_below="@id/tabLayout_fragment_dashboard"
+                android:background="@drawable/all_bottom_shadow" />
+        </RelativeLayout>
+        <!-- ./ Tab Bar -->
+
+        <!-- Info Layout -->
+        <RelativeLayout
+            android:id="@+id/relativeLayout_fragment_dashboard_home_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/relativeLayout_dashboard_tabLayout_wrapper_layout"
+            android:visibility="@{viewmodel.shouldShowInfoLayout ? View.VISIBLE : View.GONE, default = gone}">
+
+            <ImageView
+                android:id="@+id/imageView_fragment_dashboard_home_info_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:minWidth="295dp"
+                android:minHeight="240dp"
+                android:src="@{viewmodel.noChallengesScheduled ? @drawable/ic_dashboard_info_no_challenges_scheduled : @drawable/ic_dashboard_info_all_challenges_completed_for_today}" />
+
+            <TextView
+                android:id="@+id/textView_fragment_dashboard_home_info_title"
+                style="@style/AppTheme.Dashboard.Info.Title.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView_fragment_dashboard_home_info_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:text="@{viewmodel.noChallengesScheduled ? @string/fragment_dashboard_home_info_no_challenges_scheduled_title_text : @string/fragment_dashboard_home_info_you_ve_completed_all_challenges_for_today }"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textView_fragment_dashboard_home_info_explanation"
+                style="@style/AppTheme.AllExplanationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_fragment_dashboard_home_info_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/fragment_dashboard_home_info_no_challenges_scheduled_explanation_text"
+                android:textAlignment="center"
+                android:visibility="@{viewmodel.noChallengesScheduled ? View.VISIBLE : View.GONE, default = gone}" />
+
+        </RelativeLayout>
+        <!-- ./ Info Layout -->
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pagerView_fragment_dashboard_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/relativeLayout_dashboard_tabLayout_wrapper_layout"/>
+
+    </RelativeLayout>
+
+</layout>

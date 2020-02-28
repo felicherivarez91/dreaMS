@@ -9,7 +9,7 @@
 
         <variable
             name="viewmodel"
-            type="com.healios.dreams.ui.dashboard.DashboardViewModel" />
+            type="com.healios.dreams.ui.dashboard.DashboardHomeViewModel" />
 
         <variable
             name="day"

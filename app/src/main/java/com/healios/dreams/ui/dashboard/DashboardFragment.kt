@@ -2,21 +2,19 @@ package com.healios.dreams.ui.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentDashboardBinding
-import com.healios.dreams.di.DashboardViewModelFactory
-import com.healios.dreams.di.LoginViewModelFactory
-import com.healios.dreams.ui.login.LoginViewModel
+import com.healios.dreams.ui.dashboard.home.DashboardHomeFragment
+
 
 class DashboardFragment : Fragment() {
 
-    private val viewModel by lazy {
-        ViewModelProvider(activity!!, DashboardViewModelFactory()).get(
-            DashboardViewModel::class.java
-        )
+    companion object {
+        fun newInstance() = DashboardFragment()
     }
 
     private lateinit var binding: FragmentDashboardBinding
@@ -25,30 +23,31 @@ class DashboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = FragmentDashboardBinding.inflate(layoutInflater, container, false)
-        binding.lifecycleOwner = this
-        binding.viewmodel = viewModel
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
         bind()
-
         return binding.root
     }
 
     private fun bind() {
 
 
-
-/*
-        binding.weekDayFragmentDashboardMonday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Mon"
-        binding.weekDayFragmentDashboardTuesday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Tue"
-        binding.weekDayFragmentDashboardWednesday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Wed"
-        binding.weekDayFragmentDashboardThursday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Thu"
-        binding.weekDayFragmentDashboardFriday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Fri"
-        binding.weekDayFragmentDashboardSaturday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Sat"
-        binding.weekDayFragmentDashboardSunday.textViewFragmentDashboardWeekDayItemDayTitle.text = "Sun"
-*/
-
+        binding.bottomNavigationViewFragmentDashboard.setOnNavigationItemSelectedListener { item: MenuItem ->
+            val fragment: Fragment
+            when (item.itemId) {
+                R.id.navigation_home -> fragment = DashboardHomeFragment.newInstance()
+                //R.id.navigation_notifications ->
+                //R.id.navigation_relapse ->
+                //R.id.navigation_settings ->
+                else -> fragment = DashboardHomeFragment.newInstance()
+            }
+            true
+        }
     }
+
+
+
+
+
 
 }

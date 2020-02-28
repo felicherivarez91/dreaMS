@@ -100,15 +100,25 @@
 
     <!-- ./Timer Step -->
 
+    <!-- Menu navigation -->
+    <string name="menu_navigation_home">Home</string>
+    <string name="menu_navigation_notifications">Notifications</string>
+    <string name="menu_navigation_relapse">Relapse</string>
+    <string name="menu_navigation_settings">Settings</string>
+    <!-- ./Menu navigation -->
+
     <!-- Dashboard -->
-    <string name="fragment_dashboard_your_week">Your Week</string>
-    <string name="fragment_dashboard_header_explanation_your_plan_for_today">Your plan for today</string>
-    <string name="fragment_dashboard_header_explanation_all_completed_for_today">All completed for today</string>
-    <string name="fragment_dashboard_header_title"><![CDATA[Hi, <b>%s!</b>]]></string>
-    <string name="fragment_dashboard_demo_version">Demo version</string>
-    <string name="fragment_dashboard_info_you_ve_completed_all_challenges_for_today">You\'ve completed all challenges for today!</string>
-    <string name="fragment_dashboard_info_no_challenges_scheduled_title_text">No challenges scheduled</string>
-    <string name="fragment_dashboard_info_no_challenges_scheduled_explanation_text">No challenges scheduled, but you have a few of them to complete. Check the compliance</string>
+    <string name="fragment_dashboard_home_your_week">Your Week</string>
+    <string name="fragment_dashboard_home_header_explanation_your_plan_for_today">Your plan for today</string>
+    <string name="fragment_dashboard_home_header_explanation_all_completed_for_today">All completed for today</string>
+    <string name="fragment_dashboard_home_header_title"><![CDATA[Hi, <b>%s!</b>]]></string>
+    <string name="fragment_dashboard_home_demo_version">Demo version</string>
+    <string name="fragment_dashboard_home_info_you_ve_completed_all_challenges_for_today">You\'ve completed all challenges for today!</string>
+    <string name="fragment_dashboard_home_info_no_challenges_scheduled_title_text">No challenges scheduled</string>
+    <string name="fragment_dashboard_home_info_no_challenges_scheduled_explanation_text">No challenges scheduled, but you have a few of them to complete. Check the compliance</string>
+    <string name="fragment_dashboard_home_tab_categories_text">Categories</string>
+    <string name="fragment_dashboard_home_tab_non_completed_text">NON-Completed</string>
+
     <!-- ./Dashboard -->
 
 

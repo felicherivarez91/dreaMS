@@ -169,5 +169,22 @@
         <item name="android:fontFamily">@font/circularstd_bold</item>
     </style>
 
+    <style name="AppTheme.Dashboard.NonCompletedChallenges.Title.TextView" parent="AppTheme">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
+    <style name="AppTheme.Dashboard.NonCompletedChallenges.Explanation.TextView" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/mainExplanationTextColor</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+    </style>
+
+    <style name="AppTheme.TabLayout.TabBar.Text" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/mainBlackColor_50</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
 
 </resources>

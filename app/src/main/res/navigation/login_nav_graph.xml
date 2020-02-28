@@ -30,6 +30,11 @@
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
+        android:name="com.healios.dreams.ui.dashboard.home.DashboardHomeFragment"
+        android:label="DashboardFragment"
+        tools:layout="@layout/fragment_dashboard_home"/>
+    <fragment
+        android:id="@+id/dashboardFragment2"
         android:name="com.healios.dreams.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment"
         tools:layout="@layout/fragment_dashboard"/>
