@@ -6,14 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.healios.dreams.R
+import androidx.navigation.fragment.navArgs
 import com.healios.dreams.databinding.FragmentChallengeSummaryBinding
 import com.healios.dreams.di.ChallengeViewModelFactory
-import com.healios.dreams.model.challenge.ChallengeWorkingData
+import com.healios.dreams.model.challenge.runtime.ChallengeInstanceData
 
 class ChallengeSummaryFragment : Fragment() {
 
+    private val viewModel: ChallengeSummaryViewModel by lazy {
+        ViewModelProvider(activity!!, ChallengeViewModelFactory(workingData)).get(
+            ChallengeSummaryViewModel::class.java
+        )
+    }
+
     private lateinit var binding: FragmentChallengeSummaryBinding
+    private lateinit var workingData: ChallengeInstanceData
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,10 +32,5 @@ class ChallengeSummaryFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        //viewModel = ViewModelProviders.of(this).get(ChallengeSummaryViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }

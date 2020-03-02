@@ -123,5 +123,11 @@
         android:name="com.healios.dreams.ui.permissions.PermissionFragment"
         android:label="fragment_permissions"
         tools:layout="@layout/fragment_permissions" />
+    <fragment
+        android:id="@+id/challengeSummaryFragment"
+        android:name="com.healios.dreams.ui.challenge.summary.ChallengeSummaryFragment"
+        android:label="ChallengeSummaryFragment">
+
+    </fragment>
 
 </navigation>

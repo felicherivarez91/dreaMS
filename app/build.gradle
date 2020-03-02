@@ -85,4 +85,5 @@ dependencies {
     api 'com.google.dagger:dagger-android-support:2.16'
     kapt 'com.google.dagger:dagger-android-processor:2.16'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation project(":sourcetracker")
 }

@@ -1,14 +1,8 @@
 package com.healios.dreams.ui.challenge
 
 import androidx.lifecycle.ViewModel
-import com.healios.dreams.model.challenge.ChallengeMetadata
-import com.healios.dreams.model.challenge.ChallengeWorkingData
+import com.healios.dreams.model.challenge.runtime.ChallengeInstanceData
 
-abstract class ChallengeViewModel(var workingData: ChallengeWorkingData): ViewModel() {
-
-    val challengeMetadata: ChallengeMetadata
-    get() {
-        return workingData.metadata
-    }
+abstract class ChallengeViewModel(val instanceData: ChallengeInstanceData) : ViewModel() {
 
 }

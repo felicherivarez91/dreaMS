@@ -1,4 +1,4 @@
-package com.healios.dreams.model.challenge
+package com.healios.dreams.model.challenge.metadata
 
 enum class Challenge(val code: Int) {
 

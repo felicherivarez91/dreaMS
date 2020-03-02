@@ -124,8 +124,9 @@
     <string name="challenge_intensity_low">Low</string>
     <string name="challenge_intensity_medium">Medium</string>
     <string name="challenge_intensity_high">High</string>
-
-
+    <string name="all_challenges_hold_for_2_seconds_to_stop">Hold for 2 seconds to stop</string>
+    <string name="all_challenges_you_are_doing">You are doing %1$s challenge</string>
+    <string name="challenge_speech_test_completed">Test completed</string>
 
 
 </resources>

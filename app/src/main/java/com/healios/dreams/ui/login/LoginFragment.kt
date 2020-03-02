@@ -21,7 +21,6 @@ import com.healios.dreams.util.ui.MaskWatcher
 
 class LoginFragment : Fragment(), CountrySelectorRecyclerViewListener, View.OnFocusChangeListener {
 
-
     private val viewModel by lazy {
         ViewModelProvider(activity!!, LoginViewModelFactory()).get(
             LoginViewModel::class.java

@@ -1,14 +1,13 @@
-package com.healios.dreams.ui.login
+package com.healios.dreams.ui.challenge
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import com.healios.dreams.R
 
-class LoginActivity: AppCompatActivity() {
+class ChallengeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_challenge)
     }
-
 }

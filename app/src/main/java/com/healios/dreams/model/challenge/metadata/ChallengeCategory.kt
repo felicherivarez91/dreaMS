@@ -1,4 +1,4 @@
-package com.healios.dreams.model.challenge
+package com.healios.dreams.model.challenge.metadata
 
 import com.healios.dreams.R
 
