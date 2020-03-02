@@ -10,11 +10,11 @@ data class ChallengeMetadata(val id: Int,
                              val category: ChallengeCategory,
                              val intensity: ChallengeIntensity,
                              val time: String,
-                             @StringRes val description: Int,
-                             val available: Boolean,
+                             @StringRes val description: Int?,
+                             val available: Boolean = true,
                              val peakCode: String? = null,
-                             @RawRes val descriptionVideo: Int?,
-                             @DrawableRes val descriptionImage: Int?,
+                             @RawRes val descriptionVideo: Int? = null,
+                             @DrawableRes val descriptionImage: Int? = null,
                              val codeTest: String) {
 
     val descriptionResource: Int?
