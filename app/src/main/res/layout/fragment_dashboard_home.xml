@@ -35,8 +35,6 @@
                 android:id="@+id/relativeLayout_fragment_dashboard_home_week_info_wrapper_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> viewmodel.parentOnCLick()}"
-
                 >
 
                 <TextView

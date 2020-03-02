@@ -3,13 +3,15 @@ package com.healios.dreams.ui.dashboard.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.healios.dreams.DreaMSApp
 import com.healios.dreams.databinding.ItemDashboardNonCompletedChallengeBinding
 import com.healios.dreams.model.Test
+import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
 
 class DashboardNonCompletedChallengesRecyclerViewAdapter :
     RecyclerView.Adapter<DashboardNonCompletedChallengesRecyclerViewAdapter.DashboardNonCompletedChallengesViewHolder>() {
 
-    private var nonCompletedChallenges: List<Test>? = ArrayList(5)
+    private var nonCompletedChallenges: List<ChallengeMetadata>? = ArrayList()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,8 +27,7 @@ class DashboardNonCompletedChallengesRecyclerViewAdapter :
 
     override fun getItemCount(): Int {
         nonCompletedChallenges?.let {
-            //FIXME: Uncomment
-            return 5//it.size
+            return it.size
         }
         return 0
     }
@@ -35,12 +36,12 @@ class DashboardNonCompletedChallengesRecyclerViewAdapter :
         holder: DashboardNonCompletedChallengesViewHolder,
         position: Int
     ) {
-        //val test = nonCompletedChallenges!![position]
-        //holder.bind(test)
+        val challengeMetadata = nonCompletedChallenges!![position]
+        holder.bind(challengeMetadata)
     }
 
 
-    fun setData(nonCompletedChallengesList: List<Test>?) {
+    fun setData(nonCompletedChallengesList: List<ChallengeMetadata>) {
         nonCompletedChallenges = nonCompletedChallengesList
         notifyDataSetChanged()
     }
@@ -49,10 +50,9 @@ class DashboardNonCompletedChallengesRecyclerViewAdapter :
     inner class DashboardNonCompletedChallengesViewHolder(var binding: ItemDashboardNonCompletedChallengeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(test: Test?) {
-            //TODO:
+        fun bind(challenge: ChallengeMetadata) {
             with(binding) {
-
+                binding.challenge = challenge
             }
         }
     }

@@ -5,6 +5,9 @@
     <data>
 
         <import type="android.view.View" />
+        <variable
+            name="challenge"
+            type="com.healios.dreams.model.challenge.metadata.ChallengeMetadata" />
 
     </data>
 
@@ -31,7 +34,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/ic_challenge_wobbler_uncompleted"/>
+                app:civ_border_color="@color/categoryIconUnCompletedStatusColor"
+                app:civ_border_width="@dimen/borderWidth_challenge_icon"
+                android:src="@{challenge.icon}"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout_item_dashboard_non_completed_challenge_info"
@@ -47,7 +52,7 @@
                     style="@style/AppTheme.Dashboard.NonCompletedChallenges.Title.TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Wobbler" />
+                    android:text="@{challenge.name}" />
 
                 <TextView
                     android:id="@+id/item_dashboard_non_completed_challenge_category"
@@ -55,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Movement challenge" />
+                    android:text="@{challenge.category.description}" />
             </LinearLayout>
 
         </RelativeLayout>

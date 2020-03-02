@@ -109,10 +109,6 @@
     <string name="fragment_timer_step_start_text">Start</string>
     <string name="fragment_timer_step_play_video_button_content_description_text">Play video button</string>
     <string name="all_skip">Skip</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <!-- ./Timer Step -->
 
     <!-- Menu navigation -->
@@ -133,10 +129,6 @@
     <string name="fragment_dashboard_home_info_no_challenges_scheduled_explanation_text">No challenges scheduled, but you have a few of them to complete. Check the compliance</string>
     <string name="fragment_dashboard_home_tab_categories_text">Categories</string>
     <string name="fragment_dashboard_home_tab_non_completed_text">NON-Completed</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <!-- ./Dashboard -->
 
     <!-- Challenge -->

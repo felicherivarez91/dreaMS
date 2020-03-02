@@ -14,7 +14,7 @@ object ChallengeBuilder {
             Challenge.TWOMINWALK -> ChallengeMetadata(
                 id = 1,
                 name = R.string.challenge_dreams_2minwalk,
-                icon = 0,
+                icon = R.drawable.ic_challenge_2minwalk,
                 category = ChallengeCategory.MOTION,
                 intensity = ChallengeIntensity.MEDIUM,
                 time = "",
@@ -25,7 +25,7 @@ object ChallengeBuilder {
             Challenge.MUSICALCHAIRS -> ChallengeMetadata(
                 id = 2,
                 name = R.string.challenge_dreams_musical_chairs,
-                icon = 0,
+                icon = R.drawable.ic_challenge_musical_chairs,
                 category = ChallengeCategory.MOTION,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -45,7 +45,7 @@ object ChallengeBuilder {
             Challenge.TIGHTROPE -> ChallengeMetadata(
                 id = 4,
                 name = R.string.challenge_dreams_tight_rope,
-                icon = 0,
+                icon = R.drawable.ic_challenge_tight_rope,
                 category = ChallengeCategory.MOTION,
                 intensity = ChallengeIntensity.MEDIUM,
                 time = "",
@@ -65,7 +65,7 @@ object ChallengeBuilder {
             Challenge.UTURN -> ChallengeMetadata(
                 id = 6,
                 name = R.string.challenge_dreams_uturn,
-                icon = 0,
+                icon = R.drawable.ic_challenge_u_turn,
                 category = ChallengeCategory.MOTION,
                 intensity = ChallengeIntensity.MEDIUM,
                 time = "",
@@ -75,7 +75,7 @@ object ChallengeBuilder {
             Challenge.CATCHACLOUD -> ChallengeMetadata(
                 id = 9,
                 name = R.string.challenge_dreams_catch_a_cloud,
-                icon = 0,
+                icon = R.drawable.ic_challenge_catch_a_cloud,
                 category = ChallengeCategory.FINEMOTORSKILLS,
                 intensity = ChallengeIntensity.LOW,
                 time = "",
@@ -85,7 +85,7 @@ object ChallengeBuilder {
             Challenge.SCREENTONOSE -> ChallengeMetadata(
                 id = 10,
                 name = R.string.challenge_dreams_s2n,
-                icon = 0,
+                icon = R.drawable.ic_challange_screen_to_nose,
                 category = ChallengeCategory.FINEMOTORSKILLS,
                 intensity = ChallengeIntensity.LOW,
                 time = "",
@@ -95,7 +95,7 @@ object ChallengeBuilder {
             Challenge.PEAK_FLDO -> ChallengeMetadata(
                 id = 13,
                 name = R.string.challenge_peak_fldo,
-                icon = 0,
+                icon = R.drawable.ic_challenge_flame_dodge_left_hand_peak,
                 category = ChallengeCategory.FINEMOTORSKILLS,
                 intensity = ChallengeIntensity.MEDIUM,
                 time = "",
@@ -105,7 +105,7 @@ object ChallengeBuilder {
             Challenge.PEAK_FLDOR -> ChallengeMetadata(
                 id = 14,
                 name = R.string.challenge_peak_fldor,
-                icon = 0,
+                icon = R.drawable.ic_challenge_flame_dodge_right_hand_peak,
                 category = ChallengeCategory.FINEMOTORSKILLS,
                 intensity = ChallengeIntensity.MEDIUM,
                 time = "",
@@ -115,7 +115,7 @@ object ChallengeBuilder {
             Challenge.SDMT -> ChallengeMetadata(
                 id = 15,
                 name = R.string.challenge_dreams_sdmt,
-                icon = 0,
+                icon = R.drawable.ic_challenge_sdmt,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -135,7 +135,7 @@ object ChallengeBuilder {
             Challenge.PEAK_SPCY -> ChallengeMetadata(
                 id = 18,
                 name = R.string.challenge_peak_spcy,
-                icon = 0,
+                icon = R.drawable.ic_challenge_peak_spin_cycle,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -145,7 +145,7 @@ object ChallengeBuilder {
             Challenge.PEAK_ZAGA -> ChallengeMetadata(
                 id = 19,
                 name = R.string.challenge_peak_zaga,
-                icon = 0,
+                icon = R.drawable.ic_challenge_peak_zap_gap,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -155,7 +155,7 @@ object ChallengeBuilder {
             Challenge.PEAK_FASW -> ChallengeMetadata(
                 id = 20,
                 name = R.string.challenge_peak_fasw,
-                icon = 0,
+                icon = R.drawable.ic_challenge_peak_face_switch,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -165,7 +165,7 @@ object ChallengeBuilder {
             Challenge.PEAK_RUBA -> ChallengeMetadata(
                 id = 21,
                 name = R.string.challenge_peak_ruba,
-                icon = 0,
+                icon = R.drawable.ic_challenge_peak_rush_back,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -174,7 +174,7 @@ object ChallengeBuilder {
             Challenge.PEAK_BACL -> ChallengeMetadata(
                 id = 22,
                 name = R.string.challenge_peak_bacl,
-                icon = 0,
+                icon = R.drawable.ic_challenge_peak_baggage_claim,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -183,7 +183,7 @@ object ChallengeBuilder {
             Challenge.PEAK_PEPA -> ChallengeMetadata(
                 id = 23,
                 name = R.string.challenge_peak_pepa,
-                icon = 0,
+                icon = R.drawable.ic_challenge_peak_perilous_path,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -192,7 +192,7 @@ object ChallengeBuilder {
             Challenge.PEAK_PUBL -> ChallengeMetadata(
                 id = 24,
                 name = R.string.challenge_peak_publ,
-                icon = 0,
+                icon = R.drawable.ic_challenge_peak_puzzle_box,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -201,7 +201,7 @@ object ChallengeBuilder {
             Challenge.PEAK_MUSO -> ChallengeMetadata(
                 id = 25,
                 name = R.string.challenge_peak_muso,
-                icon = 0,
+                icon = R.drawable.ic_challenge_peak_must_sort,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -210,7 +210,7 @@ object ChallengeBuilder {
             Challenge.PEAK_LOPO -> ChallengeMetadata(
                 id = 26,
                 name = R.string.challenge_peak_lopo,
-                icon = 0,
+                icon = R.drawable.ic_challenge_peak_low_pop,
                 category = ChallengeCategory.COGNITIVE,
                 intensity = ChallengeIntensity.HIGH,
                 time = "",
@@ -219,7 +219,7 @@ object ChallengeBuilder {
             Challenge.ACUITY -> ChallengeMetadata(
                 id = 27,
                 name = R.string.challenge_dreams_vision_acuity,
-                icon = 0,
+                icon = R.drawable.ic_challenge_surve_vision_acuity,
                 category = ChallengeCategory.VISIONANDSURVEYS,
                 intensity = ChallengeIntensity.LOW,
                 time = "",
@@ -228,7 +228,7 @@ object ChallengeBuilder {
             Challenge.CONTRAST -> ChallengeMetadata(
                 id = 28,
                 name = R.string.challenge_dreams_vision_contrast,
-                icon = 0,
+                icon = R.drawable.ic_challenge_surve_vision_contrast,
                 category = ChallengeCategory.VISIONANDSURVEYS,
                 intensity = ChallengeIntensity.LOW,
                 time = "",
@@ -272,6 +272,5 @@ object ChallengeBuilder {
                 codeTest = "HEA-SUR-SYMTR")
             else -> throw IllegalArgumentException("$challenge no implemented")
         }
-
     }
 }

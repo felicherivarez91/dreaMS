@@ -120,6 +120,7 @@ class LoginViewModel constructor(private val loginManager: LoginManager,
                 response , error ->
             if (error == null) {
                 tokenProvider.token = response?.token ?: ""
+                userPreferences.userId = response?.userId ?: ""
                 _verifiedCodeEvent.postValue(Event(Unit))
             }else {
                 _verificationError.postValue(true)

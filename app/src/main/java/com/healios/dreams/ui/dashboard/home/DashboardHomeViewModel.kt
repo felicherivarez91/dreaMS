@@ -11,7 +11,11 @@ import androidx.viewpager.widget.ViewPager
 import com.healios.dreams.DreaMSApp
 import com.healios.dreams.R
 import com.healios.dreams.data.*
+import com.healios.dreams.data.challenge.ChallengeBuilder
 import com.healios.dreams.model.*
+import com.healios.dreams.model.challenge.metadata.Challenge
+import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
+import com.healios.dreams.ui.schedule.ScheduleFragmentArgs
 import com.healios.dreams.util.DreaMSDateUtils
 
 
@@ -65,6 +69,12 @@ class DashboardHomeViewModel constructor(
     private val _noChallengesScheduled= MutableLiveData<Boolean>(false)
     val noChallengesScheduled:LiveData<Boolean> = _noChallengesScheduled
     //endregion
+
+    private val _dailyNonCompletedChallenges = MutableLiveData<List<ChallengeMetadata>>()
+    val dailyNonCompletedChallenges: LiveData<List<ChallengeMetadata>> = _dailyNonCompletedChallenges
+
+
+
 
     private val context: Context = DreaMSApp.instance.applicationContext
 
@@ -213,13 +223,13 @@ class DashboardHomeViewModel constructor(
 
         val activeDays = patient!!.activeDays()
         val dayNames: ArrayList<String> = ArrayList(7)
-        dayNames.add("Monday")
-        dayNames.add("Tuesday")
-        dayNames.add("Wednesday")
-        dayNames.add("Thursday")
-        dayNames.add("Friday")
-        dayNames.add("Saturday")
-        dayNames.add("Sunday")
+        dayNames.add(context.getString(R.string.all_day_monday))
+        dayNames.add(context.getString(R.string.all_day_tuesday))
+        dayNames.add(context.getString(R.string.all_day_wednesday))
+        dayNames.add(context.getString(R.string.all_day_thursday))
+        dayNames.add(context.getString(R.string.all_day_friday))
+        dayNames.add(context.getString(R.string.all_day_saturday))
+        dayNames.add(context.getString(R.string.all_day_sunday))
 
         val week = ArrayList<DayOfTheWeek>()
 
@@ -291,8 +301,21 @@ class DashboardHomeViewModel constructor(
             day.dateScheduled == DreaMSDateUtils.getTodayDateString()
         }
 
+        val nonCompletedChallenges = currentDayList[0].tests?.filter { test ->
+            test.completedAt == null
+        }
 
+        val nonCompletedChallengeMetadata: ArrayList<ChallengeMetadata> = ArrayList()
+        nonCompletedChallenges?.forEach { currentTest ->
 
+            val challenge = Challenge.values().first {
+                it.code == currentTest.testId.toInt()
+            }
+            val challengeMetadata = ChallengeBuilder.build(challenge)
+            nonCompletedChallengeMetadata.add(challengeMetadata)
+        }
+
+        _dailyNonCompletedChallenges.postValue(nonCompletedChallengeMetadata)
     }
 
     //region: API Calls
@@ -300,10 +323,10 @@ class DashboardHomeViewModel constructor(
         _communicationInProgress.postValue(true)
 
         var userId = userPreferences.userId
-        if (userId == null) {
-            //TODO: Remove after test API
-            userId = "a357fbe8-53d6-11ea-b538-0242ac17000b"
-            //return
+        //FIXME: Remove after test API
+        userId = "a357fbe8-53d6-11ea-b538-0242ac17000b"
+        if (userId == null || userId.isEmpty()) {
+            return
         }
 
         userManager.getUserCollectionById(userId, UserType.PATIENT, null)
@@ -335,12 +358,7 @@ class DashboardHomeViewModel constructor(
     //endregion
 
     //region: Public methods
-
-    fun parentOnCLick(){
-        Log.d(TAG,"[CLICK]")
-    }
     fun onWeekDayClick(dayClicked: DayOfTheWeek?) {
-        Log.d(TAG,"[CLICK]")
         if (dayClicked != null) {
             _week.value!!.forEachIndexed { index, day ->
                 selectedDay = dayClicked.numOfTheWeek
@@ -369,9 +387,6 @@ class DashboardHomeViewModel constructor(
             return 0
         }
     }
-
-
-
     //endregion
 }
 

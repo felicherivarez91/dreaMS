@@ -26,5 +26,7 @@
     <!-- If we want the same size of bottom navigation text -->
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">12sp</dimen>
 
+    <dimen name="borderWidth_challenge_icon">4dp</dimen>
+
 
 </resources>
