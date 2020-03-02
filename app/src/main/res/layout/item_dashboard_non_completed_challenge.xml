@@ -13,10 +13,10 @@
         android:id="@+id/cardView_item_dashboard_non_completed_challenge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        app:cardCornerRadius="@dimen/cornerRadius_all_general">
+        app:cardCornerRadius="@dimen/cornerRadius_non_completed_challenges">
 
         <RelativeLayout
             android:id="@+id/relativeLayout_item_dashboard_non_completed_challenge_wrapper_layout"
@@ -30,7 +30,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_challenge_wobbler_uncompleted"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout_item_dashboard_non_completed_challenge_info"

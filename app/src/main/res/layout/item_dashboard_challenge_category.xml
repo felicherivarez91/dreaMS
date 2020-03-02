@@ -24,8 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="120dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_challenge_category_fine_motor_skills_uncompleted" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_challenge_category_movement_uncompleted" />
 
             <TextView
                 android:id="@+id/textView_item_dashboard_challenge_category_title"
@@ -57,7 +57,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:minHeight="32dp"
-                android:layout_below="@id/textView_item_dashboard_challenge_category_time_text">
+                android:layout_below="@id/textView_item_dashboard_challenge_category_time_text"
+                >
 
                 <TextView
                     android:id="@+id/textView_item_dashboard_challenge_category_num_completed_text"

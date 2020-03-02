@@ -20,6 +20,7 @@ class DashboardChallengesCategoriesRecyclerViewAdapter:
 
     override fun getItemCount(): Int {
         categoryList?.let {
+            //FIXME: Uncomment
             return 4//it.size
         }
         return 0

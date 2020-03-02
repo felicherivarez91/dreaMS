@@ -9,7 +9,7 @@ import com.healios.dreams.model.Test
 class DashboardNonCompletedChallengesRecyclerViewAdapter :
     RecyclerView.Adapter<DashboardNonCompletedChallengesRecyclerViewAdapter.DashboardNonCompletedChallengesViewHolder>() {
 
-    private var nonCompletedChallenges: List<Test>? = null
+    private var nonCompletedChallenges: List<Test>? = ArrayList(5)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,6 +25,7 @@ class DashboardNonCompletedChallengesRecyclerViewAdapter :
 
     override fun getItemCount(): Int {
         nonCompletedChallenges?.let {
+            //FIXME: Uncomment
             return 5//it.size
         }
         return 0
@@ -34,8 +35,8 @@ class DashboardNonCompletedChallengesRecyclerViewAdapter :
         holder: DashboardNonCompletedChallengesViewHolder,
         position: Int
     ) {
-        val test = nonCompletedChallenges!![position]
-        holder.bind(test)
+        //val test = nonCompletedChallenges!![position]
+        //holder.bind(test)
     }
 
 
