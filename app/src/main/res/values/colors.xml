@@ -32,10 +32,12 @@
     <color name="colorAccent">#4DC185</color>
     <color name="white">#FFFFFF</color>
 
+    <!-- App Colors with opacity -->
     <color name="white_50">#80FFFFFF</color>
-
     <color name="colorPrimary_10">#1A4DC185</color>
     <color name="colorPrimary_20">#334DC185</color>
+    <color name="colorAccent_50">#804DC185</color>
+    <!-- ./ App Colors with opacity -->
 
 
     <!-- Main Colors -->
@@ -63,6 +65,9 @@
     <!-- ./ Bottom Picker -->
 
     <color name="editTextUnderlineColor">#C6CEDD</color>
+    <color name="editTextUnderlineColor_50">#80C6CEDD</color>
+
+    <color name="editTextFocusedUnderlineColor_50">@color/colorAccent_50</color>
 
     <!-- SMS Input Code View -->
     <color name="digitCodeItemStrokeColor">@color/mainStrokeColor</color>

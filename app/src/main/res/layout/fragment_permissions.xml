@@ -1,54 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+<layout>
 
-    <TextView
-        android:id="@+id/textView_fragment_permissions_title"
-        style="@style/AppTheme.AllScreenTitleText"
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.permissions.PermissionViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:textAlignment="center"
-        android:text="@string/fragment_permissions_title_text"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView_fragment_permissions_explanation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_fragment_permissions_title"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:text="@string/fragment_permissions_explanation_text"/>
+        <TextView
+            android:id="@+id/textView_fragment_permissions_title"
+            style="@style/AppTheme.AllScreenTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/fragment_permissions_title_text"
+            android:textAlignment="center" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_fragment_permissions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@id/textView_fragment_permissions_explanation"
-        android:layout_above="@id/button_fragment_permissions_get_started"/>
+        <TextView
+            android:id="@+id/textView_fragment_permissions_explanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_fragment_permissions_title"
+            android:layout_centerHorizontal="true"
+            android:text="@string/fragment_permissions_explanation_text"
+            android:textAlignment="center" />
 
 
-
-    <Button
-        android:id="@+id/button_fragment_permissions_get_started"
-        style="@style/AppTheme.Button.Main"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_all_mainButton"
-        android:layout_marginBottom="@dimen/marginBottom_all_mainButton"
-        android:layout_marginStart="@dimen/marginStart_all_mainButton"
-        android:layout_marginEnd="@dimen/marginEnd_all_mainButton"
-        android:enabled="false"
-        android:layout_alignParentBottom="true"
-        android:text="@string/fragment_permissions_get_started_button_text"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_fragment_permissions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/button_fragment_permissions_get_started"
+            android:layout_below="@id/textView_fragment_permissions_explanation"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp" />
 
 
+        <Button
+            android:id="@+id/button_fragment_permissions_get_started"
+            style="@style/AppTheme.Button.Main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_all_mainButton"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/marginStart_all_mainButton"
+            android:layout_marginEnd="@dimen/marginEnd_all_mainButton"
+            android:layout_marginBottom="@dimen/marginBottom_all_mainButton"
+            android:enabled="@{viewmodel.canContinue, default = false }"
+            android:text="@string/fragment_permissions_get_started_button_text" />
 
-</RelativeLayout>
+
+    </RelativeLayout>
+</layout>

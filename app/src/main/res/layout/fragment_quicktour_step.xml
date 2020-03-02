@@ -1,61 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.quicktour.QuickTourViewModel" />
+    </data>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout_fragment_quicktour_step_image_wrapper_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="410dp"
-        android:background="@color/quickTourStepImageBackgroundColor">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView_fragment_quicktour_step_content_image"
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_fragment_quicktour_step_image_wrapper_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerInside"
-            android:src="@drawable/fragment_quicktour_step_content_image_step_daily_challenges" />
+            android:background="@color/quickTourStepImageBackgroundColor"
+            android:minHeight="310dp">
+
+            <ImageView
+                android:id="@+id/imageView_fragment_quicktour_step_content_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@{viewmodel.quicktourStepImageResource}" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imageView_fragment_quicktour_step_cloud_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/relativeLayout_fragment_quicktour_step_image_wrapper_layout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="-40dp"
+            android:src="@drawable/ic_cloud_2" />
+
+        <TextView
+            android:id="@+id/textView_fragment_quicktour_step_title"
+            style="@style/AppTheme.AllScreenTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relativeLayout_fragment_quicktour_step_image_wrapper_layout"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
+            android:text="@{viewmodel.quicktourStepTitleText}"
+            android:textAlignment="center" />
+
+
+        <TextView
+            android:id="@+id/textView_fragment_quicktour_step_explanation_text"
+            style="@style/AppTheme.AllExplanationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_fragment_quicktour_step_title"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:text="@{viewmodel.quicktourStepExplanationText}"
+            android:textAlignment="center" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_all_mainButton"
+            android:layout_marginStart="@dimen/marginStart_all_mainButton"
+            android:layout_marginEnd="@dimen/marginEnd_all_mainButton"
+            android:layout_marginBottom="@dimen/marginBottom_all_mainButton"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/imageView_fragment_quicktour_step_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:src="@{viewmodel.quicktourStepIndicationImageResource, default=@drawable/ic_slider_indicators_1_of_3}"/>
+
+            <Button
+                android:id="@+id/button_fragment_quicktour_step_next"
+                style="@style/AppTheme.Button.Borderless.NoPadding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/activity_quicktour_next_text"
+                android:onClick="@{ ()-> viewmodel.onNextButtonPressed()}"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <Button
+                android:id="@+id/button_fragment_quicktour_step_skip"
+                style="@style/AppTheme.Button.Skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/all_skip"
+                android:onClick="@{ ()-> viewmodel.onSkipButtonPressed() }"/>
+
+            <ImageButton
+                android:id="@+id/imageButton_fragment_quicktour_step_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:minHeight="24dp"
+                android:minWidth="24dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/ic_arrow_back"
+                android:visibility="@{viewmodel.isBackButtonVisible ?  View.VISIBLE : View.GONE, default = gone }"
+                android:onClick="@{()-> viewmodel.onBackButtonPressed()}"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imageView_fragment_quicktour_step_cloud_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/relativeLayout_fragment_quicktour_step_image_wrapper_layout"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="-40dp"
-        android:src="@drawable/ic_cloud_2" />
-
-
-    <TextView
-        android:id="@+id/textView_fragment_quicktour_step_title"
-        style="@style/AppTheme.AllScreenTitleText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayout_fragment_quicktour_step_image_wrapper_layout"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/fragment_quicktour_step_daily_challenges_title_text"
-        android:textAlignment="center" />
-
-
-    <TextView
-        android:id="@+id/textView_fragment_quicktour_step_explanation_text"
-        style="@style/AppTheme.AllExplanationText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_fragment_quicktour_step_title"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/fragment_quicktour_step_daily_challenges_explanation_text"
-        android:textAlignment="center" />
-
-
-
-</RelativeLayout>
+</layout>

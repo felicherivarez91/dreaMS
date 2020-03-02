@@ -6,6 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "androidx.navigation.safeargs"
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -69,7 +72,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation("com.squareup.okhttp3:logging-interceptor:4.3.1")
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -83,4 +86,5 @@ dependencies {
     api 'com.google.dagger:dagger-android-support:2.16'
     kapt 'com.google.dagger:dagger-android-processor:2.16'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation project(":sourcetracker")
 }

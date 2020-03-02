@@ -18,8 +18,6 @@ public class PermissionItemView extends RelativeLayout implements CompoundButton
 
     ItemPermissionBinding mBinding;
 
-    private TextView permissionName;
-    private Switch permissionStateSwitch;
     private Context context;
 
     public PermissionItemView(Context context) {
@@ -44,7 +42,6 @@ public class PermissionItemView extends RelativeLayout implements CompoundButton
 
     public void setModel(PermissionModel permissionModel) {
         mBinding.setPermission(permissionModel);
-        //manageStatus(permissionModel.getEnabled());
     }
     private void manageStatus(boolean permissionGranted) {
         if (permissionGranted) {
