@@ -144,12 +144,12 @@
         </RelativeLayout>
         <!-- ./ Week region -->
 
-        <!-- Tab Bar -->
-        <RelativeLayout
-            android:id="@+id/relativeLayout_dashboard_tabLayout_wrapper_layout"
+        <!-- View Pager -->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager_fragment_dashboard_home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/relativeLayout_fragment_dashboard_home_week_wrapper_layout">
+            android:layout_height="match_parent"
+            android:layout_below="@id/relativeLayout_fragment_dashboard_home_week_wrapper_layout">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout_fragment_dashboard"
@@ -158,20 +158,16 @@
                 android:layout_marginTop="20dp"
                 app:tabSelectedTextColor="@color/colorPrimary"
                 app:tabTextAppearance="@style/AppTheme.TabLayout.TabBar.Text" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_below="@id/tabLayout_fragment_dashboard"
-                android:background="@drawable/all_bottom_shadow" />
-        </RelativeLayout>
-        <!-- ./ Tab Bar -->
+
+        </androidx.viewpager.widget.ViewPager>
+        <!-- ./ Page Viewer -->
 
         <!-- Info Layout -->
         <RelativeLayout
             android:id="@+id/relativeLayout_fragment_dashboard_home_info_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/relativeLayout_dashboard_tabLayout_wrapper_layout"
+            android:layout_below="@id/viewPager_fragment_dashboard_home"
             android:visibility="@{viewmodel.shouldShowInfoLayout ? View.VISIBLE : View.GONE, default = gone}">
 
             <ImageView
@@ -212,11 +208,6 @@
         </RelativeLayout>
         <!-- ./ Info Layout -->
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/pagerView_fragment_dashboard_home"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/relativeLayout_dashboard_tabLayout_wrapper_layout"/>
 
     </RelativeLayout>
 

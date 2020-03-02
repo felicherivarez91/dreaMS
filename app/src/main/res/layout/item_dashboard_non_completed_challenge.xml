@@ -8,64 +8,57 @@
 
     </data>
 
-    <RelativeLayout
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_item_dashboard_non_completed_challenge"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="@dimen/cornerRadius_all_general">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView_item_dashboard_non_completed_challenge"
+        <RelativeLayout
+            android:id="@+id/relativeLayout_item_dashboard_non_completed_challenge_wrapper_layout"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:elevation="4dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:cardCornerRadius="@dimen/cornerRadius_all_general"
-            app:cardElevation="4dp"
-            app:cardMaxElevation="4dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout_item_dashboard_non_completed_challenge_wrapper_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView_item_dashboard_non_completed_challenge"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circleImageView_item_dashboard_non_completed_challenge"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp" />
+            <LinearLayout
+                android:id="@+id/linearLayout_item_dashboard_non_completed_challenge_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@id/circleImageView_item_dashboard_non_completed_challenge"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/linearLayout_item_dashboard_non_completed_challenge_info"
+                <TextView
+                    android:id="@+id/textView_item_dashboard_non_completed_challenge_name"
+                    style="@style/AppTheme.Dashboard.NonCompletedChallenges.Title.TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="18dp"
-                    android:layout_toEndOf="@id/circleImageView_item_dashboard_non_completed_challenge"
-                    android:orientation="vertical">
+                    android:text="Wobbler" />
 
-                    <TextView
-                        android:id="@+id/textView_item_dashboard_non_completed_challenge_name"
-                        style="@style/AppTheme.Dashboard.NonCompletedChallenges.Title.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Wobbler" />
+                <TextView
+                    android:id="@+id/item_dashboard_non_completed_challenge_category"
+                    style="@style/AppTheme.Dashboard.NonCompletedChallenges.Explanation.TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Movement challenge" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/item_dashboard_non_completed_challenge_category"
-                        style="@style/AppTheme.Dashboard.NonCompletedChallenges.Explanation.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Movement challenge" />
-                </LinearLayout>
+        </RelativeLayout>
 
-            </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
 </layout>

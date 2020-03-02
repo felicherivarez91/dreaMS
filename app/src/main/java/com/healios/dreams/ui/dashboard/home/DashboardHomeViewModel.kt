@@ -7,6 +7,7 @@ import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.viewpager.widget.ViewPager
 import com.healios.dreams.DreaMSApp
 import com.healios.dreams.R
 import com.healios.dreams.data.*
@@ -170,8 +171,6 @@ class DashboardHomeViewModel constructor(
             day.dateScheduled == DreaMSDateUtils.getTodayDateString()
         }
 
-        selectedDay = DreaMSDateUtils.dayDifferenceBetween(patient!!.attendance.currentAttendance.weekStartsOn, DreaMSDateUtils.getTodayDateString()) + 1
-
         if (patient!!.activeDays().contains(selectedDay)) {
             val dailyChallengePosition = getDailyChallengePosition()
             currentDay = dailyChallenges[dailyChallengePosition!!]
@@ -183,8 +182,7 @@ class DashboardHomeViewModel constructor(
             _noChallengesScheduled.postValue(true)
         }
 
-
-
+        getNonCompletedChallengesForToday()
     }
 
     private fun setHeaderInfo() {
@@ -282,6 +280,21 @@ class DashboardHomeViewModel constructor(
 
     }
 
+    private fun getNonCompletedChallengesForToday() {
+        val schedulePosition = patient!!.currentSchedulePosition()[selectedDay]
+        patient!!.attendance.currentAttendance.days[schedulePosition]
+
+        val daysOfTheCurrentWeek =
+            patient!!.attendance.currentAttendance.days
+
+        val currentDayList = daysOfTheCurrentWeek.filter { day ->
+            day.dateScheduled == DreaMSDateUtils.getTodayDateString()
+        }
+
+
+
+    }
+
     //region: API Calls
     private fun askServerForData() {
         _communicationInProgress.postValue(true)
@@ -319,8 +332,6 @@ class DashboardHomeViewModel constructor(
         val userCollectionData = userCollectionDataRepository.getUserCollectionData()
         userData = userCollectionData?.data
     }
-
-
     //endregion
 
     //region: Public methods
@@ -358,6 +369,8 @@ class DashboardHomeViewModel constructor(
             return 0
         }
     }
+
+
 
     //endregion
 }

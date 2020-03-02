@@ -119,6 +119,9 @@
     <string name="fragment_dashboard_home_tab_categories_text">Categories</string>
     <string name="fragment_dashboard_home_tab_non_completed_text">NON-Completed</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!-- ./Dashboard -->
 
 

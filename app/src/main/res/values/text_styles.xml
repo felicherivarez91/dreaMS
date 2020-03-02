@@ -181,6 +181,27 @@
         <item name="android:fontFamily">@font/circularstd_book</item>
     </style>
 
+    <!-- Challenge Category -->
+    <style name="AppTheme.Dashboard.Challenges.Categories.Title.TextView" parent="AppTheme">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
+    <style name="AppTheme.Dashboard.Challenges.Categories.Explanation.TextView" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/itemDashboardChallengeCategoryExplanationTextColor</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+    </style>
+
+    <style name="AppTheme.Dashboard.Challenges.Categories.Start.Button" parent="AppTheme">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+    </style>
+
+    <!-- ./Challenge Category -->
+
     <style name="AppTheme.TabLayout.TabBar.Text" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/mainBlackColor_50</item>

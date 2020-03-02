@@ -34,6 +34,7 @@
 
     <color name="white_50">#80FFFFFF</color>
 
+    <color name="colorPrimary_10">#1A4DC185</color>
     <color name="colorPrimary_20">#334DC185</color>
 
 
@@ -116,6 +117,10 @@
     <color name="itemDashboardWeekDayUnavailableBackgroundColor">@color/mainDisabledColor</color>
     <color name="itemDashboardWeekDayUnavailableTextColor">#818596</color>
     <!-- ./ Dashboard Week Day Item -->
+
+    <!-- Challenge Category -->
+    <color name="itemDashboardChallengeCategoryExplanationTextColor">#484E5E</color>
+
 
 
 </resources>
