@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.healios.dreams.databinding.ItemDashboardChallengeCategoryBinding
 import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 
-class DashboardChallengesCategoriesRecyclerViewAdapter :
+class DashboardChallengesCategoriesRecyclerViewAdapter(private val listener: DashboardChallengesCategoriesRecyclerViewListener) :
     RecyclerView.Adapter<DashboardChallengesCategoriesRecyclerViewAdapter.DashboardChallengesCategoriesViewHolder>() {
 
     private var categoryList: List<ChallengeCategoryMetadata>? = ArrayList()
@@ -48,9 +48,11 @@ class DashboardChallengesCategoriesRecyclerViewAdapter :
         fun bind(category: ChallengeCategoryMetadata) {
             with(binding) {
                 binding.category = category
+                binding.relativeLayoutItemDashboardChallengeCategoryStartButton.setOnClickListener {
+                    listener.onItemClick(layoutPosition, category)
+                }
             }
         }
-
     }
     //endregion
 }

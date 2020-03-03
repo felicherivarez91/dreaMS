@@ -35,7 +35,7 @@ object ChallengeBuilder {
             Challenge.WOBBLER -> ChallengeMetadata(
                 id = 3,
                 name = R.string.challenge_dreams_wobbler,
-                icon = 0,
+                icon = R.drawable.ic_challenge_wobbler,
                 category = ChallengeCategory.MOTION,
                 intensity = ChallengeIntensity.MEDIUM,
                 time = "",
@@ -55,7 +55,7 @@ object ChallengeBuilder {
             Challenge.CLIMBINGSTAIRS -> ChallengeMetadata(
                 id = 5,
                 name = R.string.challenge_dreams_climbing_stairs,
-                icon = 0,
+                icon = R.drawable.ic_challenge_climbing_stairs,
                 category = ChallengeCategory.MOTION,
                 intensity = ChallengeIntensity.MEDIUM,
                 time = "",

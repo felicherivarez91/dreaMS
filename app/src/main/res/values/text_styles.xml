@@ -200,6 +200,13 @@
 
     <!-- ./Challenge Category -->
 
+    <style name="AppTheme.Dashboard.Challenges.Path.Title.TextView" parent="AppTheme">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/mainBlackColor</item>
+        <item name="android:fontFamily">@font/circularstd_bold</item>
+        <item name="android:letterSpacing">-0.024</item>
+    </style>
+
     <style name="AppTheme.TabLayout.TabBar.Text" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/mainBlackColor_50</item>

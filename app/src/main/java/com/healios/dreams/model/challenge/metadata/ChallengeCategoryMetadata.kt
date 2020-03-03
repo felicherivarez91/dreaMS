@@ -3,7 +3,8 @@ package com.healios.dreams.model.challenge.metadata
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-class ChallengeCategoryMetadata(@StringRes val description: Int,
+class ChallengeCategoryMetadata(val categoryId:Int,
+                                @StringRes val description: Int,
                                 val estimatedTime: String,
                                 val challengesCompleted: Int,
                                 val numOfChallenges:Int,

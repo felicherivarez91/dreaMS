@@ -2,7 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.dashboard.home.DashboardHomeFragment">
 
     <data>
 
@@ -10,10 +11,11 @@
 
         <variable
             name="viewmodel"
-            type="com.healios.dreams.ui.dashboard.DashboardHomeViewModel" />
+            type="com.healios.dreams.ui.dashboard.home.DashboardHomeViewModel" />
     </data>
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -74,7 +76,8 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[0])}"
-                    bind:day="@{viewmodel.week[0]}" />
+                    bind:day="@{viewmodel.week[0]}"
+                    bind:viewmodel="@{viewmodel}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_home_tuesday"
@@ -84,7 +87,8 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[1])}"
-                    bind:day="@{viewmodel.week[1]}" />
+                    bind:day="@{viewmodel.week[1]}"
+                    bind:viewmodel="@{viewmodel}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_home_wednesday"
@@ -94,7 +98,8 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[2])}"
-                    bind:day="@{viewmodel.week[2]}" />
+                    bind:day="@{viewmodel.week[2]}"
+                    bind:viewmodel="@{viewmodel}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_home_thursday"
@@ -104,7 +109,8 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[3])}"
-                    bind:day="@{viewmodel.week[3]}" />
+                    bind:day="@{viewmodel.week[3]}"
+                    bind:viewmodel="@{viewmodel}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_home_friday"
@@ -114,7 +120,8 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[4])}"
-                    bind:day="@{viewmodel.week[4]}" />
+                    bind:day="@{viewmodel.week[4]}"
+                    bind:viewmodel="@{viewmodel}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_home_saturday"
@@ -124,7 +131,8 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[5])}"
-                    bind:day="@{viewmodel.week[5]}" />
+                    bind:day="@{viewmodel.week[5]}"
+                    bind:viewmodel="@{viewmodel}"/>
 
                 <include
                     android:id="@+id/weekDay_fragment_dashboard_home_sunday"
@@ -134,7 +142,8 @@
                     android:layout_marginEnd="2dp"
                     android:layout_weight="1"
                     android:onClick="@{()-> viewmodel.onWeekDayClick(viewmodel.week[6])}"
-                    bind:day="@{viewmodel.week[6]}" />
+                    bind:day="@{viewmodel.week[6]}"
+                    bind:viewmodel="@{viewmodel}"/>
 
             </LinearLayout>
             <!-- ./ Week Days -->

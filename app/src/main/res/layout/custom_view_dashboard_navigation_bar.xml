@@ -8,7 +8,7 @@
 
         <variable
             name="viewmodel"
-            type="com.healios.dreams.ui.dashboard.DashboardHomeViewModel" />
+            type="com.healios.dreams.ui.dashboard.home.DashboardHomeViewModel" />
     </data>
 
     <RelativeLayout

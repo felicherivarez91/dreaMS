@@ -232,5 +232,6 @@
     <!-- Challenge Category -->
     <string name="item_dashboard_challenge_category_start">Start</string>
     <string name="item_dashboard_challenge_category_test_completed_string_format">%d/%d</string>
+    <string name="fragment_dashboard_category_challenges_path_select_any_challenge_to_start">Select any challenge to start!</string>
 
 </resources>

@@ -2,7 +2,7 @@ package com.healios.dreams.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.healios.dreams.ui.dashboard.DashboardHomeViewModel
+import com.healios.dreams.ui.dashboard.home.DashboardHomeViewModel
 
 @Suppress("UNCHECKED_CAST")
 class DashboardHomeViewModelFactory : ViewModelProvider.NewInstanceFactory() {

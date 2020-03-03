@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.healios.dreams.databinding.FragmentDashboardNonCompletedChallengesBinding
 import com.healios.dreams.di.DashboardHomeViewModelFactory
-import com.healios.dreams.ui.dashboard.DashboardHomeViewModel
 
 class DashboardNonCompletedChallengesFragment : Fragment() {
 

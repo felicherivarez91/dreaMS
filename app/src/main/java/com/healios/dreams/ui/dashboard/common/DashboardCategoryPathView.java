@@ -234,6 +234,17 @@ public class DashboardCategoryPathView extends RelativeLayout implements ViewTre
     }
     //endregion
 
+    //region: Getters && Setters
+
+    public int getChallengeNumber() {
+        return challengeNumber;
+    }
+
+    public void setChallengeNumber(int challengeNumber) {
+        this.challengeNumber = challengeNumber;
+    }
+    //endregion
+
     //region: Utils
     private Point getWindowSize() {
         Display display = ((Activity) getContext()).getWindowManager().getDefaultDisplay();

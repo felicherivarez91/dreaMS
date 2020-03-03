@@ -5,19 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentDashboardChallengesCategoriesBinding
 import com.healios.dreams.di.DashboardHomeViewModelFactory
-import com.healios.dreams.ui.dashboard.DashboardHomeViewModel
+import com.healios.dreams.model.AvatarModel
+import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 
-class DashboardChallengesCategoriesFragment : Fragment() {
+interface DashboardChallengesCategoriesRecyclerViewListener {
+    fun onItemClick(position: Int, category: ChallengeCategoryMetadata)
+}
+
+class DashboardChallengesCategoriesFragment : Fragment(), DashboardChallengesCategoriesRecyclerViewListener {
 
     private lateinit var binding: FragmentDashboardChallengesCategoriesBinding
 
@@ -35,7 +37,7 @@ class DashboardChallengesCategoriesFragment : Fragment() {
         binding.recyclerViewFragmentDashboardChallengesCategories.apply {
             val numberOfRows: Int = 2
             layoutManager = GridLayoutManager(context, numberOfRows, RecyclerView.VERTICAL, false)
-            adapter = DashboardChallengesCategoriesRecyclerViewAdapter()
+            adapter = DashboardChallengesCategoriesRecyclerViewAdapter(this@DashboardChallengesCategoriesFragment)
         }
 
         bind()
@@ -55,6 +57,10 @@ class DashboardChallengesCategoriesFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() = DashboardChallengesCategoriesFragment()
+    }
+
+    override fun onItemClick(position: Int, category: ChallengeCategoryMetadata) {
+        viewModel.onCategoryStartButtonPressed(position, category)
     }
 
 }

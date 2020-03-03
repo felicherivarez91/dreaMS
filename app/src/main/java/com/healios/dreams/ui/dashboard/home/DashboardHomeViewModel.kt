@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard
+package com.healios.dreams.ui.dashboard.home
 
 import android.content.Context
 import android.text.Spanned
@@ -16,8 +16,7 @@ import com.healios.dreams.model.challenge.metadata.Challenge
 import com.healios.dreams.model.challenge.metadata.ChallengeCategory
 import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
-import com.healios.dreams.util.DreaMSDateUtils
-
+import com.healios.dreams.util.*
 
 class DashboardHomeViewModel constructor(
     private val userManager: UserManager,
@@ -77,10 +76,13 @@ class DashboardHomeViewModel constructor(
     private val _challengeCategories = MutableLiveData<List<ChallengeCategoryMetadata>>()
     val challengeCategories: LiveData<List<ChallengeCategoryMetadata>> = _challengeCategories
 
+    private val _categoryChallengesStartButtonPressed = MutableLiveEvent<ChallengeCategoryMetadata>()
+    val categoryChallengesStartButtonPressed:LiveEvent<ChallengeCategoryMetadata> = _categoryChallengesStartButtonPressed
 
     private val context: Context = DreaMSApp.instance.applicationContext
 
 
+    private var todayDay: Int = DreaMSDateUtils.getDayOfWeekOfToday()
     private var selectedDay: Int = DreaMSDateUtils.getDayOfWeekOfToday()
     private var userData: UserData? = null
 
@@ -154,7 +156,7 @@ class DashboardHomeViewModel constructor(
     //region: Initializer
     init {
         //FIXME: Uncomment
-        askServerForData()
+        //askServerForData()
 
         retrieveUserCollectionData()
 
@@ -170,29 +172,32 @@ class DashboardHomeViewModel constructor(
 
             // Header Info
             setHeaderInfo()
-
         }
     }
 
     private fun getInitialData() {
         Log.d(TAG, "[HOY] " + DreaMSDateUtils.getTodayDateString())
+        /*
         val daysOfTheCurrentWeek =
             patient!!.attendance.currentAttendance.days
 
         val currentDayList = daysOfTheCurrentWeek.filter { day ->
             day.dateScheduled == DreaMSDateUtils.getTodayDateString()
         }
-
+        */
         if (patient!!.activeDays().contains(selectedDay)) {
             val dailyChallengePosition = getDailyChallengePosition()
             currentDay = dailyChallenges[dailyChallengePosition!!]
         }
 
+        showDashboardContentData()
+    }
 
-        if (patient!!.currentSchedulePosition()[selectedDay - 1] == 0) {
-            _shouldShowInfoLayout.postValue(true)
-            _noChallengesScheduled.postValue(true)
-        } else {
+    private fun showDashboardContentData() {
+        _shouldShowInfoLayout.postValue((patient!!.currentSchedulePosition()[selectedDay - 1] == 0))
+        _noChallengesScheduled.postValue((patient!!.currentSchedulePosition()[selectedDay - 1] == 0))
+
+        if (patient!!.currentSchedulePosition()[selectedDay - 1] != 0) {
             getNonCompletedChallengesForToday()
             setupCategoriesForToday()
         }
@@ -206,8 +211,8 @@ class DashboardHomeViewModel constructor(
         // Set title
         setUserName()
 
-        // Show remaining challenges for the week
-        setRemainingChallengesForTheWeek()
+        // Show remaining challenges for current day
+        setRemainingChallengesForSelectedDay()
 
         // Set "Your week" Data
         setYourWeekData()
@@ -279,7 +284,7 @@ class DashboardHomeViewModel constructor(
         _headerTitleText.postValue(formattedText)
     }
 
-    private fun setRemainingChallengesForTheWeek() {
+    private fun setRemainingChallengesForSelectedDay() {
         val challengesCompletedVsTotal: String =
             String.format("%d/%d", challengesCompleted, totalChallengesToday)
         _numOfChallengesCompleted.postValue(challengesCompletedVsTotal)
@@ -299,7 +304,7 @@ class DashboardHomeViewModel constructor(
     }
 
     private fun getNonCompletedChallengesForToday() {
-        val schedulePosition = patient!!.currentSchedulePosition()[selectedDay]
+        val schedulePosition = patient!!.currentSchedulePosition()[selectedDay - 1]
         patient!!.attendance.currentAttendance.days[schedulePosition]
 
         val daysOfTheCurrentWeek =
@@ -326,12 +331,14 @@ class DashboardHomeViewModel constructor(
         _dailyNonCompletedChallenges.postValue(nonCompletedChallengeMetadata)
     }
 
+    //region: Categories grid
     private fun setupCategoriesForToday() {
         val mCategories: ArrayList<ChallengeCategoryMetadata> = ArrayList()
 
         ChallengeCategory.values().forEach { challengeCategory ->
 
             val categoryMetadata = ChallengeCategoryMetadata(
+                ChallengeCategory.categoryId(challengeCategory).toInt(),
                 challengeCategory.description,
                 getEstimatedTimeForCategory(challengeCategory),
                 getNumOfCompletedChallengesInCategoryForToday(challengeCategory),
@@ -356,10 +363,10 @@ class DashboardHomeViewModel constructor(
         val minutes = totalSeconds / 60
         val rest = totalSeconds % 60
 
-        return if (rest >= 30){
-            String.format("%d-%d min",minutes, minutes + 1)
-        }else{
-            String.format("%d min",minutes)
+        return if (rest >= 30) {
+            String.format("%d-%d min", minutes, minutes + 1)
+        } else {
+            String.format("%d min", minutes)
         }
     }
 
@@ -391,6 +398,7 @@ class DashboardHomeViewModel constructor(
             ChallengeCategory.VISIONANDSURVEYS -> R.drawable.ic_challenge_category_vision_and_surveys_uncompleted
         }
     }
+    //endregion
 
     //region: API Calls
     private fun askServerForData() {
@@ -425,7 +433,7 @@ class DashboardHomeViewModel constructor(
     //endregion
 
     //region: Local file data
-    fun retrieveUserCollectionData() {
+    private fun retrieveUserCollectionData() {
         val userCollectionData = userCollectionDataRepository.getUserCollectionData()
         userData = userCollectionData?.data
     }
@@ -441,13 +449,21 @@ class DashboardHomeViewModel constructor(
 
             _week.postValue(_week.value)
 
-        } else {
-            //TODO: CLicked on unavailable day
         }
+        refreshDashboardData()
     }
 
-
+    fun onCategoryStartButtonPressed(position: Int, category: ChallengeCategoryMetadata) {
+        _categoryChallengesStartButtonPressed.postValue(Event(category))
+    }
     //endregion
+
+    private fun refreshDashboardData() {
+        //Refresh dashboard data
+        setRemainingChallengesForSelectedDay()
+
+        showDashboardContentData()
+    }
 
     //region: Utils
     private fun getDailyChallengePosition(): Int? {

@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_verifyPhoneFragment"
-            app:destination="@id/verifyPhoneFragment"/>
+            app:destination="@id/verifyPhoneFragment" />
     </fragment>
 
     <fragment
@@ -41,9 +41,9 @@
 
         <argument
             android:name="nickname"
-            app:argType="string"
             android:defaultValue="@null"
-            app:nullable="true"/>
+            app:argType="string"
+            app:nullable="true" />
 
         <action
             android:id="@+id/action_personalInformationFragment_to_selectAvatarFragment"
@@ -64,7 +64,7 @@
         tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_loginFragment"
-            app:destination="@id/loginFragment"/>
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectAvatarFragment"
@@ -113,7 +113,7 @@
         android:id="@+id/quickTourFragment"
         android:name="com.healios.dreams.ui.quicktour.QuickTourFragment"
         android:label="QuickTourFragment"
-        tools:layout="@layout/fragment_quicktour_step" >
+        tools:layout="@layout/fragment_quicktour_step">
         <action
             android:id="@+id/action_quickTourFragment_to_permissionFragment"
             app:destination="@id/permissionFragment" />
@@ -132,6 +132,33 @@
     <fragment
         android:id="@+id/dashboardHomeFragment"
         android:name="com.healios.dreams.ui.dashboard.home.DashboardHomeFragment"
-        android:label="DashboardHomeFragment" />
+        android:label="DashboardHomeFragment"
+        tools:layout="@layout/fragment_dashboard_home">
+
+        <action
+            android:id="@+id/action_dashboardHomeFragment_to_dashboardCategoryChallengesPathFragment"
+            app:destination="@id/dashboardCategoryChallengesPathFragment">
+            <argument
+                android:name="categoryId"
+                app:argType="integer" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/dashboardCategoryChallengesPathFragment"
+        android:name="com.healios.dreams.ui.dashboard.home.DashboardCategoryChallengesPathFragment"
+        android:label="fragment_dashboard_category_challenges_path"
+        tools:layout="@layout/fragment_dashboard_category_challenges_path">
+
+        <argument
+            android:name="categoryId"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_dashboardCategoryChallengesPathFragment_to_dashboardHomeFragment"
+            app:destination="@id/dashboardHomeFragment"
+            app:popUpTo="@id/dashboardHomeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>
