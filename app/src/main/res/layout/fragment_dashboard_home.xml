@@ -147,7 +147,8 @@
             android:id="@+id/viewPager_fragment_dashboard_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/relativeLayout_fragment_dashboard_home_week_wrapper_layout">
+            android:layout_below="@id/relativeLayout_fragment_dashboard_home_week_wrapper_layout"
+            android:visibility="@{viewmodel.noChallengesScheduled ? View.GONE : View.VISIBLE, default = visible}">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout_fragment_dashboard"
@@ -165,8 +166,9 @@
             android:id="@+id/relativeLayout_fragment_dashboard_home_info_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/viewPager_fragment_dashboard_home"
-            android:visibility="@{viewmodel.shouldShowInfoLayout ? View.VISIBLE : View.GONE, default = gone}">
+            android:layout_below="@id/relativeLayout_fragment_dashboard_home_week_wrapper_layout"
+            android:layout_marginTop="20dp"
+            android:visibility="@{viewmodel.shouldShowInfoLayout ? View.VISIBLE : View.GONE, default = visible}">
 
             <ImageView
                 android:id="@+id/imageView_fragment_dashboard_home_info_image"
@@ -175,6 +177,7 @@
                 android:layout_centerHorizontal="true"
                 android:minWidth="295dp"
                 android:minHeight="240dp"
+                android:contentDescription="@string/fragment_dashboard_home_info_no_challenges_scheduled_title_text"
                 android:src="@{viewmodel.noChallengesScheduled ? @drawable/ic_dashboard_info_no_challenges_scheduled : @drawable/ic_dashboard_info_all_challenges_completed_for_today}" />
 
             <TextView

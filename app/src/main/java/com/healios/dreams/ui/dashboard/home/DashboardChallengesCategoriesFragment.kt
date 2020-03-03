@@ -27,7 +27,6 @@ class DashboardChallengesCategoriesFragment : Fragment() {
         )
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,14 +44,13 @@ class DashboardChallengesCategoriesFragment : Fragment() {
 
     private fun bind() {
 
-
+        viewModel.challengeCategories.observe(viewLifecycleOwner, Observer {
+            val adapter = binding.recyclerViewFragmentDashboardChallengesCategories.adapter
+            if (adapter is DashboardChallengesCategoriesRecyclerViewAdapter) {
+                adapter.setData(it)
+            }
+        })
     }
-
-
-
-
-
-
 
     companion object {
         @JvmStatic

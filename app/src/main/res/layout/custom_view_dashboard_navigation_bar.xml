@@ -14,13 +14,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:elevation="2dp">
+        android:elevation="10dp">
 
         <RelativeLayout
             android:id="@+id/relativeLayout_fragment_dashboard_homebackground_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_dashboard_nav_bar_bg" />
+            android:background="@drawable/ic_dashboard_nav_bar_bg_old" />
 
         <TextView
             android:id="@+id/textView_fragment_dashboard_homedemo_mode_text"

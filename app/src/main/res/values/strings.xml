@@ -229,4 +229,8 @@
     <string name="challenge_speech_change_hand">Change your hand</string>
     <string name="challenge_speech_change_hand_open_eyes">Change your hand and open your eyes</string>
 
+    <!-- Challenge Category -->
+    <string name="item_dashboard_challenge_category_start">Start</string>
+    <string name="item_dashboard_challenge_category_test_completed_string_format">%d/%d</string>
+
 </resources>

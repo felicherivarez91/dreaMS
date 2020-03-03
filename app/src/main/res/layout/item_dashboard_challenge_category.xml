@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View"/>
+        <variable
+            name="category"
+            type="com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -25,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_challenge_category_movement_uncompleted" />
+                android:src="@{ category.numOfChallenges == category.challengesCompleted ? category.iconCompleted : category.iconUncompleted }" />
 
             <TextView
                 android:id="@+id/textView_item_dashboard_challenge_category_title"
@@ -35,7 +38,7 @@
                 android:layout_below="@id/imageView_item_dashboard_challenge_category_image"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Movement" />
+                android:text="@{category.description}" />
 
             <TextView
                 android:id="@+id/textView_item_dashboard_challenge_category_time_text"
@@ -45,7 +48,7 @@
                 android:layout_below="@id/textView_item_dashboard_challenge_category_title"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="4dp"
-                android:text="2-4 min" />
+                android:text="@{category.estimatedTime}" />
 
 
             <RelativeLayout
@@ -67,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:text="2/9" />
+                    android:text="@{String.format(@string/item_dashboard_challenge_category_test_completed_string_format, category.challengesCompleted, category.numOfChallenges)}" />
 
                 <!-- Start Button -->
                 <RelativeLayout
@@ -79,7 +82,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:minHeight="32dp"
-                    android:visibility="visible"
+                    android:visibility="@{category.numOfChallenges == category.challengesCompleted ? View.GONE : View.VISIBLE, default = visible}"
                     android:layout_centerVertical="true">
 
                     <TextView
@@ -89,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="10dp"
-                        android:text="Start" />
+                        android:text="@string/item_dashboard_challenge_category_start" />
 
                     <ImageView
                         android:id="@+id/imageView_item_dashboard_challenge_category_start_image"
@@ -111,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_item_dashboard_challenge_category_done"
-                    android:visibility="gone" />
+                    android:visibility="@{category.numOfChallenges == category.challengesCompleted ? View.VISIBLE : View.GONE, default = gone}" />
                 <!-- Done Image -->
 
             </RelativeLayout>

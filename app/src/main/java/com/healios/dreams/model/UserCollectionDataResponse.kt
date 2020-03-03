@@ -111,16 +111,16 @@ data class Day(
 data class Test(
     val patientTestUUID: String,
     val peakCode: String? = null,
-    val intensityID: Long,
+    val intensityId: Long,
     val restartedAt: Any? = null,
     val testId: Long,
     val code: String,
     val startedAt: Long? = null,
     val cantDoItAt: List<Long>? = null,
     val precardUUID: String? = null,
-    val durationSEC: Long,
+    val durationSec: Long,
     val completedAt: Long? = null,
-    val categoryID: Long
+    val categoryId: Long
 )
 
 data class Relapse(
@@ -164,12 +164,12 @@ data class StudyParticipant(
     val dateStart: String,
     val subjectType: Long,
     val currentTrackStatus: Long,
-    val genderID: Long,
+    val genderId: Long,
     val health: Health,
     val appCredentials: Long,
     val archivedAt: Any? = null,
-    val studyID: Long,
-    val currentStatusID: Long,
+    val studyId: Long,
+    val currentStatusId: Long,
     val numberOfChallengesCompleted: Long,
     val uuid: String,
     val isHealthyParticipant: Long,
@@ -178,7 +178,7 @@ data class StudyParticipant(
     val dateEnd: String,
     val dateExitInterview: Any? = null,
     val completedAt: Any? = null,
-    val subjectID: String,
+    val subjectId: String,
     val numberOfChallenges: Long,
     val birthdate: String,
     val canSetExitInterview: Long,
@@ -201,7 +201,7 @@ data class OnBoardingData(
 
 data class AbilityData(
     val balanceProblems: Long,
-    val challengeIDCantPerform: String,
+    val challengeIdCantPerform: String,
     val dominantHand: Long,
     val walkingAids: Long
 )

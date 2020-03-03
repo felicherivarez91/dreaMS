@@ -7,15 +7,15 @@ import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.viewpager.widget.ViewPager
 import com.healios.dreams.DreaMSApp
 import com.healios.dreams.R
 import com.healios.dreams.data.*
 import com.healios.dreams.data.challenge.ChallengeBuilder
 import com.healios.dreams.model.*
 import com.healios.dreams.model.challenge.metadata.Challenge
+import com.healios.dreams.model.challenge.metadata.ChallengeCategory
+import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
-import com.healios.dreams.ui.schedule.ScheduleFragmentArgs
 import com.healios.dreams.util.DreaMSDateUtils
 
 
@@ -61,25 +61,27 @@ class DashboardHomeViewModel constructor(
 
     //region: Info layout parameters
     private val _infoImageResource = MutableLiveData<Int>()
-    val infoImageResource:LiveData<Int> = _infoImageResource
+    val infoImageResource: LiveData<Int> = _infoImageResource
 
     private val _shouldShowInfoLayout = MutableLiveData<Boolean>(false)
-    val shouldShowInfoLayout:LiveData<Boolean> = _shouldShowInfoLayout
+    val shouldShowInfoLayout: LiveData<Boolean> = _shouldShowInfoLayout
 
-    private val _noChallengesScheduled= MutableLiveData<Boolean>(false)
-    val noChallengesScheduled:LiveData<Boolean> = _noChallengesScheduled
+    private val _noChallengesScheduled = MutableLiveData<Boolean>(false)
+    val noChallengesScheduled: LiveData<Boolean> = _noChallengesScheduled
     //endregion
 
     private val _dailyNonCompletedChallenges = MutableLiveData<List<ChallengeMetadata>>()
-    val dailyNonCompletedChallenges: LiveData<List<ChallengeMetadata>> = _dailyNonCompletedChallenges
+    val dailyNonCompletedChallenges: LiveData<List<ChallengeMetadata>> =
+        _dailyNonCompletedChallenges
 
-
+    private val _challengeCategories = MutableLiveData<List<ChallengeCategoryMetadata>>()
+    val challengeCategories: LiveData<List<ChallengeCategoryMetadata>> = _challengeCategories
 
 
     private val context: Context = DreaMSApp.instance.applicationContext
 
 
-    private var selectedDay:Int = DreaMSDateUtils.getDayOfWeekOfToday()
+    private var selectedDay: Int = DreaMSDateUtils.getDayOfWeekOfToday()
     private var userData: UserData? = null
 
     private var currentDay: Day? = null
@@ -97,7 +99,7 @@ class DashboardHomeViewModel constructor(
             val challengePosition = getDailyChallengePosition()
             return if (challengePosition != null) {
                 dailyChallenges[challengePosition].tests
-            }else{
+            } else {
                 null
             }
         }
@@ -114,7 +116,7 @@ class DashboardHomeViewModel constructor(
 
     private var challengesCompleted: Int
         get() {
-            if (dailyChallenges.isEmpty()){
+            if (dailyChallenges.isEmpty()) {
                 return 0
             }
 
@@ -132,7 +134,7 @@ class DashboardHomeViewModel constructor(
 
     private var noChallengesForToday: Boolean
         get() {
-            if (dailyChallenges.isEmpty()){
+            if (dailyChallenges.isEmpty()) {
                 return true
             }
             return patient?.currentSchedulePosition()?.get(selectedDay) == 0
@@ -152,7 +154,7 @@ class DashboardHomeViewModel constructor(
     //region: Initializer
     init {
         //FIXME: Uncomment
-        //askServerForData()
+        askServerForData()
 
         retrieveUserCollectionData()
 
@@ -190,9 +192,10 @@ class DashboardHomeViewModel constructor(
         if (patient!!.currentSchedulePosition()[selectedDay - 1] == 0) {
             _shouldShowInfoLayout.postValue(true)
             _noChallengesScheduled.postValue(true)
+        } else {
+            getNonCompletedChallengesForToday()
+            setupCategoriesForToday()
         }
-
-        getNonCompletedChallengesForToday()
     }
 
     private fun setHeaderInfo() {
@@ -235,10 +238,14 @@ class DashboardHomeViewModel constructor(
 
         dayNames.forEachIndexed { index, dayName ->
             val dayNumber = index + 1
-            val dayDate =  DreaMSDateUtils.getDateStringFromDateIncrementedOnDays(patient!!.attendance.currentAttendance.weekStartsOn, (dayNumber - 1))
-            val dailyChallenge:Day? = dailyChallenges.firstOrNull { it.dateScheduled == dayDate }
+            val dayDate = DreaMSDateUtils.getDateStringFromDateIncrementedOnDays(
+                patient!!.attendance.currentAttendance.weekStartsOn,
+                (dayNumber - 1)
+            )
+            val dailyChallenge: Day? = dailyChallenges.firstOrNull { it.dateScheduled == dayDate }
 
-            val dayOfTheWeek = DayOfTheWeek(dayNumber,
+            val dayOfTheWeek = DayOfTheWeek(
+                dayNumber,
                 dayName,
                 dayDate,
                 dailyChallenge,
@@ -247,7 +254,7 @@ class DashboardHomeViewModel constructor(
                 activeDays.indexOf(dayNumber),
                 false,
                 percentOfCompletedChallenges
-                )
+            )
 
             week.add(dayOfTheWeek)
         }
@@ -273,7 +280,8 @@ class DashboardHomeViewModel constructor(
     }
 
     private fun setRemainingChallengesForTheWeek() {
-        val challengesCompletedVsTotal:String = String.format("%d/%d",challengesCompleted,totalChallengesToday)
+        val challengesCompletedVsTotal: String =
+            String.format("%d/%d", challengesCompleted, totalChallengesToday)
         _numOfChallengesCompleted.postValue(challengesCompletedVsTotal)
 
         _percentOfChallengesCompleted.postValue(percentOfCompletedChallenges)
@@ -316,6 +324,72 @@ class DashboardHomeViewModel constructor(
         }
 
         _dailyNonCompletedChallenges.postValue(nonCompletedChallengeMetadata)
+    }
+
+    private fun setupCategoriesForToday() {
+        val mCategories: ArrayList<ChallengeCategoryMetadata> = ArrayList()
+
+        ChallengeCategory.values().forEach { challengeCategory ->
+
+            val categoryMetadata = ChallengeCategoryMetadata(
+                challengeCategory.description,
+                getEstimatedTimeForCategory(challengeCategory),
+                getNumOfCompletedChallengesInCategoryForToday(challengeCategory),
+                getNumOfChallengesInCategoryForToday(challengeCategory),
+                getCompletedIconForCategory(challengeCategory),
+                getUncompletedIconForCategory(challengeCategory)
+            )
+
+            mCategories.add(categoryMetadata)
+        }
+
+        _challengeCategories.postValue(mCategories)
+    }
+
+    private fun getEstimatedTimeForCategory(category: ChallengeCategory): String {
+        val categoryId = ChallengeCategory.categoryId(category)
+
+        val filteredCategory = todayTests?.filter {
+            it.categoryId == categoryId && it.completedAt == null
+        }
+        val totalSeconds = filteredCategory?.sumBy { it.durationSec.toInt() } ?: 0
+        val minutes = totalSeconds / 60
+        val rest = totalSeconds % 60
+
+        return if (rest >= 30){
+            String.format("%d-%d min",minutes, minutes + 1)
+        }else{
+            String.format("%d min",minutes)
+        }
+    }
+
+    private fun getNumOfCompletedChallengesInCategoryForToday(category: ChallengeCategory): Int {
+        val categoryId = ChallengeCategory.categoryId(category)
+        val todayTestOfGivenCategory = todayTests?.filter { it.categoryId == categoryId }
+        return todayTestOfGivenCategory?.filter { it.completedAt != null }?.size ?: 0
+    }
+
+    private fun getNumOfChallengesInCategoryForToday(category: ChallengeCategory): Int {
+        val categoryId = ChallengeCategory.categoryId(category)
+        return todayTests?.filter { it.categoryId == categoryId }?.size ?: 0
+    }
+
+    private fun getCompletedIconForCategory(challengeCategory: ChallengeCategory): Int {
+        return when (challengeCategory) {
+            ChallengeCategory.COGNITIVE -> R.drawable.ic_challenge_category_cognition_completed
+            ChallengeCategory.MOTION -> R.drawable.ic_challenge_category_movement_completed
+            ChallengeCategory.FINEMOTORSKILLS -> R.drawable.ic_challenge_category_fine_motor_skills_completed
+            ChallengeCategory.VISIONANDSURVEYS -> R.drawable.ic_challenge_category_vision_and_surveys_completed
+        }
+    }
+
+    private fun getUncompletedIconForCategory(challengeCategory: ChallengeCategory): Int {
+        return when (challengeCategory) {
+            ChallengeCategory.COGNITIVE -> R.drawable.ic_challenge_category_cognition_uncompleted
+            ChallengeCategory.MOTION -> R.drawable.ic_challenge_category_movement_uncompleted
+            ChallengeCategory.FINEMOTORSKILLS -> R.drawable.ic_challenge_category_fine_motor_skills_uncompleted
+            ChallengeCategory.VISIONANDSURVEYS -> R.drawable.ic_challenge_category_vision_and_surveys_uncompleted
+        }
     }
 
     //region: API Calls
@@ -367,7 +441,7 @@ class DashboardHomeViewModel constructor(
 
             _week.postValue(_week.value)
 
-        }else{
+        } else {
             //TODO: CLicked on unavailable day
         }
     }
@@ -377,13 +451,15 @@ class DashboardHomeViewModel constructor(
 
     //region: Utils
     private fun getDailyChallengePosition(): Int? {
-        val dcCount: Int? = patient?.currentSchedulePosition()?.subList(0,selectedDay-1)?.filter { it == 1 }?.size
-        if (dcCount != null){
-            if (dcCount == 0){
+        val dcCount: Int? =
+            patient?.currentSchedulePosition()?.subList(0, selectedDay - 1)?.filter { it == 1 }
+                ?.size
+        if (dcCount != null) {
+            if (dcCount == 0) {
                 return 0
             }
             return dcCount - 1
-        }else{
+        } else {
             return 0
         }
     }
@@ -391,17 +467,16 @@ class DashboardHomeViewModel constructor(
 }
 
 
-//
 class DayOfTheWeek(
     val numOfTheWeek: Int,
-    val dayName:String,
-    val dayDateString:String,
+    val dayName: String,
+    val dayDateString: String,
     var dailyChallenge: Day?,
     var status: DayOfTheWeekStatus,
-    var isSelectedDay:Boolean,
-    val challengePosition:Int,
-    var allDailyChallengesCompleted:Boolean,
-    var percentOfCompletedChallenges:Int
+    var isSelectedDay: Boolean,
+    val challengePosition: Int,
+    var allDailyChallengesCompleted: Boolean,
+    var percentOfCompletedChallenges: Int
 )
 
 enum class DayOfTheWeekStatus {
