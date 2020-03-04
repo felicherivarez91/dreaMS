@@ -41,7 +41,6 @@ public class CategoryPathView extends View {
 
     public void setPath(Path path) {
         this.createdPath = path;
-        //this.drawPath(canvas);
     }
     //endregion
 

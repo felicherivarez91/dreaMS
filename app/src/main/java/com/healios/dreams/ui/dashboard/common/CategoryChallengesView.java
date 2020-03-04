@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 
 import com.healios.dreams.R;
 import com.healios.dreams.model.Test;
-import com.healios.dreams.model.challenge.metadata.ChallengeMetadata;
 
 import java.util.List;
 
@@ -61,7 +60,6 @@ public class CategoryChallengesView extends RelativeLayout {
         mChallengesGroupView = findViewById(R.id.custom_view_challenges_view_challenges_group_view);
     }
 
-
     public void setPointsToChallenges(List<PointF> pointsToChallenges, List<Test> listOfChallenges) {
         this.pointsToChallenges = pointsToChallenges;
         this.listOfChallenges = listOfChallenges;
@@ -88,7 +86,6 @@ public class CategoryChallengesView extends RelativeLayout {
         layoutParams.topMargin = (int) ((int) centerPoint.y - (CATEGORY_CHALLENGE_HEIGHT / 2 * getScreenDensity()));
 
         mChallengesGroupView.addView(challengeView, layoutParams);
-
     }
 
     private float getScreenDensity() {

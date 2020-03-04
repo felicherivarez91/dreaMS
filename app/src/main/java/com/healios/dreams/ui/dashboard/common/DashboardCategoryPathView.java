@@ -84,7 +84,6 @@ public class DashboardCategoryPathView extends RelativeLayout implements ViewTre
         inflater.inflate(R.layout.custom_view_dashboard_category_path_view, this, true);
 
         attachViews();
-        //initView();
     }
 
     private void attachViews() {

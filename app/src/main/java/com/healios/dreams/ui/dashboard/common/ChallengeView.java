@@ -18,10 +18,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChallengeView extends RelativeLayout {
 
-    private CircleImageView challengeImage;
-    private ImageView doneImage;
-    private View wrapperLayout;
-
     private Test test;
     private ChallengeMetadata challengeMetadataFromTest;
     private ChallengeViewListener listener;
