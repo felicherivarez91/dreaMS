@@ -10,6 +10,8 @@ import androidx.navigation.fragment.navArgs
 import com.healios.dreams.databinding.FragmentDashboardCategoryChallengesPathBinding
 import com.healios.dreams.di.DashboardHomeViewModelFactory
 import com.healios.dreams.model.Test
+import com.healios.dreams.model.challenge.metadata.ChallengeCategory
+import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
 import com.healios.dreams.ui.dashboard.common.ChallengeViewListener
 import com.healios.dreams.ui.dashboard.common.DashboardCategoryPathView
@@ -50,6 +52,14 @@ class DashboardCategoryChallengesPathFragment : Fragment(), ChallengeViewListene
             view.listOfChallenges = it
 
         }
+        val numOfChallengesCompleted = challengesOfCategory?.filter { it.completedAt != null }?.size ?: 0
+        val challengeCategory = ChallengeCategory.values().first {
+            it.ordinal + 1 == categoryId
+        }
+
+        binding.category = getString(challengeCategory.description);
+        binding.numOfChallenges = challengesOfCategory?.size ?: 0
+        binding.challengesCompleted = numOfChallengesCompleted
 
         binding.relativeLayoutFragmentDashboardCategoryChallengesPathContentLayout.addView(view)
 

@@ -34,6 +34,7 @@
 
     <!-- App Colors with opacity -->
     <color name="white_50">#80FFFFFF</color>
+    <color name="white_75">#BFFFFFFF</color>
     <color name="colorPrimary_10">#1A4DC185</color>
     <color name="colorPrimary_20">#334DC185</color>
     <color name="colorAccent_50">#804DC185</color>
