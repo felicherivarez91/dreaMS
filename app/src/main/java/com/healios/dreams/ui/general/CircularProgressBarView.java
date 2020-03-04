@@ -11,12 +11,18 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import androidx.annotation.Nullable;
+import androidx.databinding.BindingAdapter;
 
+import com.healios.dreams.DreaMSApp;
 import com.healios.dreams.R;
+import com.healios.dreams.model.Day;
+import com.healios.dreams.model.Dreams;
+import com.healios.dreams.ui.dashboard.home.DayOfTheWeek;
 
 public class CircularProgressBarView extends View {
 
@@ -26,7 +32,7 @@ public class CircularProgressBarView extends View {
 
     private float mPercent = 75;
     private float mStrokeWidth;
-    private int mProgressBackBgColor = 0xffffffff;
+    private int mProgressBackBgColor = getResources().getColor(R.color.transparent);
     private float mStartAngle = 0;
     private int mBgColor = getResources().getColor(R.color.white);
     private int mFgColorStart = getResources().getColor(R.color.colorPrimary);
@@ -43,7 +49,7 @@ public class CircularProgressBarView extends View {
     private boolean showTimeLines;
     private boolean mBackgroundShouldOverStepProgressBar = false;
 
-
+    //region: Constructor
     public CircularProgressBarView(Context context) {
         super(context);
         init(null);
@@ -58,7 +64,9 @@ public class CircularProgressBarView extends View {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
+    //endregion
 
+    //region: Initializer
     private void init(AttributeSet attrs) {
         if (attrs != null) {
             initWithAttrs(attrs);
@@ -73,26 +81,26 @@ public class CircularProgressBarView extends View {
                 0, 0);
         try {
             // Background
-            mProgressBackBgColor = styledAttributes.getColor(R.styleable.CircularProgressBar_progressBarBackgroundColor, 0xffe1e1e1);
+            mProgressBackBgColor = styledAttributes.getInt(R.styleable.CircularProgressBar_progressBarBackgroundColor, getResources().getColor(R.color.transparent));
             mBackgroundShouldOverStepProgressBar = styledAttributes.getBoolean(R.styleable.CircularProgressBar_backgroundShouldOverStepProgressBar, false);
 
-            mBgColor = styledAttributes.getColor(R.styleable.CircularProgressBar_backgroundColor, 0xffe1e1e1);
-            mFgColorEnd = styledAttributes.getColor(R.styleable.CircularProgressBar_foregroundColorEnd, getResources().getColor(R.color.colorPrimary));
-            mFgColorStart = styledAttributes.getColor(R.styleable.CircularProgressBar_foregroundColorStart, getResources().getColor(R.color.colorPrimary));
+            mBgColor = styledAttributes.getInt(R.styleable.CircularProgressBar_backgroundColor, getResources().getColor(R.color.transparent));
+            mFgColorEnd = styledAttributes.getInt(R.styleable.CircularProgressBar_foregroundColorEnd, getResources().getColor(R.color.colorPrimary));
+            mFgColorStart = styledAttributes.getInt(R.styleable.CircularProgressBar_foregroundColorStart, getResources().getColor(R.color.colorPrimary));
             mPercent = styledAttributes.getFloat(R.styleable.CircularProgressBar_percent, 75);
             mStartAngle = styledAttributes.getFloat(R.styleable.CircularProgressBar_startAngle, 0) + angleCorrection;
             mStrokeWidth = styledAttributes.getDimensionPixelSize(R.styleable.CircularProgressBar_strokeWidth, dpsToPixels(16));
 
             // Second lines
             showTimeLines = styledAttributes.getBoolean(R.styleable.CircularProgressBar_showSecondTimeLines, false);
-            mTimeLinesColor = styledAttributes.getColor(R.styleable.CircularProgressBar_secondTimeLineColor, 0xffe1e1e1);
+            mTimeLinesColor = styledAttributes.getInt(R.styleable.CircularProgressBar_secondTimeLineColor, 0xffe1e1e1);
             numOfSeconds = styledAttributes.getInteger(R.styleable.CircularProgressBar_numOfSeconds, 60);
-
 
         } finally {
             styledAttributes.recycle();
         }
     }
+    //endregion
 
     private void createPaintBrush() {
         paintBrush = new Paint();
@@ -109,6 +117,20 @@ public class CircularProgressBarView extends View {
         backgroundPatinBrush.setStrokeCap(Paint.Cap.ROUND);
         backgroundPatinBrush.setColor(mProgressBackBgColor);
     }
+
+    private void updateOval() {
+        int xp = getPaddingLeft() + getPaddingRight();
+        int yp = getPaddingBottom() + getPaddingTop();
+        mOval = new RectF(getPaddingLeft() + mStrokeWidth, getPaddingTop() + mStrokeWidth,
+                getPaddingLeft() + (getWidth() - xp) - mStrokeWidth,
+                getPaddingTop() + (getHeight() - yp) - mStrokeWidth);
+    }
+
+    public void refreshTheLayout() {
+        invalidate();
+        requestLayout();
+    }
+
     //region: Draw Canvas
 
     @Override
@@ -130,7 +152,13 @@ public class CircularProgressBarView extends View {
 
         updateOval();
 
-        mShader = new LinearGradient(mOval.left, mOval.top, mOval.left, mOval.bottom, mFgColorStart, mFgColorEnd, Shader.TileMode.MIRROR);
+        mShader = new LinearGradient(mOval.left,
+                mOval.top,
+                mOval.left,
+                mOval.bottom,
+                mFgColorStart,
+                mFgColorEnd,
+                Shader.TileMode.MIRROR);
 
     }
 
@@ -242,13 +270,16 @@ public class CircularProgressBarView extends View {
         return mFgColorEnd;
     }
 
-    public void setFgColorEnd(int mFgColorEnd) {
-        this.mFgColorEnd = mFgColorEnd;
+    public void setFgColorEnd(int foregroundColorEnd) {
+        if (mOval == null){
+            updateOval();
+        }
+
+        this.mFgColorEnd = foregroundColorEnd;
         mShader = new LinearGradient(mOval.left, mOval.top,
                 mOval.left, mOval.bottom, mFgColorStart, mFgColorEnd, Shader.TileMode.MIRROR);
         refreshTheLayout();
     }
-
 
     public float getStartAngle() {
         return mStartAngle;
@@ -259,21 +290,24 @@ public class CircularProgressBarView extends View {
         refreshTheLayout();
     }
 
+    public int getBgColor() {
+        return mBgColor;
+    }
+
+    public void setBgColor(int mBgColor) {
+        this.mBgColor = mBgColor;
+    }
+
+    public int getProgressBackBgColor() {
+        return mProgressBackBgColor;
+    }
+
+    public void setProgressBackBgColor(int mProgressBackBgColor) {
+        this.mProgressBackBgColor = mProgressBackBgColor;
+        createBackgroundPaintBrush();
+    }
+
     //endregion
-
-    private void updateOval() {
-        int xp = getPaddingLeft() + getPaddingRight();
-        int yp = getPaddingBottom() + getPaddingTop();
-        mOval = new RectF(getPaddingLeft() + mStrokeWidth, getPaddingTop() + mStrokeWidth,
-                getPaddingLeft() + (getWidth() - xp) - mStrokeWidth,
-                getPaddingTop() + (getHeight() - yp) - mStrokeWidth);
-    }
-
-    public void refreshTheLayout() {
-        invalidate();
-        requestLayout();
-    }
-
 
     //region: Animation
     public void animateIndeterminate() {
@@ -303,4 +337,7 @@ public class CircularProgressBarView extends View {
         return (int) (getContext().getResources().getDisplayMetrics().density * dp + 0.5f);
     }
     //endregion
+
+
+
 }

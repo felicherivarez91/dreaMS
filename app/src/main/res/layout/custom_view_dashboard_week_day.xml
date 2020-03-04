@@ -54,23 +54,25 @@
             android:layout_below="@id/textView_fragment_dashboard_week_day_item_day_title"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:background="@color/transparent">
 
             <com.healios.dreams.ui.general.CircularProgressBarView
                 android:id="@+id/circularProgressBar_fragment_dashboard_week_day_challenges_completed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="@{day.dailyChallenge == null ? View.GONE : View.VISIBLE, default = gone}"
-                app:backgroundColor="@color/colorPrimary_20"
+                app:backgroundColor="@{day.selectedDay ? @color/white_50 : @color/colorPrimary_20}"
                 app:backgroundShouldOverStepProgressBar="false"
-                app:foregroundColorEnd="@color/colorPrimary"
-                app:foregroundColorStart="@color/colorPrimary"
+                app:foregroundColorEnd="@{day.selectedDay ? @color/white : @color/colorPrimary}"
+                app:foregroundColorStart="@{day.selectedDay ? @color/white : @color/colorPrimary}"
                 app:numOfSeconds="60"
-                app:percent="@{day.percentOfCompletedChallenges, default = 0}"
-                app:progressBarBackgroundColor="@color/white_50"
+                app:percent="@{day.percentOfCompletedChallenges}"
+                app:progressBarBackgroundColor="@{day.selectedDay ? @color/transparent : @color/white_50}"
                 app:secondTimeLineColor="@color/timerStepSecondColor"
                 app:showSecondTimeLines="false"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="2dp"
+                />
 
             <ImageView
                 android:id="@+id/imageView_fragment_dashboard_week_day_challenges_completed_progressbar_icon"

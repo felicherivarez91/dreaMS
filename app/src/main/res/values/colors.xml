@@ -33,6 +33,7 @@
     <color name="white">#FFFFFF</color>
 
     <!-- App Colors with opacity -->
+    <color name="transparent">@android:color/transparent</color>
     <color name="white_50">#80FFFFFF</color>
     <color name="white_75">#BFFFFFFF</color>
     <color name="colorPrimary_10">#1A4DC185</color>
