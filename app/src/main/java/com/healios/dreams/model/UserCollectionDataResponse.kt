@@ -1,6 +1,5 @@
 package com.healios.dreams.model
 
-import com.healios.dreams.DreaMSApp
 import com.healios.dreams.util.DreaMSDateUtils
 import java.util.*
 import kotlin.collections.ArrayList

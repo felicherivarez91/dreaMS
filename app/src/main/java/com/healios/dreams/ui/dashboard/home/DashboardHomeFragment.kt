@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.healios.dreams.databinding.FragmentDashboardHomeBinding
 import com.healios.dreams.di.DashboardHomeViewModelFactory
-import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 import com.healios.dreams.ui.dashboard.DashboardFragment
 import com.healios.dreams.util.EventObserver
 
@@ -51,9 +50,9 @@ class DashboardHomeFragment : Fragment(), TabLayout.OnTabSelectedListener {
         binding.tabLayoutFragmentDashboard.addOnTabSelectedListener(this)
 
 
-        viewModel.categoryChallengesStartButtonPressed.observe(viewLifecycleOwner, EventObserver {
+        viewModel.categoryChallengesStartButtonPressedChallengesNavigationArgument.observe(viewLifecycleOwner, EventObserver {
             //TODO: Send data to next fragment
-            findNavController().navigate(DashboardHomeFragmentDirections.actionDashboardHomeFragmentToDashboardCategoryChallengesPathFragment(it.categoryId))
+            findNavController().navigate(DashboardHomeFragmentDirections.actionDashboardHomeFragmentToDashboardCategoryChallengesPathFragment(it.category.categoryId, it.selectedDay))
         })
 
     }

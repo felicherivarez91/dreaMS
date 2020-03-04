@@ -16,6 +16,10 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.healios.dreams.R;
+import com.healios.dreams.model.Test;
+import com.healios.dreams.model.challenge.metadata.ChallengeMetadata;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,8 @@ import java.util.List;
 public class DashboardCategoryPathView extends RelativeLayout implements ViewTreeObserver.OnGlobalLayoutListener {
 
     private final String TAG = DashboardCategoryPathView.class.getSimpleName();
+
+    private ChallengeViewListener listener;
 
     //region: Path Params
     private List<PointF> pointsToChallenges = new ArrayList<>();
@@ -50,10 +56,13 @@ public class DashboardCategoryPathView extends RelativeLayout implements ViewTre
     private CategoryChallengesView challengesView;
     private RelativeLayout wrapperLayout;
     private ScrollView scrollView;
+
+    private List<Test> listOfChallenges;
     //region: Constructor
 
-    public DashboardCategoryPathView(Context context) {
+    public DashboardCategoryPathView(Context context, ChallengeViewListener listener) {
         super(context);
+        this.listener = listener;
         init(null);
     }
 
@@ -75,7 +84,7 @@ public class DashboardCategoryPathView extends RelativeLayout implements ViewTre
         inflater.inflate(R.layout.custom_view_dashboard_category_path_view, this, true);
 
         attachViews();
-        initView();
+        //initView();
     }
 
     private void attachViews() {
@@ -86,6 +95,8 @@ public class DashboardCategoryPathView extends RelativeLayout implements ViewTre
     }
 
     private void initView() {
+        //Set listener
+        challengesView.listener = this.listener;
 
         // Set layout change observer to challenges View
         ViewTreeObserver challengesViewViewTreeObserver = challengesView.getViewTreeObserver();
@@ -123,7 +134,7 @@ public class DashboardCategoryPathView extends RelativeLayout implements ViewTre
     }
 
     private void placeChallengesInView() {
-        challengesView.setPointsToChallenges(pointsToChallenges);
+        challengesView.setPointsToChallenges(pointsToChallenges, listOfChallenges);
     }
 
     private void initializePathParameters() {
@@ -234,15 +245,22 @@ public class DashboardCategoryPathView extends RelativeLayout implements ViewTre
     }
     //endregion
 
+    private void reloadView() {
+        initView();
+    }
+
     //region: Getters && Setters
-
-    public int getChallengeNumber() {
-        return challengeNumber;
+    public List<Test> getListOfChallenges() {
+        return listOfChallenges;
     }
 
-    public void setChallengeNumber(int challengeNumber) {
-        this.challengeNumber = challengeNumber;
+    public void setListOfChallenges(List<Test> listOfChallenges) {
+        this.listOfChallenges = listOfChallenges;
+        this.challengeNumber = listOfChallenges.size();
+
+        reloadView();
     }
+
     //endregion
 
     //region: Utils

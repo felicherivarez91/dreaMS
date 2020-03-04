@@ -5,11 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.healios.dreams.databinding.FragmentDashboardCategoryChallengesPathBinding
+import com.healios.dreams.di.DashboardHomeViewModelFactory
+import com.healios.dreams.model.Test
+import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
+import com.healios.dreams.ui.dashboard.common.ChallengeViewListener
 import com.healios.dreams.ui.dashboard.common.DashboardCategoryPathView
 
-class DashboardCategoryChallengesPathFragment : Fragment() {
+class DashboardCategoryChallengesPathFragment : Fragment(), ChallengeViewListener {
 
     companion object {
         fun newInstance() = DashboardCategoryChallengesPathFragment()
@@ -17,8 +22,11 @@ class DashboardCategoryChallengesPathFragment : Fragment() {
 
     private val args: DashboardCategoryChallengesPathFragmentArgs by navArgs()
 
-
-    //private lateinit var viewModel: DashboardCategoryChallengesPathViewModel
+    private val viewModel by lazy {
+        ViewModelProvider(activity!!, DashboardHomeViewModelFactory()).get(
+            DashboardHomeViewModel::class.java
+        )
+    }
 
     private lateinit var binding: FragmentDashboardCategoryChallengesPathBinding
 
@@ -27,20 +35,32 @@ class DashboardCategoryChallengesPathFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val categoryId = args.categoryId
+        val selectedDay = args.selectedDay
         binding = FragmentDashboardCategoryChallengesPathBinding.inflate(inflater, container, false)
-
-        bind()
+        binding.lifecycleOwner = this
+        bind(categoryId)
         return binding.root
     }
 
-    private fun bind() {
+    private fun bind(categoryId: Int) {
 
-        val view = DashboardCategoryPathView(context)
+        val view = DashboardCategoryPathView(context, this)
+        val challengesOfCategory = viewModel.getTestChallengesOfCategory(categoryId)
+        challengesOfCategory?.let {
+            view.listOfChallenges = it
+
+        }
+
         binding.relativeLayoutFragmentDashboardCategoryChallengesPathContentLayout.addView(view)
+
 
         binding.toolbarChallengesPath.setNavigationOnClickListener {
             activity?.onBackPressed()
         }
+
     }
 
+    override fun onChallengeIconClick(test: Test?) {
+        TODO("*** Not implemented yet. Challenges need to be defined ***")
+    }
 }

@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 
 import com.healios.dreams.R;
+import com.healios.dreams.model.Test;
+import com.healios.dreams.model.challenge.metadata.ChallengeMetadata;
 
 import java.util.List;
 
@@ -22,12 +24,19 @@ public class CategoryChallengesView extends RelativeLayout {
     private RelativeLayout mChallengesGroupView;
 
     private List<PointF> pointsToChallenges;
+    private List<Test> listOfChallenges;
+
+    public ChallengeViewListener listener;
 
     //region: Constructor
     public CategoryChallengesView(Context context) {
         super(context);
         init(context, null);
+    }
 
+    public CategoryChallengesView(Context context, ChallengeViewListener listener) {
+        super(context);
+        this.listener = listener;
     }
 
     public CategoryChallengesView(Context context, AttributeSet attrs) {
@@ -53,34 +62,25 @@ public class CategoryChallengesView extends RelativeLayout {
     }
 
 
-    public void setPointsToChallenges(List<PointF> pointsToChallenges) {
+    public void setPointsToChallenges(List<PointF> pointsToChallenges, List<Test> listOfChallenges) {
         this.pointsToChallenges = pointsToChallenges;
+        this.listOfChallenges = listOfChallenges;
+
         this.placeChallengesInView();
     }
-
 
     private void placeChallengesInView() {
 
         for (PointF centerPoint : pointsToChallenges) {
             // Place Current Challenge
-            this.placeChallenge(centerPoint);
+            this.placeChallenge(centerPoint,listOfChallenges.get(pointsToChallenges.indexOf(centerPoint)));
         }
     }
 
-    private void placeChallenge(PointF centerPoint) {
+    private void placeChallenge(PointF centerPoint, Test test) {
 
-        ChallengeView challengeView = new ChallengeView(this.getContext());
-
-        /*
-        int random = new Random().nextInt(3) + 1;
-        if (random == 1) {
-            challengeView.setStatus(ChallengeView.ChallengeStatus.Completed);
-        } else if (random == 2) {
-            challengeView.setStatus(ChallengeView.ChallengeStatus.Uncompleted);
-        } else {
-            challengeView.setStatus(ChallengeView.ChallengeStatus.Unavailable);
-        }
-         */
+        ChallengeView challengeView = new ChallengeView(this.getContext(), listener);
+        challengeView.setChallenge(test);
 
         LayoutParams layoutParams = new LayoutParams((int) (CATEGORY_CHALLENGE_WIDTH * getScreenDensity()), (int) (CATEGORY_CHALLENGE_HEIGHT * getScreenDensity()));
 

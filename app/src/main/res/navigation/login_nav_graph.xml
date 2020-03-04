@@ -141,6 +141,11 @@
             <argument
                 android:name="categoryId"
                 app:argType="integer" />
+
+            <argument
+                android:name="selectedDay"
+                app:argType="integer"/>
+
         </action>
     </fragment>
 
@@ -154,11 +159,18 @@
             android:name="categoryId"
             app:argType="integer" />
 
+        <argument
+            android:name="selectedDay"
+            app:argType="integer"/>
+
         <action
             android:id="@+id/action_dashboardCategoryChallengesPathFragment_to_dashboardHomeFragment"
             app:destination="@id/dashboardHomeFragment"
             app:popUpTo="@id/dashboardHomeFragment"
             app:popUpToInclusive="true" />
+
+
+
     </fragment>
 
 </navigation>

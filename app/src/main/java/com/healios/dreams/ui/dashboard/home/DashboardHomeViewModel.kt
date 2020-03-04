@@ -49,12 +49,6 @@ class DashboardHomeViewModel constructor(
     private val _weekDateText = MutableLiveData<String>()
     val weekDateText: LiveData<String> = _weekDateText
 
-    private val _mondayPercentOfCompletedChallenges = MutableLiveData(0)
-    val mondayPercentOfCompletedChallenges: LiveData<Int> = _mondayPercentOfCompletedChallenges
-
-    private val _mondayDay = MutableLiveData<Day>()
-    val mondayDay: LiveData<Day> = _mondayDay
-
     private val _week = MutableLiveData<List<DayOfTheWeek>>()
     val week: LiveData<List<DayOfTheWeek>> = _week
 
@@ -76,8 +70,10 @@ class DashboardHomeViewModel constructor(
     private val _challengeCategories = MutableLiveData<List<ChallengeCategoryMetadata>>()
     val challengeCategories: LiveData<List<ChallengeCategoryMetadata>> = _challengeCategories
 
-    private val _categoryChallengesStartButtonPressed = MutableLiveEvent<ChallengeCategoryMetadata>()
-    val categoryChallengesStartButtonPressed:LiveEvent<ChallengeCategoryMetadata> = _categoryChallengesStartButtonPressed
+    private val _categoryChallengesStartButtonPressed =
+        MutableLiveEvent<CategoryChallengesNavigationArgument>()
+    val categoryChallengesStartButtonPressedChallengesNavigationArgument: LiveEvent<CategoryChallengesNavigationArgument> =
+        _categoryChallengesStartButtonPressed
 
     private val context: Context = DreaMSApp.instance.applicationContext
 
@@ -454,7 +450,19 @@ class DashboardHomeViewModel constructor(
     }
 
     fun onCategoryStartButtonPressed(position: Int, category: ChallengeCategoryMetadata) {
-        _categoryChallengesStartButtonPressed.postValue(Event(category))
+        val todayTestOfGivenCategory =
+            todayTests?.filter { it.categoryId == category.categoryId.toLong() }
+        todayTestOfGivenCategory?.let {
+            val challengesForTodayAndCategory =
+                CategoryChallengesNavigationArgument(selectedDay, category)
+            _categoryChallengesStartButtonPressed.postValue(Event(challengesForTodayAndCategory))
+        }
+    }
+
+    fun getTestChallengesOfCategory(categoryId: Int): List<Test>? {
+        return todayTests?.filter {
+            it.categoryId == categoryId.toLong()
+        }
     }
     //endregion
 
@@ -480,6 +488,7 @@ class DashboardHomeViewModel constructor(
         }
     }
     //endregion
+
 }
 
 
