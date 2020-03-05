@@ -7,23 +7,32 @@ import javax.inject.Singleton
 
 @Singleton
 interface UserManager {
-    fun getUserCollectionById(userId: String, userType: UserType?, studyPrefix: String? ) : ApiResponse<UserCollectionDataResponse>
-
+    fun getUserCollectionById(
+        userId: String,
+        userType: UserType?,
+        studyPrefix: String?
+    ): ApiResponse<UserCollectionDataResponse>
 }
-
 
 class DefaultUserManager constructor(private val userService: DreaMSService) : UserManager {
 
-    override fun getUserCollectionById(userId: String, userType: UserType?, studyPrefix: String?): ApiResponse<UserCollectionDataResponse> {
+    override fun getUserCollectionById(
+        userId: String,
+        userType: UserType?,
+        studyPrefix: String?
+    ): ApiResponse<UserCollectionDataResponse> {
         val DEFAULT_TYPE_VALUE: String = UserType.PATIENT.type  // patient | expert
         val DEFAULT_STUDY_PREFIX_VALUE: String = "USBFEAS"
 
-        return userService.getUserCollectionById(userId, userType?.type ?: DEFAULT_TYPE_VALUE, studyPrefix ?: DEFAULT_STUDY_PREFIX_VALUE)
+        return userService.getUserCollectionById(
+            userId,
+            userType?.type ?: DEFAULT_TYPE_VALUE,
+            studyPrefix ?: DEFAULT_STUDY_PREFIX_VALUE
+        )
     }
-
 }
 
-enum class UserType(val type:String) {
+enum class UserType(val type: String) {
     PATIENT("patient"),
-    EXPERT("experty")
+    EXPERT("expert")
 }

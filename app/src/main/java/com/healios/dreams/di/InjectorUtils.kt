@@ -2,6 +2,8 @@ package com.healios.dreams.di
 
 import com.healios.dreams.data.*
 import com.healios.dreams.data.api.DreaMSClient
+import com.healios.dreams.repository.PatientDataRepository
+import com.healios.dreams.repository.PatientRepository
 import com.healios.dreams.util.managers.PermissionsManager
 
 object InjectorUtils {
@@ -33,8 +35,8 @@ object InjectorUtils {
             true).dreamMSService)
     }
 
-    fun getUserCollectionDataRepository(): UserCollectionDataRepository {
-        return JSONUserCollectionDataRepository()
+    fun getPatientRepository(): PatientRepository {
+        return PatientDataRepository()
     }
 
     fun getPermissionManager(): PermissionsManager {

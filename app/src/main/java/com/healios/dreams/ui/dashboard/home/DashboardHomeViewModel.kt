@@ -16,12 +16,13 @@ import com.healios.dreams.model.challenge.metadata.Challenge
 import com.healios.dreams.model.challenge.metadata.ChallengeCategory
 import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
+import com.healios.dreams.repository.PatientRepository
 import com.healios.dreams.util.*
 
 class DashboardHomeViewModel constructor(
     private val userManager: UserManager,
     private val tokenProvider: TokenProvider,
-    private val userCollectionDataRepository: UserCollectionDataRepository,
+    private val patientRepository: PatientRepository,
     private val userPreferences: UserPreferences
 ) : ViewModel() {
 
@@ -148,12 +149,15 @@ class DashboardHomeViewModel constructor(
 
     //region: Initializer
     init {
-        //FIXME: Uncomment
-        askServerForData()
-
-        retrieveUserCollectionData()
-
-        setData()
+        patientRepository.getPatientData { userData, error ->
+            if (error == null){
+                this.userData = userData
+                setData()
+            }else{
+                //TODO: Do something with error!
+                println("Error: ${error.localizedMessage}")
+            }
+        }
     }
     //endregion
 
@@ -169,15 +173,6 @@ class DashboardHomeViewModel constructor(
     }
 
     private fun getInitialData() {
-        Log.d(TAG, "[HOY] " + DreaMSDateUtils.getTodayDateString())
-        /*
-        val daysOfTheCurrentWeek =
-            patient!!.attendance.currentAttendance.days
-
-        val currentDayList = daysOfTheCurrentWeek.filter { day ->
-            day.dateScheduled == DreaMSDateUtils.getTodayDateString()
-        }
-        */
         if (patient!!.activeDays().contains(selectedDay)) {
             val dailyChallengePosition = getDailyChallengePosition()
             currentDay = dailyChallenges[dailyChallengePosition!!]
@@ -390,44 +385,6 @@ class DashboardHomeViewModel constructor(
             ChallengeCategory.FINEMOTORSKILLS -> R.drawable.ic_challenge_category_fine_motor_skills_uncompleted
             ChallengeCategory.VISIONANDSURVEYS -> R.drawable.ic_challenge_category_vision_and_surveys_uncompleted
         }
-    }
-    //endregion
-
-    //region: API Calls
-    private fun askServerForData() {
-        _communicationInProgress.postValue(true)
-
-        val userId = userPreferences.userId
-
-        if (userId == null || userId.isEmpty()) {
-            return
-        }
-
-        userManager.getUserCollectionById(userId, UserType.PATIENT, null)
-            .process { userDataModel, error ->
-
-                if (error == null) {
-                    if (userDataModel != null) {
-                        //Save data into asset
-                        userCollectionDataRepository.saveUserCollectionDataLocally(userDataModel)
-                    } else {
-                        //TODO: Error, data is null
-                        Log.e(TAG, "[ERROR] User Collection Data is null!")
-                    }
-                } else {
-                    //TODO: Error in API response
-                    Log.e(TAG, error.localizedMessage ?: "[ERROR] in response!")
-                }
-                _communicationInProgress.postValue(false)
-            }
-
-    }
-    //endregion
-
-    //region: Local file data
-    private fun retrieveUserCollectionData() {
-        val userCollectionData = userCollectionDataRepository.getUserCollectionData()
-        userData = userCollectionData?.data
     }
     //endregion
 

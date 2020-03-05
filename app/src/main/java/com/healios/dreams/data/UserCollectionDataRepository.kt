@@ -1,6 +1,5 @@
 package com.healios.dreams.data
 
-import android.util.Log
 import com.healios.dreams.model.UserCollectionDataResponse
 import com.healios.dreams.util.JSONUtils
 
@@ -11,8 +10,8 @@ interface UserCollectionDataRepository {
 
 }
 
+class JSONUserCollectionDataRepository : UserCollectionDataRepository {
 
-class JSONUserCollectionDataRepository : UserCollectionDataRepository{
 
     companion object {
         const val COLLECTION_DATA_FILENAME = "UserCollectionData.json"
@@ -25,6 +24,8 @@ class JSONUserCollectionDataRepository : UserCollectionDataRepository{
     override fun saveUserCollectionDataLocally(collectionDataObject: Any) {
         JSONUtils.writeJSONtoFile(COLLECTION_DATA_FILENAME, collectionDataObject)
     }
+
+
 
 
 

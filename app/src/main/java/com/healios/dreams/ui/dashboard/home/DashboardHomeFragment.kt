@@ -49,7 +49,6 @@ class DashboardHomeFragment : Fragment() {
         binding.viewPagerFragmentDashboardHome.adapter = DashboardHomeViewPageAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
 
         viewModel.categoryChallengesStartButtonPressedChallengesNavigationArgument.observe(viewLifecycleOwner, EventObserver {
-            //TODO: Send data to next fragment
             findNavController().navigate(DashboardHomeFragmentDirections.actionDashboardHomeFragmentToDashboardCategoryChallengesPathFragment(it.category.categoryId, it.selectedDay))
         })
     }
