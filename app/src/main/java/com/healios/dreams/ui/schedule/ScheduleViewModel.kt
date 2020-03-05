@@ -15,6 +15,7 @@ import com.healios.dreams.data.api.ApiException
 import com.healios.dreams.util.EmptyLiveEvent
 import com.healios.dreams.util.EmptyMutableLiveEvent
 import com.healios.dreams.util.Event
+import com.healios.dreams.util.MutableLiveEvent
 
 class ScheduleViewModel(
     private val accountInformationManager: AccountInformationManager,
@@ -46,6 +47,13 @@ class ScheduleViewModel(
 
     private val _scheduleSettedUp = EmptyMutableLiveEvent()
     val scheduleSettedUp : EmptyLiveEvent = _scheduleSettedUp
+
+    private val _enableAllButtons = EmptyMutableLiveEvent()
+    val enableAllButtons: EmptyLiveEvent = _enableAllButtons
+
+    private val _disableUnselectedButtons = EmptyMutableLiveEvent()
+    val disableUnselectedButtons: EmptyLiveEvent = _disableUnselectedButtons
+
 
 
     private lateinit var nickname: String
@@ -109,6 +117,15 @@ class ScheduleViewModel(
             else -> Log.d(TAG, "OTRO")
         }
 
+        val arrayList = _selectedDays.value!!
+        val numOfSelectedDays = arrayList.count { it == 1 }
+        if (numOfSelectedDays == minNumOfSelectedDays){
+            //Disable unselected buttons
+            _disableUnselectedButtons.postValue(Event(Unit))
+        }else if (numOfSelectedDays < minNumOfSelectedDays){
+            //Enable all buttons
+            _enableAllButtons.postValue(Event(Unit))
+        }
     }
 
     fun onDoneButtonPressed() {
@@ -137,6 +154,7 @@ class ScheduleViewModel(
         _selectedDays.postValue(list)
 
         checkIfCanContinue()
+
     }
 
     private fun checkIfCanContinue() {

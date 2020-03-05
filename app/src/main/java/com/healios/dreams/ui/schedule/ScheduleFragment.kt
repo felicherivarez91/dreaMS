@@ -14,6 +14,7 @@ import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentScheduleBinding
 import com.healios.dreams.di.ScheduleViewModelFactory
 import com.healios.dreams.ui.account.PersonalInformationFragmentArgs
+import com.healios.dreams.util.EventObserver
 
 class ScheduleFragment : Fragment() {
 
@@ -42,7 +43,6 @@ class ScheduleFragment : Fragment() {
         binding.viewmodel = viewModel
         viewModel.withArgs(args)
 
-
         bind()
         return binding.root
     }
@@ -55,6 +55,33 @@ class ScheduleFragment : Fragment() {
             findNavController().navigate(R.id.action_scheduleFragment_to_quickTourFragment)
         })
 
+        viewModel.enableAllButtons.observe(viewLifecycleOwner, Observer {
+            enableAllButtons()
+        })
+
+        viewModel.disableUnselectedButtons.observe(viewLifecycleOwner, Observer {
+            disableUnselectedButtons()
+        })
+    }
+
+    private fun enableAllButtons(){
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekMonday.toggleButtonItemScheduleDay.isEnabled = true
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekTuesday.toggleButtonItemScheduleDay.isEnabled = true
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekWednesday.toggleButtonItemScheduleDay.isEnabled = true
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekThursday.toggleButtonItemScheduleDay.isEnabled = true
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekFriday.toggleButtonItemScheduleDay.isEnabled = true
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekSaturday.toggleButtonItemScheduleDay.isEnabled = true
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekSunday.toggleButtonItemScheduleDay.isEnabled = true
+    }
+
+    private fun disableUnselectedButtons(){
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekMonday.toggleButtonItemScheduleDay.isEnabled = binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekMonday.toggleButtonItemScheduleDay.isChecked
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekTuesday.toggleButtonItemScheduleDay.isEnabled = binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekTuesday.toggleButtonItemScheduleDay.isChecked
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekWednesday.toggleButtonItemScheduleDay.isEnabled = binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekWednesday.toggleButtonItemScheduleDay.isChecked
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekThursday.toggleButtonItemScheduleDay.isEnabled = binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekThursday.toggleButtonItemScheduleDay.isChecked
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekFriday.toggleButtonItemScheduleDay.isEnabled = binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekFriday.toggleButtonItemScheduleDay.isChecked
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekSaturday.toggleButtonItemScheduleDay.isEnabled = binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekSaturday.toggleButtonItemScheduleDay.isChecked
+        binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekSunday.toggleButtonItemScheduleDay.isEnabled  = binding.itemScheduleWeekFragmentSchedule.itemScheduleDayItemScheduleWeekSunday.toggleButtonItemScheduleDay.isChecked
     }
 
     private fun setupWeekDays() {
