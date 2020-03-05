@@ -1,11 +1,9 @@
-package com.healios.dreams.ui.dashboard.common;
+package com.healios.dreams.ui.navigation.common;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.healios.dreams.R;
@@ -13,8 +11,6 @@ import com.healios.dreams.databinding.CustomViewCategoryIconBinding;
 import com.healios.dreams.model.Test;
 import com.healios.dreams.model.challenge.metadata.ChallengeMetadata;
 import com.healios.dreams.util.ChallengeUtils;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChallengeView extends RelativeLayout {
 

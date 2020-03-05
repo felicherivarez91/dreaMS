@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.dashboard.home.DashboardHomeFragment">
+    tools:context=".ui.navigation.home.DashboardHomeFragment">
 
     <data>
 
@@ -11,7 +11,7 @@
 
         <variable
             name="viewmodel"
-            type="com.healios.dreams.ui.dashboard.home.DashboardHomeViewModel" />
+            type="com.healios.dreams.ui.navigation.home.DashboardHomeViewModel" />
     </data>
 
     <RelativeLayout

@@ -1,8 +1,7 @@
-package com.healios.dreams.ui.dashboard.home
+package com.healios.dreams.ui.navigation.home
 
 import android.content.Context
 import android.text.Spanned
-import android.util.Log
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -425,7 +424,7 @@ class DashboardHomeViewModel constructor(
     //endregion
 
     private fun refreshDashboardData() {
-        //Refresh dashboard data
+        //Refresh navigation data
         setRemainingChallengesForSelectedDay()
 
         showDashboardContentData()

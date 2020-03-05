@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard.common;
+package com.healios.dreams.ui.navigation.common;
 
 import com.healios.dreams.model.Test;
 

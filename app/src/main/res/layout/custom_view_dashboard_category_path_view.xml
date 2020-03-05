@@ -16,12 +16,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
 
-                <com.healios.dreams.ui.dashboard.common.CategoryPathView
+                <com.healios.dreams.ui.navigation.common.CategoryPathView
                     android:id="@+id/path_view_dashboard_category_path_view_path"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <com.healios.dreams.ui.dashboard.common.CategoryChallengesView
+                <com.healios.dreams.ui.navigation.common.CategoryChallengesView
                     android:id="@+id/challenges_view_dashboard_category_path_view_challenges"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

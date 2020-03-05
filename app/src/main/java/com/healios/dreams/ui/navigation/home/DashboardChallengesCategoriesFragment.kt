@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard.home
+package com.healios.dreams.ui.navigation.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.healios.dreams.databinding.FragmentDashboardChallengesCategoriesBinding
 import com.healios.dreams.di.DashboardHomeViewModelFactory
-import com.healios.dreams.model.AvatarModel
 import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 
 interface DashboardChallengesCategoriesRecyclerViewListener {
