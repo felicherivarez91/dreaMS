@@ -14,13 +14,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:elevation="10dp">
+        android:elevation="10dp"
+        android:background="@drawable/fragment_dashboard_home_toolbar_background_shadow"
+        >
 
         <RelativeLayout
             android:id="@+id/relativeLayout_fragment_dashboard_homebackground_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_dashboard_nav_bar_bg_old" />
+            android:background="@drawable/ic_dashboard_nav_bar_bg"
+           />
 
         <TextView
             android:id="@+id/textView_fragment_dashboard_homedemo_mode_text"
@@ -29,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/relativeLayout_fragment_dashboard_homeheader_global_wrapper_layout"
             android:layout_marginStart="20dp"
-            android:layout_marginBottom="5dp"
             android:text="@string/fragment_dashboard_home_demo_version"
             android:visibility="@{viewmodel.isDemoMode ? View.VISIBLE : View.GONE, default = gone}" />
 
