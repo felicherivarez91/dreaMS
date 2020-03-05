@@ -149,7 +149,9 @@ class DashboardHomeViewModel constructor(
 
     //region: Initializer
     init {
+        _communicationInProgress.postValue(true)
         patientRepository.getPatientData { userData, error ->
+            _communicationInProgress.postValue(false)
             if (error == null){
                 this.userData = userData
                 setData()
