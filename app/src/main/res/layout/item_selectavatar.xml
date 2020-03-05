@@ -14,22 +14,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_itemSelectAvatar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minWidth="163dp"
-        android:minHeight="145dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:elevation="10dp"
-        app:cardCornerRadius="@dimen/cornerRadius_all_general"
-        android:background="@{avatar.selected ? @drawable/fragment_select_avatar_item_shape_selected : @drawable/fragment_select_avatar_item_shape_unselected }">
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="@dimen/cornerRadius_all_general">
 
         <RelativeLayout
             android:id="@+id/relativeLayout_itemSelectAvatarWrapperLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@{avatar.selected ? @drawable/fragment_select_avatar_item_shape_selected : @drawable/fragment_select_avatar_item_shape_unselected }">
 
             <ImageView
                 android:id="@+id/imageView_itemSelectAvatar_avatar"
