@@ -40,8 +40,17 @@ class SelectAvatarRecyclerViewAdapter(private var avatarList: List<AvatarModel>,
             }else{
                 avatarList[index].isSelected = false
             }
-            this.notifyItemChanged(index)
+            // To recycle item by item uncomment the following line
+            //this.notifyItemChanged(index)
         }
+        // To recycle all items in recyclerview
+        this.notifyDataSetChanged()
+    }
+
+    override fun getItemId(position: Int): Long {
+        //return super.getItemId(position)
+        val avatarModel = avatarList[position]
+        return avatarModel.avatarId.toLong()
     }
 
     inner class SelectAvatarItemViewHolder(val binding: ItemSelectavatarBinding): RecyclerView.ViewHolder(binding.root) {

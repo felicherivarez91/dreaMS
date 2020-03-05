@@ -4,21 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.healios.dreams.R
+import androidx.recyclerview.widget.RecyclerView
 import com.healios.dreams.databinding.FragmentSelectavatarBinding
 import com.healios.dreams.di.SelectAvatarViewModelFactory
 import com.healios.dreams.model.AvatarModel
 import com.healios.dreams.util.EventObserver
-import kotlinx.android.synthetic.main.toolbar_main.view.*
 
 interface AvatarRecyclerViewLister {
     fun onItemClick(position: Int, avatar: AvatarModel)
@@ -45,7 +40,10 @@ class SelectAvatarFragment : Fragment(), AvatarRecyclerViewLister {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(activity!!, SelectAvatarViewModelFactory()).get(SelectAvatarViewModel::class.java)
+        viewModel = ViewModelProvider(
+            activity!!,
+            SelectAvatarViewModelFactory()
+        ).get(SelectAvatarViewModel::class.java)
 
         binding = FragmentSelectavatarBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
@@ -58,14 +56,16 @@ class SelectAvatarFragment : Fragment(), AvatarRecyclerViewLister {
     private fun bind() {
 
         binding.recyclerViewSelectAvatar.apply {
-            val numberOfRows = 2
+            val numberOfColumns = 2
             layoutManager =
-                GridLayoutManager(context, numberOfRows, LinearLayoutManager.VERTICAL, false)
-            itemAnimator = DefaultItemAnimator()
-            adapter = SelectAvatarRecyclerViewAdapter(
+                GridLayoutManager(context, numberOfColumns, RecyclerView.VERTICAL, false)
+            val mAdapter = SelectAvatarRecyclerViewAdapter(
                 viewModel.avatarList.value!!,
                 this@SelectAvatarFragment
             )
+            mAdapter.setHasStableIds(true)
+            adapter = mAdapter
+            addItemDecoration(SelectAvatarRecyclerViewItemDecoration(numberOfColumns, 20))
         }
 
         binding.toolbarSelectAvatar.setNavigationOnClickListener {
