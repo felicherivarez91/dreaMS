@@ -26,8 +26,7 @@ class DashboardHomeViewModel constructor(
 ) : ViewModel() {
 
     private val TAG: String = DashboardHomeViewModel::class.java.simpleName
-
-
+    
     private val _communicationInProgress = MutableLiveData<Boolean>(false)
     val communicationInProgress: LiveData<Boolean> = _communicationInProgress
 
@@ -81,15 +80,13 @@ class DashboardHomeViewModel constructor(
     private var userData: UserData? = null
     private var currentDay: Day? = null
 
-    private var patient: Patient?
+    private val patient: Patient?
         get() = userData?.patient
-        set(value) {}
 
-    private var dailyChallenges: List<Day>
+    private val dailyChallenges: List<Day>
         get() = patient?.attendance?.currentAttendance?.days ?: ArrayList()
-        set(value) {}
 
-    private var todayTests: List<Test>?
+    private val todayTests: List<Test>?
         get() {
             val challengePosition = getDailyChallengePosition()
             return if (challengePosition != null) {
@@ -98,18 +95,16 @@ class DashboardHomeViewModel constructor(
                 null
             }
         }
-        set(value) {}
 
-    private var totalChallengesToday: Int
+    private val totalChallengesToday: Int
         get() {
             if (dailyChallenges.isEmpty()) {
                 return 0
             }
             return todayTests?.size ?: 0
         }
-        set(value) {}
 
-    private var challengesCompleted: Int
+    private  val challengesCompleted: Int
         get() {
             if (dailyChallenges.isEmpty()) {
                 return 0
@@ -119,40 +114,33 @@ class DashboardHomeViewModel constructor(
                 test.completedAt != null
             }?.size ?: 0
         }
-        set(value) {}
 
-    private var nickname: String
+    private val nickname: String
         get() {
             return patient?.nickname ?: ""
         }
-        set(value) {}
 
-    private var noChallengesForToday: Boolean
+    private val noChallengesForToday: Boolean
         get() {
             if (dailyChallenges.isEmpty()) {
                 return true
             }
             return patient?.currentSchedulePosition()?.get(selectedDay) == 0
         }
-        set(value) {}
 
-    private var percentOfCompletedChallenges: Int
+    private val percentOfCompletedChallenges: Int
         get() {
             if (totalChallengesToday == 0)
                 return 0
 
             return ((challengesCompleted / totalChallengesToday) * 100)
         }
-        set(value) {}
 
 
     //region: Initializer
     init {
-        //FIXME: Uncomment
         askServerForData()
-
         retrieveUserCollectionData()
-
         setData()
     }
     //endregion
