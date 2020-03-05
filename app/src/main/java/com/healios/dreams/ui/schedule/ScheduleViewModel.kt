@@ -2,10 +2,7 @@ package com.healios.dreams.ui.schedule
 
 import android.util.Log
 import android.widget.CompoundButton
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.healios.dreams.DreaMSApp
 import com.healios.dreams.R
 import com.healios.dreams.data.AccountInfoProvider
@@ -15,7 +12,6 @@ import com.healios.dreams.data.api.ApiException
 import com.healios.dreams.util.EmptyLiveEvent
 import com.healios.dreams.util.EmptyMutableLiveEvent
 import com.healios.dreams.util.Event
-import com.healios.dreams.util.MutableLiveEvent
 
 class ScheduleViewModel(
     private val accountInformationManager: AccountInformationManager,
@@ -24,8 +20,6 @@ class ScheduleViewModel(
 ) : ViewModel() {
 
     private val TAG: String? = "ScheduleViewModel"
-
-    private val minNumOfSelectedDays = 5
 
     private val _communicationInProgress = MutableLiveData<Boolean>(false)
     val communicationInProgress: LiveData<Boolean> = _communicationInProgress
@@ -48,18 +42,16 @@ class ScheduleViewModel(
     private val _scheduleSettedUp = EmptyMutableLiveEvent()
     val scheduleSettedUp : EmptyLiveEvent = _scheduleSettedUp
 
-    private val _enableAllButtons = EmptyMutableLiveEvent()
-    val enableAllButtons: EmptyLiveEvent = _enableAllButtons
-
-    private val _disableUnselectedButtons = EmptyMutableLiveEvent()
-    val disableUnselectedButtons: EmptyLiveEvent = _disableUnselectedButtons
-
-
+    val enableAllButtons: LiveData<Boolean> = Transformations.map(selectedDays) {
+        it.count { values -> values == 1 } < TARGETSELECTEDDAYS
+    }
 
     private lateinit var nickname: String
     private var avatar: Int = 0
 
     companion object {
+        private const val TARGETSELECTEDDAYS = 5
+
         private val startIndex = 0
         private val endIndex = 3
 
@@ -118,14 +110,6 @@ class ScheduleViewModel(
         }
 
         val arrayList = _selectedDays.value!!
-        val numOfSelectedDays = arrayList.count { it == 1 }
-        if (numOfSelectedDays == minNumOfSelectedDays){
-            //Disable unselected buttons
-            _disableUnselectedButtons.postValue(Event(Unit))
-        }else if (numOfSelectedDays < minNumOfSelectedDays){
-            //Enable all buttons
-            _enableAllButtons.postValue(Event(Unit))
-        }
     }
 
     fun onDoneButtonPressed() {
@@ -161,7 +145,7 @@ class ScheduleViewModel(
         val arrayList = _selectedDays.value!!
         val numOfSelectedDays = arrayList.count { it == 1 }
 
-        _canSaveSchedule.postValue(numOfSelectedDays == minNumOfSelectedDays)
+        _canSaveSchedule.postValue(numOfSelectedDays == TARGETSELECTEDDAYS)
     }
 
     private fun getScheduleInStringFormat(): String {

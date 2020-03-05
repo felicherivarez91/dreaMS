@@ -21,8 +21,7 @@ class DreaMSClient(private val tokenProvider: TokenProvider,
          Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(baseURL)
-            .addConverterFactory(gsonConverter)
-            .addCallAdapterFactory(LiveDataCallAdapterFactory())
+            .addConverterFactory(gsonConverter).addCallAdapterFactory(LiveDataCallAdapterFactory())
              .addCallAdapterFactory(ApiResponseCallAdapterFactory())
             .build().create(DreaMSService::class.java)
     }
