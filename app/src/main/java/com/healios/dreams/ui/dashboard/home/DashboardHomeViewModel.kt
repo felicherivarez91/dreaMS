@@ -76,6 +76,9 @@ class DashboardHomeViewModel constructor(
     val categoryChallengesStartButtonPressedChallengesNavigationArgument: LiveEvent<CategoryChallengesNavigationArgument> =
         _categoryChallengesStartButtonPressed
 
+    private val _todayDateString = MutableLiveData<String>(DreaMSDateUtils.getTodayDateString())
+    val todayDateString:LiveData<String> = _todayDateString
+
     private val context: Context = DreaMSApp.instance.applicationContext
     private var todayDay: Int = DreaMSDateUtils.getDayOfWeekOfToday()
     private var selectedDay: Int = DreaMSDateUtils.getDayOfWeekOfToday()
@@ -301,7 +304,7 @@ class DashboardHomeViewModel constructor(
             patient!!.attendance.currentAttendance.days
 
         val currentDayList = daysOfTheCurrentWeek.filter { day ->
-            day.dateScheduled == DreaMSDateUtils.getTodayDateString()
+            day.dateScheduled == daysOfTheCurrentWeek[schedulePosition].dateScheduled
         }
 
         val nonCompletedChallenges = currentDayList[0].tests?.filter { test ->

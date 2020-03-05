@@ -21,7 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="46dp"
-        android:minHeight="60dp">
+        android:minHeight="60dp"
+        android:clickable="@{day.dailyChallenge != null}">
 
         <RelativeLayout
             android:id="@+id/textView_fragment_dashboard_week_day_item_day_background"
@@ -78,7 +79,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:visibility="gone" />
+                android:background="@drawable/fragment_dashboard_week_day_current_day_white_dot"
+                android:backgroundTint="@{day.selectedDay ? (day.dailyChallenge != null ? @color/white : @color/mainBlackColor ): (day.percentOfCompletedChallenges == 100 ? @color/colorPrimary : @color/mainUncompletedColor)}"
+                android:visibility="@{((day.dayDateString.equals(viewmodel.todayDateString) &amp;&amp; (day.dailyChallenge != null))? View.VISIBLE : View.GONE)}"/>
 
         </RelativeLayout>
 
