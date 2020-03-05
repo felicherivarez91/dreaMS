@@ -2,10 +2,7 @@ package com.healios.dreams.ui.schedule
 
 import android.util.Log
 import android.widget.CompoundButton
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.healios.dreams.DreaMSApp
 import com.healios.dreams.R
 import com.healios.dreams.data.AccountInfoProvider
@@ -23,8 +20,6 @@ class ScheduleViewModel(
 ) : ViewModel() {
 
     private val TAG: String? = "ScheduleViewModel"
-
-    private val minNumOfSelectedDays = 5
 
     private val _communicationInProgress = MutableLiveData<Boolean>(false)
     val communicationInProgress: LiveData<Boolean> = _communicationInProgress
@@ -47,11 +42,16 @@ class ScheduleViewModel(
     private val _scheduleSettedUp = EmptyMutableLiveEvent()
     val scheduleSettedUp : EmptyLiveEvent = _scheduleSettedUp
 
+    val enableAllButtons: LiveData<Boolean> = Transformations.map(selectedDays) {
+        it.count { values -> values == 1 } < TARGETSELECTEDDAYS
+    }
 
     private lateinit var nickname: String
     private var avatar: Int = 0
 
     companion object {
+        private const val TARGETSELECTEDDAYS = 5
+
         private val startIndex = 0
         private val endIndex = 3
 
@@ -109,6 +109,7 @@ class ScheduleViewModel(
             else -> Log.d(TAG, "OTRO")
         }
 
+        val arrayList = _selectedDays.value!!
     }
 
     fun onDoneButtonPressed() {
@@ -137,13 +138,14 @@ class ScheduleViewModel(
         _selectedDays.postValue(list)
 
         checkIfCanContinue()
+
     }
 
     private fun checkIfCanContinue() {
         val arrayList = _selectedDays.value!!
         val numOfSelectedDays = arrayList.count { it == 1 }
 
-        _canSaveSchedule.postValue(numOfSelectedDays == minNumOfSelectedDays)
+        _canSaveSchedule.postValue(numOfSelectedDays == TARGETSELECTEDDAYS)
     }
 
     private fun getScheduleInStringFormat(): String {

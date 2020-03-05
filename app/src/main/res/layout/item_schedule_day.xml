@@ -6,7 +6,9 @@
     <data>
 
         <import type="android.view.View" />
-
+        <variable
+            name="dayIndex"
+            type="java.lang.Integer" />
         <variable
             name="viewmodel"
             type="com.healios.dreams.ui.schedule.ScheduleViewModel" />
@@ -26,6 +28,7 @@
             android:background="@drawable/schedule_selected_item_background_selector"
             android:textOff=""
             android:textOn=""
+            android:enabled="@{viewmodel.enableAllButtons || viewmodel.selectedDays[dayIndex] == 1}"
             />
 
 

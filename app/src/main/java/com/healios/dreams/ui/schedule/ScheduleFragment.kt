@@ -14,6 +14,7 @@ import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentScheduleBinding
 import com.healios.dreams.di.ScheduleViewModelFactory
 import com.healios.dreams.ui.account.PersonalInformationFragmentArgs
+import com.healios.dreams.util.EventObserver
 
 class ScheduleFragment : Fragment() {
 
@@ -41,7 +42,6 @@ class ScheduleFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
         viewModel.withArgs(args)
-
 
         bind()
         return binding.root
