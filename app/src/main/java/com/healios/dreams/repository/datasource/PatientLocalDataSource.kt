@@ -1,6 +1,5 @@
 package com.healios.dreams.repository.datasource
 
-import com.healios.dreams.data.JSONUserCollectionDataRepository
 import com.healios.dreams.model.UserCollectionDataResponse
 import com.healios.dreams.util.JSONUtils
 
@@ -20,14 +19,14 @@ class PatientRepositoryLocalDataSource : PatientLocalDataSource {
 
     override fun getPatientData(): UserCollectionDataResponse? {
         return JSONUtils.readDataModelFromJSONFile(
-            JSONUserCollectionDataRepository.COLLECTION_DATA_FILENAME,
+            COLLECTION_DATA_FILENAME,
             UserCollectionDataResponse::class.java
         )
     }
 
     override fun savePatientData(patientDataObject: UserCollectionDataResponse) {
         JSONUtils.writeJSONtoFile(
-            JSONUserCollectionDataRepository.COLLECTION_DATA_FILENAME,
+            COLLECTION_DATA_FILENAME,
             patientDataObject
         )
     }
