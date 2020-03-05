@@ -54,6 +54,7 @@
             android:layout_marginEnd="@dimen/marginEnd_all_mainButton"
             android:layout_marginBottom="@dimen/marginBottom_all_mainButton"
             android:enabled="@{viewmodel.canContinue, default = false }"
+            android:onClick="@{() -> viewmodel.start()}"
             android:text="@string/fragment_permissions_get_started_button_text" />
 
 

@@ -76,12 +76,9 @@ class DashboardHomeViewModel constructor(
         _categoryChallengesStartButtonPressed
 
     private val context: Context = DreaMSApp.instance.applicationContext
-
-
     private var todayDay: Int = DreaMSDateUtils.getDayOfWeekOfToday()
     private var selectedDay: Int = DreaMSDateUtils.getDayOfWeekOfToday()
     private var userData: UserData? = null
-
     private var currentDay: Day? = null
 
     private var patient: Patient?
@@ -152,7 +149,7 @@ class DashboardHomeViewModel constructor(
     //region: Initializer
     init {
         //FIXME: Uncomment
-        //askServerForData()
+        askServerForData()
 
         retrieveUserCollectionData()
 
@@ -400,9 +397,8 @@ class DashboardHomeViewModel constructor(
     private fun askServerForData() {
         _communicationInProgress.postValue(true)
 
-        var userId = userPreferences.userId
-        //FIXME: Remove after test API
-        userId = "a357fbe8-53d6-11ea-b538-0242ac17000b"
+        val userId = userPreferences.userId
+
         if (userId == null || userId.isEmpty()) {
             return
         }

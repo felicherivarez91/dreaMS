@@ -10,11 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentPermissionsBinding
 import com.healios.dreams.di.PermissionViewModelFactory
 import com.healios.dreams.model.PermissionModel
+import com.healios.dreams.util.EventObserver
 import com.healios.dreams.util.managers.PermissionsManager
 import com.healios.dreams.util.managers.PermissionsManager.*
 import com.healios.dreams.util.managers.VersionCompatibilityManager
@@ -57,12 +59,16 @@ class PermissionFragment : Fragment(),PermissionRecyclerViewListener  {
         }
 
         viewModel.permissionList.observe(viewLifecycleOwner,
-            Observer<List<PermissionModel>> { permissionModels ->
+            Observer { permissionModels ->
                 val adapter = binding.recyclerViewFragmentPermissions.adapter
                 if (adapter is PermissionRecyclerViewAdapter){
                     adapter.setPermissions(permissionModels)
                 }
             })
+
+        viewModel.startEvent.observe(viewLifecycleOwner, EventObserver {
+          findNavController().navigate(R.id.action_permissionFragment_to_dashboardHomeFragment)
+        })
     }
 
     private fun initView() {

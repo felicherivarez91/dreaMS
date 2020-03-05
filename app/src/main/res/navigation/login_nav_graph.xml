@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_nav_graph"
-    app:startDestination="@id/dashboardHomeFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_verifyPhoneFragment_to_personalInformationFragment"
             app:destination="@id/personalInformationFragment" />
+        <action
+            android:id="@+id/action_verifyPhoneFragment_to_dashboardHomeFragment"
+            app:destination="@id/dashboardHomeFragment" />
     </fragment>
 
     <fragment
@@ -117,12 +120,19 @@
         <action
             android:id="@+id/action_quickTourFragment_to_permissionFragment"
             app:destination="@id/permissionFragment" />
+        <action
+            android:id="@+id/action_quickTourFragment_to_dashboardHomeFragment"
+            app:destination="@id/dashboardHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/permissionFragment"
         android:name="com.healios.dreams.ui.permissions.PermissionFragment"
         android:label="fragment_permissions"
-        tools:layout="@layout/fragment_permissions" />
+        tools:layout="@layout/fragment_permissions" >
+        <action
+            android:id="@+id/action_permissionFragment_to_dashboardHomeFragment"
+            app:destination="@id/dashboardHomeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/challengeSummaryFragment"
         android:name="com.healios.dreams.ui.challenge.summary.ChallengeSummaryFragment"

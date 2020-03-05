@@ -100,8 +100,7 @@ class PersonalInformationViewModel(
                 if (error is ApiException) {
                     _errorText.postValue(error.message)
                 }
-                //_errorText.postValue(DreaMSApp.instance.getString(R.string.personalInformation_nicknameTakenError))
-            }
+2            }
         }
     }
 
@@ -119,7 +118,6 @@ class PersonalInformationViewModel(
             avatarImageResource.postValue(args.avatarResource)
 
     }
-
 
 
 }
