@@ -21,8 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="46dp"
-        android:minHeight="60dp"
-        >
+        android:minHeight="60dp">
 
         <RelativeLayout
             android:id="@+id/textView_fragment_dashboard_week_day_item_day_background"
@@ -36,11 +35,12 @@
         <TextView
             android:id="@+id/textView_fragment_dashboard_week_day_item_day_title"
             style="@style/AppTheme.Dashboard.Week.TextView.Disabled"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:gravity="center_horizontal"
             android:lines="1"
             android:maxLines="1"
             android:text="@{day.dayName.substring(0,3)}"
@@ -71,8 +71,7 @@
                 app:progressBarBackgroundColor="@{day.selectedDay ? @color/transparent : @color/white_50}"
                 app:secondTimeLineColor="@color/timerStepSecondColor"
                 app:showSecondTimeLines="false"
-                app:strokeWidth="2dp"
-                />
+                app:strokeWidth="2dp" />
 
             <ImageView
                 android:id="@+id/imageView_fragment_dashboard_week_day_challenges_completed_progressbar_icon"
