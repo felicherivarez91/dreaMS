@@ -152,10 +152,10 @@ class DashboardHomeViewModel constructor(
         _communicationInProgress.postValue(true)
         patientRepository.getPatientData { userData, error ->
             _communicationInProgress.postValue(false)
-            if (error == null){
+            if (error == null) {
                 this.userData = userData
                 setData()
-            }else{
+            } else {
                 //TODO: Do something with error!
                 println("Error: ${error.localizedMessage}")
             }
