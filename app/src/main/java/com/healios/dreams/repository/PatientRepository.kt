@@ -17,15 +17,14 @@ interface PatientRepository {
 class PatientDataRepository : PatientRepository {
 
     private val patientLocalDataSource: PatientLocalDataSource = PatientRepositoryLocalDataSource()
-    private val patientRemoteDataSource: PatientRemoteDataSource = PatientRepositoryRemoteDataSource()
-    
-    override fun getPatientData(responseHandler: (UserData?, Throwable?) -> Unit) {
-        var patientData: UserData
+    private val patientRemoteDataSource: PatientRemoteDataSource =
+        PatientRepositoryRemoteDataSource()
 
+    override fun getPatientData(responseHandler: (UserData?, Throwable?) -> Unit) {
         val localData = patientLocalDataSource.getPatientData()
-        if (localData == null){
+        if (localData == null) {
             askServerForData(responseHandler)
-        }else{
+        } else {
             // Data is outdated, proceed to update
             if (dataIsOutDated(localData)) {
                 askServerForData(responseHandler)
@@ -38,14 +37,13 @@ class PatientDataRepository : PatientRepository {
     //region: Utils
     private fun askServerForData(responseHandler: (UserData?, Throwable?) -> Unit) {
         val userId = InjectorUtils.getUserPreferences().userId
-        if(userId != null){
+        if (userId != null) {
             patientRemoteDataSource.askServerForPatientData(userId) { userCollectionData, error ->
 
                 if (error == null) {
                     userCollectionData?.let { userCollectionDataResponse ->
                         patientLocalDataSource.savePatientData(userCollectionDataResponse)
                         responseHandler(userCollectionDataResponse.data, null)
-
                     }
 
                     responseHandler(null, Throwable("Retrieved patient data is empty"))
@@ -54,7 +52,7 @@ class PatientDataRepository : PatientRepository {
                     responseHandler(null, error)
                 }
             }
-        }else{
+        } else {
             responseHandler(null, Throwable("User Id is null"))
         }
     }
