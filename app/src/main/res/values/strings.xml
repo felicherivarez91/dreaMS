@@ -83,6 +83,16 @@
 
     <!-- ./ Quick Tour -->
 
+    <!--  Report Relapse -->
+    <string name="report_button_caption">Report</string>
+    <string name="report_relapse_main_title">Report relapse</string>
+    <string name="report_relapse_description">You are about to report a new relapse. Please confirm to continue.</string>
+    <string name="report_button_no">No</string>
+    <string name="report_button_yes">Yes</string>
+    <string name="report_loss_of_strength">Have you experienced loss of strength or sensitivity?</string>
+
+    <!--  ./Report Relapse -->
+
     <!-- Permissions -->
     <string name="fragment_permissions_title_text">… and one more step before we continue.</string>
     <string name="fragment_permissions_explanation_text">dreaMS needs your permission for</string>

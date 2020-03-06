@@ -66,8 +66,8 @@
         android:label="WelcomeFragment"
         tools:layout="@layout/fragment_welcome">
         <action
-            android:id="@+id/action_welcomeFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_welcomeFragment_to_relapseReportFragment"
+            app:destination="@id/relapseReportFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectAvatarFragment"
@@ -182,5 +182,18 @@
 
 
     </fragment>
+    <fragment
+        android:id="@+id/relapseReportFragment"
+        android:name="com.healios.dreams.ui.relapse.RelapseReportFragment"
+        android:label="RelapseReportFragment">
+        <action
+            android:id="@+id/action_relapseReportFragment_to_relapseLossStrengthQuestionFragment"
+            app:destination="@id/relapseLossStrengthQuestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/relapseLossStrengthQuestionFragment"
+        android:name="com.healios.dreams.ui.relapse.RelapseLossStrengthQuestionFragment"
+        android:label="fragment_relapse_loss_strength_question"
+        tools:layout="@layout/fragment_relapse_loss_strength_question" />
 
 </navigation>
