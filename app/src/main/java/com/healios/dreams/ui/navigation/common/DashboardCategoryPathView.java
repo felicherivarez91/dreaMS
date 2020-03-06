@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard.common;
+package com.healios.dreams.ui.navigation.common;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,9 +17,6 @@ import android.widget.ScrollView;
 
 import com.healios.dreams.R;
 import com.healios.dreams.model.Test;
-import com.healios.dreams.model.challenge.metadata.ChallengeMetadata;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

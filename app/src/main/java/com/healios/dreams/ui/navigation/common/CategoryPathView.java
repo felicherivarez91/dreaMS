@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard.common;
+package com.healios.dreams.ui.navigation.common;
 
 import android.content.Context;
 import android.graphics.Canvas;

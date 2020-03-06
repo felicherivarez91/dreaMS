@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard.home
+package com.healios.dreams.ui.navigation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.tabs.TabLayout
 import com.healios.dreams.databinding.FragmentDashboardHomeBinding
 import com.healios.dreams.di.DashboardHomeViewModelFactory
-import com.healios.dreams.ui.dashboard.DashboardFragment
+import com.healios.dreams.ui.navigation.DashboardFragment
 import com.healios.dreams.util.EventObserver
 
 class DashboardHomeFragment : Fragment() {
@@ -49,7 +48,6 @@ class DashboardHomeFragment : Fragment() {
         binding.viewPagerFragmentDashboardHome.adapter = DashboardHomeViewPageAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
 
         viewModel.categoryChallengesStartButtonPressedChallengesNavigationArgument.observe(viewLifecycleOwner, EventObserver {
-            //TODO: Send data to next fragment
             findNavController().navigate(DashboardHomeFragmentDirections.actionDashboardHomeFragmentToDashboardCategoryChallengesPathFragment(it.category.categoryId, it.selectedDay))
         })
     }

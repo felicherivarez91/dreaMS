@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard.home
+package com.healios.dreams.ui.navigation.home
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

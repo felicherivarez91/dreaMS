@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.dashboard.home.DashboardChallengesCategoriesFragment">
+        tools:context=".ui.navigation.home.DashboardChallengesCategoriesFragment">
 
 
         <androidx.recyclerview.widget.RecyclerView

@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard
+package com.healios.dreams.ui.navigation
 
 import androidx.lifecycle.ViewModel
 
