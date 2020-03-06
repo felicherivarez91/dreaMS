@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.dashboard.home.DashboardHomeFragment">
+    tools:context=".ui.navigation.home.DashboardHomeFragment">
 
     <data>
 
@@ -11,7 +11,7 @@
 
         <variable
             name="viewmodel"
-            type="com.healios.dreams.ui.dashboard.home.DashboardHomeViewModel" />
+            type="com.healios.dreams.ui.navigation.home.DashboardHomeViewModel" />
     </data>
 
     <RelativeLayout
@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/dashboardNavigationNar_fragment_dashboard"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp">
 
@@ -164,6 +165,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:elevation="10dp"
                 app:tabSelectedTextColor="@color/colorPrimary"
                 app:tabTextAppearance="@style/AppTheme.TabLayout.TabBar.Text" />
 

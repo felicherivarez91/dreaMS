@@ -1,18 +1,16 @@
-package com.healios.dreams.ui.dashboard.home
+package com.healios.dreams.ui.navigation.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.healios.dreams.databinding.FragmentDashboardChallengesCategoriesBinding
 import com.healios.dreams.di.DashboardHomeViewModelFactory
-import com.healios.dreams.model.AvatarModel
 import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 
 interface DashboardChallengesCategoriesRecyclerViewListener {

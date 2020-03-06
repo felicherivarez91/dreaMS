@@ -53,6 +53,7 @@
     <color name="mainExplanationTextColor">#818596</color>
     <color name="mainDisabledColor">#ADB2BA</color>
     <color name="mainDisabledColor_20">#33ADB2BA</color>
+    <color name="mainUncompletedColor">#FF822C</color>
     <!-- ./ Main Colors -->
 
     <color name="mainErrorColor">@color/mainRedColor</color>
@@ -96,7 +97,7 @@
     
     <!-- Category Icon Status -->
     <color name="categoryIconCompletedStatusColor">@color/colorPrimary</color>
-    <color name="categoryIconUnCompletedStatusColor">#FF822C</color>
+    <color name="categoryIconUnCompletedStatusColor">@color/mainUncompletedColor</color>
     <color name="categoryIconUnCompletedStatusColor_10">#1AFF822C</color>
     <color name="categoryIconUnavailableStatusColor">#C5C8CC</color>
 
@@ -115,7 +116,9 @@
     <color name="itemDashboardWeekDayUncompletedBackgroundColor">@color/categoryIconUnCompletedStatusColor_10</color>
     <color name="itemDashboardWeekDayUncompletedTextColor">@color/mainBlackColor</color>
 
-    <color name="itemDashboardWeekDayCurrentUncompletedBackgroundColor">@color/categoryIconUnCompletedStatusColor</color>
+    <color name="itemDashboardWeekDayCurrentUncompletedBackgroundColor">
+        @color/mainUncompletedColor
+    </color>
     <color name="itemDashboardWeekDayCurrentUncompletedTextColor">@color/white</color>
 
     <color name="itemDashboardWeekDayCurrentCompletedBackgroundColor">@color/colorPrimary</color>

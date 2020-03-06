@@ -11,18 +11,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import androidx.annotation.Nullable;
-import androidx.databinding.BindingAdapter;
 
-import com.healios.dreams.DreaMSApp;
 import com.healios.dreams.R;
-import com.healios.dreams.model.Day;
-import com.healios.dreams.model.Dreams;
-import com.healios.dreams.ui.dashboard.home.DayOfTheWeek;
 
 public class CircularProgressBarView extends View {
 

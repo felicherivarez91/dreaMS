@@ -1,32 +1,38 @@
-package com.healios.dreams.ui.dashboard.home
+package com.healios.dreams.ui.navigation.home
 
 import android.content.Context
 import android.text.Spanned
-import android.util.Log
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.healios.dreams.DreaMSApp
 import com.healios.dreams.R
-import com.healios.dreams.data.*
+import com.healios.dreams.data.TokenProvider
+import com.healios.dreams.data.UserManager
+import com.healios.dreams.data.UserPreferences
 import com.healios.dreams.data.challenge.ChallengeBuilder
 import com.healios.dreams.model.*
 import com.healios.dreams.model.challenge.metadata.Challenge
 import com.healios.dreams.model.challenge.metadata.ChallengeCategory
 import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
 import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
-import com.healios.dreams.util.*
+import com.healios.dreams.repository.PatientRepository
+import com.healios.dreams.util.DreaMSDateUtils
+import com.healios.dreams.util.Event
+import com.healios.dreams.util.LiveEvent
+import com.healios.dreams.util.MutableLiveEvent
 
 class DashboardHomeViewModel constructor(
     private val userManager: UserManager,
     private val tokenProvider: TokenProvider,
-    private val userCollectionDataRepository: UserCollectionDataRepository,
+    private val patientRepository: PatientRepository,
     private val userPreferences: UserPreferences
 ) : ViewModel() {
 
     private val TAG: String = DashboardHomeViewModel::class.java.simpleName
-    
+
+
     private val _communicationInProgress = MutableLiveData<Boolean>(false)
     val communicationInProgress: LiveData<Boolean> = _communicationInProgress
 
@@ -73,6 +79,9 @@ class DashboardHomeViewModel constructor(
         MutableLiveEvent<CategoryChallengesNavigationArgument>()
     val categoryChallengesStartButtonPressedChallengesNavigationArgument: LiveEvent<CategoryChallengesNavigationArgument> =
         _categoryChallengesStartButtonPressed
+
+    private val _todayDateString = MutableLiveData<String>(DreaMSDateUtils.getTodayDateString())
+    val todayDateString: LiveData<String> = _todayDateString
 
     private val context: Context = DreaMSApp.instance.applicationContext
     private var todayDay: Int = DreaMSDateUtils.getDayOfWeekOfToday()
@@ -139,9 +148,18 @@ class DashboardHomeViewModel constructor(
 
     //region: Initializer
     init {
-        askServerForData()
-        retrieveUserCollectionData()
         setData()
+        _communicationInProgress.postValue(true)
+        patientRepository.getPatientData { userData, error ->
+            _communicationInProgress.postValue(false)
+            if (error == null) {
+                this.userData = userData
+                setData()
+            } else {
+                //TODO: Do something with error!
+                println("Error: ${error.localizedMessage}")
+            }
+        }
     }
     //endregion
 
@@ -157,15 +175,6 @@ class DashboardHomeViewModel constructor(
     }
 
     private fun getInitialData() {
-        Log.d(TAG, "[HOY] " + DreaMSDateUtils.getTodayDateString())
-        /*
-        val daysOfTheCurrentWeek =
-            patient!!.attendance.currentAttendance.days
-
-        val currentDayList = daysOfTheCurrentWeek.filter { day ->
-            day.dateScheduled == DreaMSDateUtils.getTodayDateString()
-        }
-        */
         if (patient!!.activeDays().contains(selectedDay)) {
             val dailyChallengePosition = getDailyChallengePosition()
             currentDay = dailyChallenges[dailyChallengePosition!!]
@@ -292,7 +301,7 @@ class DashboardHomeViewModel constructor(
             patient!!.attendance.currentAttendance.days
 
         val currentDayList = daysOfTheCurrentWeek.filter { day ->
-            day.dateScheduled == DreaMSDateUtils.getTodayDateString()
+            day.dateScheduled == daysOfTheCurrentWeek[schedulePosition].dateScheduled
         }
 
         val nonCompletedChallenges = currentDayList[0].tests?.filter { test ->
@@ -381,44 +390,6 @@ class DashboardHomeViewModel constructor(
     }
     //endregion
 
-    //region: API Calls
-    private fun askServerForData() {
-        _communicationInProgress.postValue(true)
-
-        val userId = userPreferences.userId
-
-        if (userId == null || userId.isEmpty()) {
-            return
-        }
-
-        userManager.getUserCollectionById(userId, UserType.PATIENT, null)
-            .process { userDataModel, error ->
-
-                if (error == null) {
-                    if (userDataModel != null) {
-                        //Save data into asset
-                        userCollectionDataRepository.saveUserCollectionDataLocally(userDataModel)
-                    } else {
-                        //TODO: Error, data is null
-                        Log.e(TAG, "[ERROR] User Collection Data is null!")
-                    }
-                } else {
-                    //TODO: Error in API response
-                    Log.e(TAG, error.localizedMessage ?: "[ERROR] in response!")
-                }
-                _communicationInProgress.postValue(false)
-            }
-
-    }
-    //endregion
-
-    //region: Local file data
-    private fun retrieveUserCollectionData() {
-        val userCollectionData = userCollectionDataRepository.getUserCollectionData()
-        userData = userCollectionData?.data
-    }
-    //endregion
-
     //region: Public methods
     fun onWeekDayClick(dayClicked: DayOfTheWeek?) {
         if (dayClicked != null) {
@@ -451,7 +422,7 @@ class DashboardHomeViewModel constructor(
     //endregion
 
     private fun refreshDashboardData() {
-        //Refresh dashboard data
+        //Refresh navigation data
         setRemainingChallengesForSelectedDay()
 
         showDashboardContentData()

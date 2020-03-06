@@ -1,14 +1,14 @@
-package com.healios.dreams.ui.dashboard
+package com.healios.dreams.ui.navigation
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.healios.dreams.R
 import com.healios.dreams.databinding.FragmentDashboardBinding
-import com.healios.dreams.ui.dashboard.home.DashboardHomeFragment
 
 
 class DashboardFragment : Fragment() {
@@ -30,20 +30,13 @@ class DashboardFragment : Fragment() {
     }
 
     private fun bind() {
-
-
-        binding.bottomNavigationViewFragmentDashboard.setOnNavigationItemSelectedListener { item: MenuItem ->
-            val fragment: Fragment
-            when (item.itemId) {
-                R.id.navigation_home -> fragment = DashboardHomeFragment.newInstance()
-                //R.id.navigation_notifications ->
-                //R.id.navigation_relapse ->
-                //R.id.navigation_settings ->
-                else -> fragment = DashboardHomeFragment.newInstance()
-            }
-            true
-        }
+        val bottomNavigationView = binding.bottomNavigationViewFragmentDashboard
+        val navController =
+            childFragmentManager.findFragmentById(R.id.fragment_dashboard_nav_host_fragment)!!
+                .findNavController()
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
     }
+
 
 
 

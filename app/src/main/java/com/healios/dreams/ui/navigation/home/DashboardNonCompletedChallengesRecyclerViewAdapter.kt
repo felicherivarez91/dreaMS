@@ -1,11 +1,9 @@
-package com.healios.dreams.ui.dashboard.home
+package com.healios.dreams.ui.navigation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.healios.dreams.DreaMSApp
 import com.healios.dreams.databinding.ItemDashboardNonCompletedChallengeBinding
-import com.healios.dreams.model.Test
 import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
 
 class DashboardNonCompletedChallengesRecyclerViewAdapter :

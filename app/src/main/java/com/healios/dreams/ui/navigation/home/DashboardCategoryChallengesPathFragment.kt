@@ -1,4 +1,4 @@
-package com.healios.dreams.ui.dashboard.home
+package com.healios.dreams.ui.navigation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,10 +11,10 @@ import com.healios.dreams.databinding.FragmentDashboardCategoryChallengesPathBin
 import com.healios.dreams.di.DashboardHomeViewModelFactory
 import com.healios.dreams.model.Test
 import com.healios.dreams.model.challenge.metadata.ChallengeCategory
-import com.healios.dreams.model.challenge.metadata.ChallengeCategoryMetadata
-import com.healios.dreams.model.challenge.metadata.ChallengeMetadata
-import com.healios.dreams.ui.dashboard.common.ChallengeViewListener
-import com.healios.dreams.ui.dashboard.common.DashboardCategoryPathView
+import com.healios.dreams.ui.navigation.common.ChallengeViewListener
+import com.healios.dreams.ui.navigation.common.DashboardCategoryPathView
+import com.healios.dreams.util.hideBottomNavigationViewIfProceeds
+import com.healios.dreams.util.showBottomNavigationViewIfProceeds
 
 class DashboardCategoryChallengesPathFragment : Fragment(), ChallengeViewListener {
 
@@ -69,6 +69,19 @@ class DashboardCategoryChallengesPathFragment : Fragment(), ChallengeViewListene
         }
 
     }
+
+    //region: Show && Hide Bottom Navigation Bar View
+    override fun onResume() {
+        super.onResume()
+        hideBottomNavigationViewIfProceeds()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        showBottomNavigationViewIfProceeds()
+    }
+    //endregion
+
 
     override fun onChallengeIconClick(test: Test?) {
         TODO("*** Not implemented yet. Challenges need to be defined ***")
