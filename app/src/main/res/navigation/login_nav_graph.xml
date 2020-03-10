@@ -194,6 +194,48 @@
         android:id="@+id/relapseLossStrengthQuestionFragment"
         android:name="com.healios.dreams.ui.relapse.RelapseLossStrengthQuestionFragment"
         android:label="fragment_relapse_loss_strength_question"
-        tools:layout="@layout/fragment_relapse_loss_strength_question" />
+        tools:layout="@layout/fragment_relapse_loss_strength_question">
+        <action
+            android:id="@+id/action_relapseLossStrengthQuestionFragment_to_relapseLossCoordinationQuestion"
+            app:destination="@id/relapseLossCoordinationQuestion" />
+        <action
+            android:id="@+id/action_relapseLossStrengthQuestionFragment_to_tapAffectedLimbsFragment"
+            app:destination="@id/tapAffectedLimbsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/relapseLossCoordinationQuestion"
+        android:name="com.healios.dreams.ui.relapse.RelapseLossCoordinationQuestionFragment"
+        android:label="fragment_relapse_loss_coordination_question"
+        tools:layout="@layout/fragment_relapse_loss_coordination_question">
+        <action
+            android:id="@+id/action_relapseLossCoordinationQuestion_to_relapseLossVisionQuestionFragment"
+            app:destination="@id/relapseLossVisionQuestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tapAffectedLimbsFragment"
+        android:name="com.healios.dreams.ui.relapse.affectedlimbs.TapAffectedLimbsFragment"
+        android:label="fragment_tap_affected_limbs"
+        tools:layout="@layout/fragment_tap_affected_limbs" />
+    <fragment
+        android:id="@+id/relapseLossVisionQuestionFragment"
+        android:name="com.healios.dreams.ui.relapse.RelapseLossVisionQuestionFragment"
+        android:label="RelapseLossVisionQuestionFragment">
+        <action
+            android:id="@+id/action_relapseLossVisionQuestionFragment_to_relapseLossMemoryQuestionFragment"
+            app:destination="@id/relapseLossMemoryQuestionFragment" />
+        <action
+            android:id="@+id/action_relapseLossVisionQuestionFragment_to_tapAffectedEyesFragment"
+            app:destination="@id/tapAffectedEyesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/relapseLossMemoryQuestionFragment"
+        android:name="com.healios.dreams.ui.relapse.RelapseLossMemoryQuestionFragment"
+        android:label="fragment_relapse_loss_memory_question"
+        tools:layout="@layout/fragment_relapse_loss_memory_question" />
+    <fragment
+        android:id="@+id/tapAffectedEyesFragment"
+        android:name="com.healios.dreams.ui.relapse.affectedeyes.TapAffectedEyesFragment"
+        android:label="fragment_tap_affected_eyes"
+        tools:layout="@layout/fragment_tap_affected_eyes" />
 
 </navigation>

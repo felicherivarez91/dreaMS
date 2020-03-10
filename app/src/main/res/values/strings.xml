@@ -90,6 +90,15 @@
     <string name="report_button_no">No</string>
     <string name="report_button_yes">Yes</string>
     <string name="report_loss_of_strength">Have you experienced loss of strength or sensitivity?</string>
+    <string name="report_loss_of_coordination">Have you experienced loss of balance or coordination?</string>
+    <string name="report_loss_of_memory">Have you experienced loss of memory or cognitive problems?</string>
+    <string name="report_loss_of_vision">Have you experienced loss of vision or discomfort in your eyes?</string>
+    <string name="report_tap_on_limbs">Tap on the affected limb(s)</string>
+    <string name="report_loss_of_sensitivity">Loss of strength /\n sensitivity</string>
+    <string name="report_left_eye">Left eye</string>
+    <string name="report_right_eye">Right eye</string>
+    <string name="report_loss_of_vision_caption">Loss of vision</string>
+    <string name="double_vision">I\'m experiencing double vision</string>
 
     <!--  ./Report Relapse -->
 

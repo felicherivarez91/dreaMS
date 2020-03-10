@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.healios.dreams.ui.relapse.affectedeyes.TapAffectedEyesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_top"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <TextView
+            android:id="@+id/textView_right_eye"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="28dp"
+            android:text="@string/report_right_eye"
+            android:textAlignment="center"
+            android:textColor="#818596"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_right_eye" />
+
+        <TextView
+            android:id="@+id/textView_double_vision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="53dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="82dp"
+            android:fontFamily="@font/circularstd_bold"
+            android:text="@string/double_vision"
+            android:textColor="#2D3344"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_continue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_tap_on_limbs" />
+
+        <TextView
+            android:id="@+id/textView_left_eye"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="33dp"
+            android:text="@string/report_left_eye"
+            android:textAlignment="center"
+            android:textColor="#818596"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_left_eye" />
+
+        <TextView
+            android:id="@+id/textView_loss_of_vision"
+            android:layout_width="295dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginEnd="40dp"
+            android:text="@string/report_loss_of_vision_caption"
+            android:textAlignment="center"
+            android:textColor="#2D3344"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_left_eye" />
+
+        <TextView
+            android:id="@+id/textView_tap_on_limbs"
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/report_tap_on_limbs"
+            android:textAlignment="center"
+            android:textColor="#818596"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_loss_of_vision" />
+
+        <ImageView
+            android:id="@+id/imageView_left_eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="72dp"
+            android:onClick="@{()-> viewmodel.clickTheLeftEyeImage(true)}"
+            android:src="@{viewmodel.leftEye ? @drawable/ic_eye_selected : @drawable/ic_eye }"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
+
+        <ImageView
+            android:id="@+id/imageView_right_eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="34dp"
+            android:onClick="@{()-> viewmodel.clickTheRightEyeImage(true)}"
+            android:src="@{viewmodel.rightEye ? @drawable/ic_eye_selected : @drawable/ic_eye }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
+
+        <Button
+            android:id="@+id/button_continue"
+            style="@style/AppTheme.Button.Main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_all_mainButton"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="34dp"
+            android:enabled="@{viewmodel.canContinue, default=false}"
+            android:text="@string/all_continue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
